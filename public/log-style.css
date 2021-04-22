@@ -1,0 +1,202 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500&display=swap');
+
+/* General */
+body {
+    background-color: #E2CAEE;
+    font-family: 'Rajdhani', sans-serif;
+    color: #6A2D8F;
+}
+
+h1{
+    color: #6A2D8F;
+    font-family: 'Rajdhani', sans-serif;
+    align-self: baseline;
+}
+
+h2{
+    color: #6A2D8F;
+    font-family: 'Rajdhani', sans-serif;
+    align-self: baseline;
+    text-decoration: underline;
+}
+
+p{
+   margin: 0 !important; 
+}
+
+#labeldate{
+    align-self: baseline;
+    font-size: 1.2em;
+}
+
+/* Link */
+a{
+    color:#6A2D8F;
+    width: 100%;
+    margin: 0;
+    margin-bottom: 20%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-button{
+    position: relative;
+    width: 100%;
+    min-height: 45px;
+    margin-bottom: 5%;
+    margin-top: 5%;
+    background-color: #FEE600;
+    border: 2px solid #6D4434;
+    border-radius: 5px;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 600;
+    font-size: 1.3rem;
+    color: #6D4434;
+    text-align: center;
+}
+
+/* Form */
+form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    width: 80%;
+    margin: auto;
+    margin-top: 10%;
+    margin-bottom: 10%;
+}
+
+.field{
+    width: 100%;
+    margin-bottom: 10% !important;
+}
+
+input{
+    background-color: #6A2D8F !important;
+    font-family: 'Rajdhani', sans-serif;
+    color: white !important;
+    border: 1px solid white !important;
+    border-radius: 5px !important;
+    min-height: 45px;
+}
+
+input::placeholder{
+    color: #F1E1F0 !important;
+    font-family: 'Rajdhani', sans-serif;
+}
+
+label{
+    color: white !important;
+}
+
+/* Checkbox */
+#check{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+#checkfield{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 50%;
+    padding: 0;
+    background-color: #6A2D8F !important;
+    font-family: 'Rajdhani', sans-serif;
+    border: 1px solid white !important;
+    color: white !important;
+    border-radius: 5px !important;
+    min-height: 45px;
+}
+
+/* Image */
+#img-login1{
+    width: 25%;
+    background-color: #E2CAEE;
+    position: absolute;
+    border: #6D4434 2px solid;
+    border-radius: 50%;
+    top: -40%;
+    left: -5%;
+}
+
+#img-login2{
+    width: 25%;
+    background-color: #E2CAEE;
+    position: absolute;
+    border: #6D4434 2px solid;
+    border-radius: 50%;
+    top: -40%;
+    left: 80%;
+}
+
+/* Admin */
+#adminHome{
+    margin-top: 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#adminHome a{
+    padding: 10px !important;
+}
+
+#adminHome a i{
+    margin: 0;
+}
+
+#addUserButton{
+    width: 100%;
+    margin-top: 10% !important;
+    margin-bottom: 10% !important;
+    background-color: #FEE600;
+    color: #6D4434;
+    border: 2px solid #6D4434 !important;
+    border-radius: 5px !important;
+    padding-top: 7%;
+    padding-bottom: 7%;
+    font-size: larger;
+}
+
+#editButton{
+    background-color: #FEE600;
+    border: 2px solid #6D4434 !important;
+}
+
+#editButton i{
+    color: #6D4434;
+}
+
+table{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+tbody{
+    width: 70%;
+}
+
+tr{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 10%;
+}
+
+td{
+    font-size: large;
+    margin-bottom: 3%;
+}
+
+td a{
+    width: 20%;
+}
+

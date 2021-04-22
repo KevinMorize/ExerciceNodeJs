@@ -1,0 +1,12 @@
+<%- include('../includes/header.ejs')%>
+
+<% if (locals.greenMessage) { %>
+    <div class="ui green message"><%- locals.greenMessage %></div>
+<% } %>
+
+<div class="ui small icon input" id="searchbar">
+    <input type="text" placeholder="Rechercher">
+    <i class="search icon"></i>
+</div>
+
+<%- include ('../includes/footer.ejs') %>

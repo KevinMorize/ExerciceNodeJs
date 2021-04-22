@@ -1,0 +1,78 @@
+<%- include('../includes/headerIndex.ejs')%>
+
+<form class="ui form" action="/inscription" method='post'>
+
+    <h1>Vous</h1>
+    
+    <% if (locals.emailMessage) { %>
+      <div class="ui yellow message"><%- locals.emailMessage %></div>
+    <% } %>
+      
+    <% if (locals.passwordMessage) { %>
+      <div class="ui red message"><%- locals.passwordMessage %></div>
+    <% } %>
+
+    <div class="field">
+        <input type="text" name="pseudo" placeholder="Pseudo" required>
+    </div>
+
+    <div class="field">
+      <input type="email" name="email" placeholder="e-mail" required>
+    </div>
+
+    <div class="field">
+      <input type="text" name="city" placeholder="City or Zip-Code">
+    </div>
+
+    <div class="field">
+      <textarea name="bio" placeholder="ajouter une description" rows="5" cols="30"></textarea>
+    </div>
+ 
+    <div class="field">
+      <input type="password" name="password" placeholder="New password" required>
+    </div>
+    
+    <div class="field">
+      <input type="password" name="passwordConfirm" placeholder="Confirm password" required>
+    </div>
+
+    
+    <h1>Votre chien</h1>
+
+    <div class="field">
+      <input type="text" name="dogname" placeholder="Nom" required>
+    </div>
+
+    <div class="field">
+      <input type="text" name="icad" placeholder="Numéro de puce" required>
+    </div>
+    
+    <div class="field">
+      <input type="text" name="breed" placeholder="Race" required>
+    </div>
+
+    <p id="labeldate">Date de naissance:</p>
+    <div class="field">
+      <input type="date" name="birthday" required>
+    </div>
+
+    <div class="inline fields" id="check">
+
+      <div class="inline field" id="checkfield">
+          <input type="radio" name="sexe" value="male" tabindex="0" class="hidden">
+          <label>Mâle</label>
+      </div>
+
+      <div class="inline field" id="checkfield">
+          <input type="radio" name="sexe" value="femelle" tabindex="0" class="hidden">
+          <label>Femelle</label>
+      </div>
+
+    </div>  
+
+    <button class="login-button"  type="submit">Confirmer<img src="/img/balades.png" alt="img-login" id="img-login2"></button>
+
+</form>
+
+
+<%- include ('../includes/footerIndex.ejs') %>

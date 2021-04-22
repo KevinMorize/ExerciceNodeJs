@@ -1,0 +1,46 @@
+<%- include('../includes/headerIndex.ejs')%>
+
+<main class="ui container" id="adminHome">
+<h1>Bienvenue sur votre session administrateur :</h1>
+
+<% if (locals.confirmMessage) { %>
+    <div class="ui green message"><%- confirmMessage %></div>
+<% } %>
+
+<h2>Administrateurs :</h2>
+
+<% showAdmin.forEach(function(admin) { %>
+    <table>
+        <tr>
+            <td><%= admin.pseudo %></td>
+            <td><%= admin.email %></td>
+            <td><%= admin.city %></td>
+            <td><%= admin.role %></td>
+            <td><a href="/delete-user?id=<%= admin.idUser %>" onClick="return confirm('Êtes-vous sûr ?')" class="ui red button"><i class="cut icon"></i></a>
+            <a href="/update-user?id=<%= admin.idUser %>" class="ui button" id="editButton"><i class="edit icon"></i></a></td>
+        </tr>
+    </table>
+<% }); %>
+
+<h2>Utilisateurs :</h2>
+
+<% showUser.forEach(function(user) { %>
+    <table>
+        <tr>
+            <td><%= user.pseudo %></td>
+            <td><%= user.email %></td>
+            <td><%= user.city %></td>
+            <td><%= user.role %></td>
+            <td><a href="/delete-user?id=<%= user.idUser %>" onClick="return confirm('Êtes-vous sûr ?')" class="ui red button"><i class="cut icon"></i></a>
+            <a href="/update-user?id=<%= user.idUser %>" class="ui button" id="editButton"><i class="edit icon"></i></a></td>
+        </tr>
+    </table>
+<% }); %>
+
+<a class="ui button" href="/add-user" id="addUserButton">Ajouter un utilisateur</a>
+
+</main>
+
+
+
+<%- include ('../includes/footerIndex.ejs') %>

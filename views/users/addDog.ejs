@@ -1,0 +1,41 @@
+<%- include('../includes/header.ejs')%>
+
+<form class="ui form" action="/add-dog" method='post'>
+
+  <div class="field">
+    <input type="text" name="dogname" placeholder="Nom" required>
+  </div>
+  
+  <div class="field">
+    <input type="text" name="icad" placeholder="Numéro de puce" required>
+  </div>
+      
+  <div class="field">
+    <input type="text" name="breed" placeholder="Race" required>
+  </div>
+  
+  <p id="labeldate">Date de naissance:</p>
+
+  <div class="field">
+    <input type="date" name="birthday" required>
+  </div>
+  
+  <div class="inline fields" id="check">
+  
+  <div class="inline field" id="checkfield">
+    <input type="radio" name="sexe" value="male" tabindex="0" class="hidden">
+    <label>Mâle</label>
+  </div>
+  
+  <div class="inline field" id="checkfield">
+    <input type="radio" name="sexe" value="femelle" tabindex="0" class="hidden">
+    <label>Femelle</label>
+  </div>
+  
+      </div>  
+  
+      <button class="login-button"  type="submit">Confirmer<img src="/img/balades.png" alt="img-login" id="img-login2"></button>
+
+</form>
+
+<%- include ('../includes/footer.ejs') %>

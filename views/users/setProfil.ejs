@@ -1,0 +1,25 @@
+<%- include('../includes/header.ejs')%>
+
+<form class="ui form" action="/updateProfil" method='post'>
+
+<div class="field">
+    <input type="text" name="pseudo" placeholder="Pseudo" value="<%= show.pseudo %>" required>
+</div>
+
+<div class="field">
+  <input type="email" name="email" placeholder="e-mail" value="<%= show.email %>" disabled>
+</div>
+
+<div class="field">
+  <input type="text" name="city" placeholder="City or Zip-Code"
+  value="<%= show.city %>">
+</div>
+
+<div class="field">
+  <textarea name="bio" placeholder="Ajouter une description" rows="5" cols="30"><%= show.bio %></textarea>
+</div>
+
+<button class="ui button" type="submit" id="addUserButton">Modifier l'utilisateur</button>
+</form>
+
+<%- include ('../includes/footer.ejs') %>
