@@ -23,7 +23,6 @@
 }
 
 main{
-    height: 85%;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -100,11 +99,24 @@ label{
     color: white !important;
 }
 
+textarea{
+    width: 80%;
+    margin-bottom: 7% !important;
+    background-color: #6A2D8F !important;
+    font-family: 'Rajdhani', sans-serif;
+    color: white !important;
+}
+
+textarea::placeholder{
+    color: #F1E1F0 !important;
+    font-family: 'Rajdhani', sans-serif;
+}
+
 .login-button{
     position: relative;
     width: 100%;
     min-height: 45px;
-    margin-bottom: 5%;
+    margin-bottom: 20%;
     margin-top: 5%;
     background-color: #FEE600;
     border: 2px solid #6D4434;
@@ -151,6 +163,7 @@ label{
 /* profil */
 
 #profil-img-container{
+    width: 100%;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -161,9 +174,10 @@ label{
 }
 
 #img-profil-user{
-    position: relative;
-    top: -25%;
+    margin: auto;
+    margin-top: 3%;
 }
+
 
 #img-cover-user{
     width: 100%;
@@ -206,6 +220,17 @@ label{
 #profil-infos-container a i{
     color: #6A2D8F;
     transform: scale(2)
+}
+
+.dogCard{
+    margin-top: 5%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.ui.card{
+    margin: 0 2%;
 }
 
 #myDogs{

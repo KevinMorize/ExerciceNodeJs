@@ -4,16 +4,14 @@ const authModel = require('../models/authModel')
 exports.login =  async (req, res) => {
     authModel.login(req, res)
 }
-
 exports.loginView = (req, res) => {
-    authModel.loginView(req, res)
+    res.render('../views/index');
 }
 
 // register //
 exports.register = async (req, res) => {
     authModel.register(req, res)
 }
-
 exports.registerView = (req, res) => {
-    authModel.registerView(req, res)
+    res.render('../views/users/register')
 }

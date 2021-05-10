@@ -41,7 +41,7 @@ class authModel {
 
                 res.cookie('jwt', token, cookieOptions);
 
-                if (role === 'Utilisateur'){
+                if (role === 0){
                 res.status(200).redirect("/profil")
                 } else {
                     res.status(200).redirect("/home-admin")
@@ -57,13 +57,9 @@ class authModel {
 
     }
 
-    static loginView (req, res) {
-        res.render('../views/index');
-    }
-
     // register //
     static register (req, res) {
-        const { pseudo, email, city, bio, password, passwordConfirm, icad, dogname, breed, birthday, sexe } = req.body
+        const { username, email, city, bio, password, passwordConfirm, userAttachment, cover, icad, name, breed, birthday, sexe, size, sterile, dogAttachment, description } = req.body
 
         db.query("SELECT email FROM users WHERE email = ?", [email], async (error, results) => {
 
@@ -84,11 +80,11 @@ class authModel {
 
             let hashedPassword = await bcrypt.hash(password, 8)
 
-            db.query('INSERT INTO users SET ?', {pseudo: pseudo, email: email, city: city, bio: bio, password: hashedPassword, role: 'Utilisateur'}, (error, result1) => {
+            db.query('INSERT INTO users SET ?', {username: username, email: email, city: city, bio: bio, userAttachment: userAttachment, cover: cover, password: hashedPassword, role: 0}, (error, result1) => {
                 if (error){
-                    console.log(error)
+                    console.log(result1)
                 }
-                db.query('INSERT INTO dogs SET ?', {idUser: result1.insertId, icad: icad, nom: dogname, race: breed, age: birthday, sexe: sexe }, (error, result2)  => {
+                db.query('INSERT INTO dogs SET ?', {idUser: result1.insertId, icad: icad, name: name, breed: breed, birthday: birthday, sexe: sexe, size: size, sterile: sterile, dogAttachment: dogAttachment, description: description }, (error, result2)  => {
                     if (error) {
                         console.log(error);
                     } 
@@ -100,11 +96,6 @@ class authModel {
             });
         });
     }
-
-    static registerView (req, res) {
-        res.render('../views/users/register')
-    }
-
 }
 
 module.exports = authModel;

@@ -78,5 +78,4 @@ class adminModel {
 
 }
 
-
 module.exports = adminModel;

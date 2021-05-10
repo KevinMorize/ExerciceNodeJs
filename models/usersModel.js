@@ -1,57 +1,63 @@
+const cookieParser = require('cookie-parser')
 const db = require('../config/db')
 
 class usersModel {
 
-// views //
-    static homeView (req, res) {
-        res.render('../views/users/home', {
-            title: "acceuil"
-        })
-    }
-
-    static localiseView (req, res) {
-        res.render('../views/users/localise', {
-            title: "autour de moi"
-        })
-    }
-
-    static walksView (req, res) {
-        res.render('../views/users/walks', {
-            title: "mes balades"
-        })
-    }
-
     // profil //
+    static userProfil (req, res) {
 
-    static profilView (req, res) {
         if (req.user) {
-
-            db.query('SELECT * FROM dogs WHERE idUser = ?', [req.user.idUser], (err, result) => {
-                if (err){
-                    console.log(err)
-                }
-                res.render('../views/users/profil', {
-                    title: "mon profil",
-                    name: req.user.pseudo,
-                    city: req.user.city,
-                    bio: req.user.bio,
-                    id: req.user.idUser,
-                    dogInfo: result, 
+            db.query('SELECT * FROM users WHERE idUser = ?', [req.user.idUser], (err, result1) => {
+                db.query('SELECT * FROM dogs WHERE idUser = ?', [req.user.idUser], (err, result2) => {
+                    if (err){
+                        console.log(err)
+                    }
+                    res.render('../views/users/profil', {title: "mon profil", user: result1[0], dogs: result2})     
                 })
-            })  
-
-
+            })
         } else {
             res.redirect('/')
         }
     }
 
-    // update-profil //
-
+    // edit profil //
     static updateProfilView (req, res) {
-        console.log('-----------', req.query.id)
-        db.query('SELECT pseudo, email, city, bio FROM users WHERE idUser = ?', req.query.id, (error, result) =>{
-            res.render('../views/users/setProfil', { show: result[0], title: "Modifier mon profil", button: "edit" })
+        db.query('SELECT username, email, city, bio FROM users WHERE idUser = ?', req.query.id, (error, result) =>{
+            res.render('../views/users/setProfil', { user: result[0], title: "Modifier mon profil", button: "edit" })
+        })
+    }
+
+    static updateUser (req, res) {
+
+        var param = [
+            req.body,
+            req.query.id
+        ]
+
+        db.query('UPDATE users SET ? WHERE idUser = ?', param, (error, response) => {
+            console.log(param)
+            if(error){
+                throw(error)
+            }
+            res.redirect('/profil')
+        })
+    }
+
+    // edit dogs
+    static addDog (req,res) {
+        const { icad, name, breed, birthday, sexe, size, sterile, dogAttachment, description } = req.body
+
+        db.query('INSERT INTO dogs SET ?', {idUser: req.user.idUser, dogAttachment: dogAttachment, icad: icad, name: name, breed: breed, birthday: birthday, sexe: sexe, size: size, sterile: sterile, description: description }, (error, results) => {
+            if (error){
+                console.log(error)
+            }
+        });
+        res.redirect('/profil')
+    }
+
+    static deleteDog (req, res) {
+        db.query('DELETE FROM dogs WHERE idDogs = ?', req.query.id, (error, result) => {
+            res.redirect('/profil')
         })
     }
 

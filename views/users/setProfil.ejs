@@ -1,23 +1,20 @@
 <%- include('../includes/header.ejs')%>
 
-<form class="ui form" action="/updateProfil" method='post'>
+<form class="ui form" action="/edit-profil" method='post'>
 
-<div class="field">
-    <input type="text" name="pseudo" placeholder="Pseudo" value="<%= show.pseudo %>" required>
+  <div class="field">
+    <input type="text" name="username" placeholder="Pseudo" value="<%= user.username %>"required>
 </div>
 
 <div class="field">
-  <input type="email" name="email" placeholder="e-mail" value="<%= show.email %>" disabled>
+  <input type="email" name="email" placeholder="e-mail" value="<%= user.email %>" required>
 </div>
 
 <div class="field">
-  <input type="text" name="city" placeholder="City or Zip-Code"
-  value="<%= show.city %>">
+  <input type="text" name="city" placeholder="<%= user.city %>" value="<%= user.city %>">
 </div>
 
-<div class="field">
-  <textarea name="bio" placeholder="Ajouter une description" rows="5" cols="30"><%= show.bio %></textarea>
-</div>
+<textarea name="bio" placeholder="ajouter une description" rows="2"><%= user.bio %></textarea>
 
 <button class="ui button" type="submit" id="addUserButton">Modifier l'utilisateur</button>
 </form>
