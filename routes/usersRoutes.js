@@ -21,6 +21,5 @@ router.get('/logOut', logController.logOut)
 // edit dogs //
 router.get('/add-dog', logController.loggedIn, usersController.addDogView)
 router.post('/add-dog', logController.loggedIn, usersController.addDog)
-router.get('/delete-dog', usersController.deleteDog)
 
 module.exports = router;

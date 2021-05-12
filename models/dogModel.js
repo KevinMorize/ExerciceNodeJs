@@ -18,10 +18,46 @@ class dogModel {
     }
 
     static deleteDog (req, res) {
-        db.query('DELETE FROM dogs WHERE idDogs = ?', req.query.id, (error, result) => {
+        db.query('DELETE FROM dogs WHERE idDog = ?', req.query.id, (err, result) => {
+            if (err){
+                console.log(err)
+            }    
             res.redirect('/profil')
         })
     }
+
+    static getDog (req, res) {
+
+        db.query('SELECT * FROM dogs WHERE idDog = ?', req.query.id, (err, result1) => {
+            db.query('SELECT username FROM users WHERE idUser = ?', result1[0].idUser, (err, result2) => {
+                if (err){
+                    console.log(err)
+                }
+
+                if (result1[0].sexe === 0){
+                    result1[0].sexe = "femelle"
+                } else {
+                    result1[0].sexe = "mâle"
+                }
+            
+                if (result1[0].size === 1){
+                    result1[0].size = "petit"
+                } else if (result1[0].size === 2){
+                    result1[0].size = "moyen"
+                } else {
+                    result1[0].size = "grand"
+                }
+
+                if (result1[0].sterile === 1){
+                    result1[0].sterile = "stérilisé"
+                } else {
+                    result1[0].sterile = "non-stérilisé"
+                }
+
+                res.render('../views/users/dogProfil', {title: "Profil de " + result1[0].name, dog: result1[0], user:result2[0]})     
+            })
+        })
+    } 
 }
 
 module.exports = dogModel

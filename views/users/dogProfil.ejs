@@ -1,3 +1,41 @@
 <%- include('../includes/header.ejs')%>
 
+<div id="profil-img-container">
+    <img src="/img/cover-pic.png" alt="img-cover" id="img-cover-user">
+</div>
+
+<div id="dogInfosContainer">
+    <div>
+        <p id="dogName"><%- dog.name %></p>
+        <p id="dogBreed"><%- dog.breed %></p>
+        <p id="dogAge"><%- dog.birthday %></p>
+    </div>
+    <div>
+        <p id="dogSex"><%- dog.sexe %></p>
+        <p id="dogSterile"><%- dog.size %></p>
+        <p id="dogSterile"><%- dog.sterile %></p>
+    </div>
+</div>
+
+<hr>
+
+<div id="dogBio">
+    <p><%- dog.description %></p>
+</div>
+
+<hr>
+
+<h2>Propriétaire</h2>
+
+<div id="dogUser">
+    <img src="/img/profil-pic.png" alt="img-profil">
+    <p><%- user.username %></p>
+</div>
+
+<a class="ui button" href="/edit-dog-profil?id=<%= dog.idDog %>" id="editDogButton">Modifier compagnon</a>
+
+<a href="/delete-dog?id=<%= dog.idDog %>" id="deleteDogButton" onClick="return confirm('Êtes-vous sûr ?')">Supprimer ce compagnon</a>
+
+
+
 <%- include ('../includes/footer.ejs') %>

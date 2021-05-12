@@ -22,7 +22,7 @@ class usersModel {
 
     // edit profil //
     static updateProfilView (req, res) {
-        db.query('SELECT username, email, city, bio FROM users WHERE idUser = ?', req.query.id, (error, result) =>{
+        db.query('SELECT * FROM users WHERE idUser = ?', req.query.id, (error, result) =>{
             res.render('../views/users/setProfil', { user: result[0], title: "Modifier mon profil", button: "edit" })
         })
     }
@@ -34,8 +34,10 @@ class usersModel {
             req.query.id
         ]
 
+        console.log(param)
+
         db.query('UPDATE users SET ? WHERE idUser = ?', param, (error, response) => {
-            console.log(param)
+
             if(error){
                 throw(error)
             }
@@ -54,13 +56,6 @@ class usersModel {
         });
         res.redirect('/profil')
     }
-
-    static deleteDog (req, res) {
-        db.query('DELETE FROM dogs WHERE idDogs = ?', req.query.id, (error, result) => {
-            res.redirect('/profil')
-        })
-    }
-
 }
 
 module.exports = usersModel

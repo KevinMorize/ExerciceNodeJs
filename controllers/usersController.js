@@ -36,9 +36,6 @@ exports.addDogView = (req, res) => {
 exports.addDog = (req, res) => {
     usersModel.addDog(req, res)
 }
-exports.deleteDog = (req, res) => {
-    usersModel.deleteDog(req, res)
-}
 
 // localise //
 

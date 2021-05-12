@@ -22,40 +22,18 @@
   <div class="dogCard Infinite Scroll">
     <% dogs.forEach(function(dog) { %>
       <div class="ui card">
-        <div class="image">
-          <img src="/img/profil-pic.png">
-        </div>
-        <div class="content">
-          <a class="header"><%= dog.name %></a>
-          <div class="meta">
-            <span class="date"><%= dog.birthday %></span>
-          </div>
-          <div class="description">
-            <%= dog.breed %>
-          </div>
-        </div>
-        <div class="extra content">
-          <a href="/delete-dog?id=<%= dog.idDogs %>" onClick="return confirm('Êtes-vous sûr ?')" class="ui red button"><i class="trash icon"></i></a>
-        </div>
+        <a href="/dog-profil?id=<%= dog.idDog %>">
+            <div class="image">
+              <img src="/img/profil-pic.png">
+            </div>
+            <div class="content">
+              <h3><%= dog.name %></h3>
+            </div>
+          </a>
       </div>
     <% }); %>
   </div>
 <% } %>
-
-
-<!-- <% if (locals.dogs) { %>  
-<div id="myDogs">
-  <% dogs.forEach(function(dog) { %>
-      <div id="dogItem">
-        <%= dog.dogAttachment %></br>
-        <%= dog.name %></br>
-        <%= dog.breed %></br>
-        <%= dog.birthday %></br>
-        <a href="/delete-dog?id=<%= dog.idDogs %>" onClick="return confirm('Êtes-vous sûr ?')" class="ui red button"><i class="trash icon"></i></a>
-      </div>
-  <% }) %> 
-</div>
-<% } %> -->
 
 <a id="addDogButton" href="/add-dog">Ajouter un chien <i class="plus square icon" href="/add-dog"></i></a>
 
