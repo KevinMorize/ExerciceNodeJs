@@ -9,7 +9,7 @@
   <p id="user-name"><%- user.username %> (<%- user.city %>)</p>
   <p id="user-bio"><%- user.bio %></p>
 
-  <a class="ui icon button" href="/edit-profil?id=<%= user.idUser %>" >
+  <a class="ui icon button" href="/update-profil" >
     <i class="cog icon"></i>
   </a>
 </div>
@@ -35,7 +35,7 @@
   </div>
 <% } %>
 
-<a id="addDogButton" href="/add-dog">Ajouter un chien <i class="plus square icon" href="/add-dog"></i></a>
+<a id="addDogButton" href="/add-dog">Ajouter un chien <i class="plus square icon"></i></a>
 
 <hr>
 

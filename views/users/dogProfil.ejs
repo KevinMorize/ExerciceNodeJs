@@ -32,9 +32,9 @@
     <p><%- user.username %></p>
 </div>
 
-<a class="ui button" href="/edit-dog-profil?id=<%= dog.idDog %>" id="editDogButton">Modifier compagnon</a>
+<a class="ui button" href="/update-dog?id=<%= dog.idDog %>" id="editDogButton">Modifier compagnon</a>
 
-<a href="/delete-dog?id=<%= dog.idDog %>" id="deleteDogButton" onClick="return confirm('Êtes-vous sûr ?')">Supprimer ce compagnon</a>
+<a href="/delete-dog?id=<%= dog.idDog %>" id="deleteButton" onClick="return confirm('Êtes-vous sûr ?')">Supprimer ce compagnon</a>
 
 
 

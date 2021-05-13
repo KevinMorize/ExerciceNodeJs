@@ -1,0 +1,118 @@
+<%- include('../includes/header.ejs')%>
+
+<form class="ui form" ancre="f1" method='post'>
+  <action ancre="ancre1" href="/add-dog" methode="post"/>
+  <action ancre="ancre2" href="/update-dog" methode="post"/>
+
+  <!--attachment-->
+
+  <div class="field">
+    <input type="text" name="name" value="<%= dog.name %>" placeholder="Nom" required>
+  </div>
+
+  <% if (locals.dog === "none") { %>
+  <div class="field">
+    <input type="text" name="icad" placeholder="Numéro de puce" required>
+  </div>
+  <% } %>
+
+  <div class="field">
+    <input type="text" name="breed" value="<%= dog.breed %>" placeholder="Race" required>
+  </div>
+
+  <% if (locals.dog === "none") { %>
+  <p id="labeldate">Date de naissance:</p>
+  <div class="field">
+    <input type="date" name="birthday" required>
+  </div>
+
+  <div class="inline fields" id="check">
+    <div class="inline field" id="checkfield">
+        <input type="radio" name="sexe" value="1" tabindex="0" class="hidden">
+        <label>Mâle</label>
+    </div>
+
+    <div class="inline field" id="checkfield">
+        <input type="radio" name="sexe" value="0" tabindex="0" class="hidden">
+        <label>Femelle</label>
+    </div>
+  </div>
+
+  <p id="labeldate">Taille:</p>
+  <div class="inline fields" id="check">
+    <div class="inline field" id="checkfield">
+      <input type="radio" name="size" value="1" tabindex="0" class="hidden">
+      <label>Petit</label>
+    </div>
+
+    <div class="inline field" id="checkfield">
+      <input type="radio" name="size" value="2" tabindex="0" class="hidden">
+      <label>Moyen</label>
+    </div>
+
+    <div class="inline field" id="checkfield">
+      <input type="radio" name="size" value="3" tabindex="0" class="hidden">
+      <label>Grand</label>
+    </div> 
+  </div>
+
+  <p id="labeldate">Stérilisé:</p>
+
+  <div class="inline fields" id="check">
+    <div class="inline field" id="checkfield">
+      <input type="radio" name="sterile" value="1" tabindex="0" class="hidden">
+      <label>Oui</label>
+    </div>
+
+    <div class="inline field" id="checkfield">
+      <input type="radio" name="sterile" value="0" tabindex="0" class="hidden">
+      <label>Non</label>
+    </div>
+  </div>
+  <% } %>  
+
+  <% if (locals.dog.sterile === 1) { %>
+    <p id="labeldate">Stérilisé:</p>
+
+    <div class="inline fields" id="check">
+      <div class="inline field" id="checkfield">
+        <input type="radio" name="sterile" value="<%= dog.sterile %>" tabindex="0" class="hidden" checked="true">
+        <label>Oui</label>
+      </div>
+  
+      <div class="inline field" id="checkfield">
+        <input type="radio" name="sterile" value="0" tabindex="0" class="hidden">
+        <label>Non</label>
+      </div>
+    </div>
+    <% } %> 
+    
+    <% if (locals.dog.sterile === 0) { %>
+      <p id="labeldate">Stérilisé:</p>
+  
+      <div class="inline fields" id="check">
+        <div class="inline field" id="checkfield">
+          <input type="radio" name="sterile" value="1" tabindex="0" class="hidden">
+          <label>Oui</label>
+        </div>
+    
+        <div class="inline field" id="checkfield">
+          <input type="radio" name="sterile" value="<%= dog.sterile %>" tabindex="0" class="hidden" checked="true">
+          <label>Non</label>
+        </div>
+      </div>
+      <% } %>  
+
+  <textarea rows="2" name="description" placeholder="Ajoutez un petit mot sur votre ami"><%= dog.description %></textarea>
+
+<% if (locals.button === "add") { %>
+<button class="ui button" id="confirmButton" action="ancre1">Ajouter</button>
+<% } %>
+
+<% if (locals.button === "update") { %>
+  <button class="ui button" id="confirmButton" action="ancre2">Confirmer</button>
+<% } %>
+
+</form>
+
+<%- include ('../includes/footer.ejs') %>

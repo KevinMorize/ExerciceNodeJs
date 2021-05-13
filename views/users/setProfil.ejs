@@ -1,6 +1,6 @@
 <%- include('../includes/header.ejs')%>
 
-<form class="ui form" action="/edit-profil" method='post'>
+<form class="ui form" href="/update-profil" method='post'>
 
   <div class="field">
     <input type="text" name="username" placeholder="Pseudo" value="<%= user.username %>"required>
@@ -16,7 +16,9 @@
 
 <textarea name="bio" placeholder="ajouter une description" rows="2"><%= user.bio %></textarea>
 
-<button class="ui button" type="submit" id="addUserButton">Modifier l'utilisateur</button>
+<button class="ui button" type="submit" id="confirmButton">Modifier l'utilisateur</button>
 </form>
+
+<a href="/delete-profil" id="deleteButton" onClick="return confirm('Êtes-vous sûr ?')">Supprimer mon compte</a>
 
 <%- include ('../includes/footer.ejs') %>

@@ -1,7 +1,58 @@
 const dogModel = require('../models/dogModel.js')
+const db = require('../config/db')
 
-exports.dogProfilView = (req, res) => {
-    dogModel.getDog(req, res)
+exports.getDogProfil = (req, res) => {
+    db.query('SELECT * FROM dogs WHERE idDog = ?', req.query.id, (err, result1) => {
+        db.query('SELECT username FROM users WHERE idUser = ?', result1[0].idUser, (err, result2) => {
+            if (err){
+                console.log(err)
+            }
+
+            if (result1[0].sexe === 0){
+                result1[0].sexe = "femelle"
+            } else {
+                result1[0].sexe = "mâle"
+            }
+        
+            if (result1[0].size === 1){
+                result1[0].size = "petit"
+            } else if (result1[0].size === 2){
+                result1[0].size = "moyen"
+            } else {
+                result1[0].size = "grand"
+            }
+
+            if (result1[0].sterile === 1){
+                result1[0].sterile = "stérilisé"
+            } else {
+                result1[0].sterile = "non-stérilisé"
+            }
+
+            res.render('../views/users/dogProfil', {title: "Profil de " + result1[0].name, dog: result1[0], user:result2[0]})     
+        })
+    })
+} 
+
+exports.getCreateDog = (req, res) => {
+    res.render('../views/users/editDog', { dog: "none", title: "ajouter un chien", button: "add"})
+}
+
+exports.createDog = (req, res) => {
+    if (req.user){
+        dogModel.createDog(req, res)
+    } else {
+        res.redirect ("/")
+    }
+}
+
+exports.getUpdateDog = (req, res) => {
+    db.query('SELECT * FROM dogs WHERE idDog = ?', req.query.id, (error, result) =>{
+        res.render('../views/users/editDog', { dog: result[0], title: "modifier " + result[0].name, button: "update" })
+    })
+}
+
+exports.updateDog = (req, res) => {
+    dogModel.updateDog(req, res)
 }
 
 exports.deleteDog = (req, res) => {

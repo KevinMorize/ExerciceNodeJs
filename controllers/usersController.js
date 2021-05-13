@@ -1,4 +1,3 @@
-const { use } = require('passport')
 const usersModel = require('../models/usersModel')
 
 // views //
@@ -7,35 +6,51 @@ exports.homeView = (req, res) => {
         title: "acceuil"
     })
 }
+
 exports.localiseView = (req, res) => {
         res.render('../views/users/localise', {
             title: "autour de moi"
         })
 }
+
 exports.walksView = (req, res) => {
     res.render('../views/users/walks', {
         title: "mes balades"
     })
 }
+
 exports.profilView = async (req, res) => {
-    usersModel.userProfil(req, res)
-}
-exports.updateProfilView = (req, res) => {
-    usersModel.updateProfilView(req, res)
+   if (req.user){
+       usersModel.getUserProfil(req, res)
+   } else {
+       res.redirect("/")
+   }
 }
 
-// edit profil //
+exports.getUpdateProfil = (req, res) => {
+    if (req.user){
+        usersModel.getUpdateUser(req, res)
+    } else {
+        res.redirect("/")
+    }
+}
+
 exports.updateProfil = (req, res) => {
-    usersModel.updateUser(req, res)
+    if (req.user){
+        usersModel.updateUser(req, res)
+    } else {
+        res.redirect("/")
+    }
 }
 
-// edit dogs //
-exports.addDogView = (req, res) => {
-    res.render('../views/users/addDog', {title: "ajouter un chien"})
+exports.deleteProfil = (req, res) => {
+    if (req.user){
+        usersModel.deleteUser(req, res)
+    } else {
+        res.redirect("/")
+    }
 }
-exports.addDog = (req, res) => {
-    usersModel.addDog(req, res)
-}
+
 
 // localise //
 

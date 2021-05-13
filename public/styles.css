@@ -74,7 +74,7 @@ form{
     width: 80%;
     margin: auto;
     margin-top: 10%;
-    margin-bottom: 10%;
+    margin-bottom: 0;
 }
 
 .field{
@@ -226,6 +226,7 @@ textarea::placeholder{
     display: flex;
     flex-direction: row;
     justify-content: center;
+    flex-wrap: wrap;
 }
 
 .ui.card{
@@ -301,7 +302,7 @@ textarea::placeholder{
     font-size: larger;
 }
 
-#deleteDogButton{
+#deleteButton{
     font-family: 'Rajdhani', sans-serif;
     color: red;
     text-decoration: underline;
@@ -309,7 +310,7 @@ textarea::placeholder{
 
 /* update-profil */
 
-#addUserButton{
+#confirmButton{
     width: 100%;
     margin-top: 10% !important;
     margin-bottom: 10% !important;

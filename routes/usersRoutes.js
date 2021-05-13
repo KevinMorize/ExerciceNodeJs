@@ -11,15 +11,14 @@ router.get('/balades', logController.loggedIn, usersController.walksView)
 router.get('/profil', logController.loggedIn, usersController.profilView)
 
 
-// profil //
-router.get('/edit-profil', usersController.updateProfilView)
-router.post('/edit-profil', usersController.updateProfil)
+// update //
+router.get('/update-profil', logController.loggedIn, usersController.getUpdateProfil)
+router.post('/update-profil', logController.loggedIn, usersController.updateProfil)
+
+//delete
+router.get('/delete-profil', logController.loggedIn, usersController.deleteProfil) 
 
 // log //
 router.get('/logOut', logController.logOut)
-
-// edit dogs //
-router.get('/add-dog', logController.loggedIn, usersController.addDogView)
-router.post('/add-dog', logController.loggedIn, usersController.addDog)
 
 module.exports = router;
