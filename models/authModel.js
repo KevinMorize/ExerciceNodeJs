@@ -42,15 +42,13 @@ class authModel {
                 res.cookie('jwt', token, cookieOptions);
 
                 if (role === 0){
-                res.status(200).redirect("/profil")
+                res.status(200).redirect("/accueil")
                 } else {
                     res.status(200).redirect("/home-admin")
                 }
             }
             })   
-
         } 
-        
         catch (error) {
             console.log(error)
         }

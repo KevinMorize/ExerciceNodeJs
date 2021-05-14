@@ -37,8 +37,6 @@ class dogModel {
             res.redirect('/profil')
         })
     }
-
-    
 }
 
 module.exports = dogModel

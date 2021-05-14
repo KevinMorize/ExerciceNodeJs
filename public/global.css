@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Port+Lligat+Sans&display=swap');
+
+/* header-footer */
+#header{
+    background-color: #E2CAEE !important;
+    margin: 0 !important;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#header h1{
+    font-family: 'Port Lligat Sans', sans-serif !important;
+    color: #6A2D8F !important;
+    margin: 0;
+}
+
+#header a i{
+    transform: scale(1.5);
+}
+
+main{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding-bottom: 20%;
+}
+
+.menu{
+    background-color: #E2CAEE !important;
+    margin: 0 !important;
+    height: 7.5%;
+}
+
+.ui.menu .item:before{
+    background: transparent;
+}
+
+#menu-img-profil{
+    transform: scale(0.8);
+}
+
+hr{
+    width: 90%;
+    border: 1px solid #6A2D8F;
+    margin-top: 5%;
+    margin-bottom: 0;
+    position: relative;
+    left: -5%;
+}
+
+h2{
+    align-self: baseline;
+    margin: 0;
+    background-color: #6A2D8F;
+    color: white;
+    border-radius: 0 0 20px 0;
+    padding: 1% 5%;
+    font-family: 'Rajdhani', sans-serif;
+}
+
+h3{
+    color: #6A2D8F;
+    font-family: 'Rajdhani', sans-serif;
+    align-self: baseline;
+    margin-left: 5%;
+}

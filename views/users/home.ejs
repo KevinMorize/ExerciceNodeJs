@@ -1,12 +1,30 @@
 <%- include('../includes/header.ejs')%>
 
-<% if (locals.greenMessage) { %>
-    <div class="ui green message"><%- locals.greenMessage %></div>
-<% } %>
-
 <div class="ui small icon input" id="searchbar">
     <input type="text" placeholder="Rechercher">
     <i class="search icon"></i>
 </div>
+
+<h3>Nouveaux</h3>
+
+    <div class="dogCard Infinite Scroll" id="homeNewList">
+        <% newDogs.forEach(function(dog) { %>
+          <div class="ui card" id="homeNewCard">
+            <a href="/dog-profil?id=<%= dog.idDog %>">
+                <div class="image">
+                    <img src="/img/profil-pic.png">
+                </div>
+                <div class="content">
+                    <h3><%= dog.name %></h3>
+                    <span class="breed"><%= dog.breed %></span>
+                    <span class="date"><%= dog.birthday %></span>
+                </div>
+            </a>
+            <span class="right floated">
+                <i class="heart outline like icon"></i>
+            </span>
+          </div>
+        <% }); %>
+    </div>
 
 <%- include ('../includes/footer.ejs') %>

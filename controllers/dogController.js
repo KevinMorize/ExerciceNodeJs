@@ -2,8 +2,10 @@ const dogModel = require('../models/dogModel.js')
 const db = require('../config/db')
 
 exports.getDogProfil = (req, res) => {
+    const id = req.user.idUser
     db.query('SELECT * FROM dogs WHERE idDog = ?', req.query.id, (err, result1) => {
-        db.query('SELECT username FROM users WHERE idUser = ?', result1[0].idUser, (err, result2) => {
+        db.query('SELECT idUser, username FROM users WHERE idUser = ?', result1[0].idUser, (err, result2) => {
+
             if (err){
                 console.log(err)
             }
@@ -28,13 +30,13 @@ exports.getDogProfil = (req, res) => {
                 result1[0].sterile = "non-stérilisé"
             }
 
-            res.render('../views/users/dogProfil', {title: "Profil de " + result1[0].name, dog: result1[0], user:result2[0]})     
+            res.render('../views/users/dogProfil', {title: "Profil de " + result1[0].name, dog: result1[0], user:result2[0], id: id})     
         })
     })
 } 
 
 exports.getCreateDog = (req, res) => {
-    res.render('../views/users/editDog', { dog: "none", title: "ajouter un chien", button: "add"})
+    res.render('../views/users/dogEdit', { dog: "none", title: "ajouter un chien", button: "add"})
 }
 
 exports.createDog = (req, res) => {
@@ -47,7 +49,7 @@ exports.createDog = (req, res) => {
 
 exports.getUpdateDog = (req, res) => {
     db.query('SELECT * FROM dogs WHERE idDog = ?', req.query.id, (error, result) =>{
-        res.render('../views/users/editDog', { dog: result[0], title: "modifier " + result[0].name, button: "update" })
+        res.render('../views/users/dogEdit', { dog: result[0], title: "modifier " + result[0].name, button: "update" })
     })
 }
 

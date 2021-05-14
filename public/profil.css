@@ -1,0 +1,169 @@
+/* user profil */
+
+#profil-img-container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+#img-profil-user{
+    margin: auto;
+    margin-top: -15%;
+}
+
+
+#img-cover-user{
+    width: 100%;
+}
+
+#profil-infos-container{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 20% auto 20%;
+}
+
+#profil-infos-container p{
+    grid-column: 2;
+    margin: 0;
+    text-align: center;
+    font-family: 'Port Lligat Sans', sans-serif !important;
+    color: #6A2D8F;
+}
+
+#user-name{
+    font-size: x-large;
+    font-weight: 600;
+}
+
+#user-bio{
+    font-size: large;
+}
+
+#profil-infos-container a {
+    grid-column: 3;
+    grid-row: 1;
+}
+
+#profil-infos-container a{
+    grid-column: 3;
+    grid-row: 1;
+    background-color: transparent;
+}
+
+#profil-infos-container a i{
+    color: #6A2D8F;
+    transform: scale(2)
+}
+
+.dogCard{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.ui.card{
+    margin: 4% 2% 0 2% !important;
+    width: fit-content;
+    padding: 2%;
+}
+
+.ui.card h3{
+    color: #6A2D8F !important;
+}
+
+#addDogButton{
+    padding: 0;
+    font-size: 1.5em;
+    margin: 10% auto 5% auto;
+    font-family: 'Rajdhani', sans-serif;
+    color: #6A2D8F !important;
+}
+
+#addDogButton i::before{
+    margin: 0;
+    padding: 0;
+    color: #6A2D8F;
+}
+
+/* dogProfil */
+
+#dogInfosContainer{
+    margin: 2% 5%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    font-size: 1.5em;   
+    font-family: 'Rajdhani', sans-serif;
+    color: #6A2D8F !important;
+}
+
+#dogBio{
+    width: 70%;
+    margin-top: 5%;
+    font-size: 1.5em;   
+    font-family: 'Rajdhani', sans-serif;
+    color: #6A2D8F !important;
+}
+
+#dogUser{
+    width: 100%;
+    display: flex;
+    align-items: baseline;
+    margin-top: 5%;
+    padding-left: 2%;
+    font-size: 1.5em;   
+    font-family: 'Rajdhani', sans-serif;
+    color: #6A2D8F !important;
+}
+
+#dogUser img{
+    width: 20%;
+}
+
+#editDogButton{
+    width: 80%;
+    margin-top: 10% !important;
+    margin-bottom: 4% !important;
+    background-color: #FEE600;
+    color: #6D4434;
+    border: 2px solid #6D4434 !important;
+    border-radius: 5px !important;
+    padding-top: 4%;
+    padding-bottom: 4%;
+    font-size: larger;
+}
+
+#deleteButton{
+    font-family: 'Rajdhani', sans-serif;
+    color: red;
+    text-decoration: underline;
+}
+
+/* update-profil */
+
+#confirmButton{
+    width: 100%;
+    margin-top: 10% !important;
+    margin-bottom: 10% !important;
+    background-color: #FEE600;
+    color: #6D4434;
+    border: 2px solid #6D4434 !important;
+    border-radius: 5px !important;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    font-size: larger;
+}
+
+/* add-dog */
+
+#labeldate{
+    align-self: baseline;
+    font-family: 'Port Lligat Sans', sans-serif !important;
+    color: #6A2D8F;
+    font-size: 1.2em;
+}

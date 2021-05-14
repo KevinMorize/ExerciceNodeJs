@@ -1,9 +1,10 @@
 const usersModel = require('../models/usersModel')
+const db = require('../config/db')
 
 // views //
 exports.homeView = (req, res) => {
-    res.render('../views/users/home', {
-        title: "acceuil"
+    db.query('SELECT * FROM dogs LIMIT 10', (err, result) => {
+        res.render('../views/users/home', {title: "acceuil", newDogs: result})
     })
 }
 
