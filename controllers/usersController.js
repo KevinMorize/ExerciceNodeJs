@@ -2,9 +2,16 @@ const usersModel = require('../models/usersModel')
 const db = require('../config/db')
 
 // views //
-exports.homeView = (req, res) => {
-    db.query('SELECT * FROM dogs LIMIT 10', (err, result) => {
-        res.render('../views/users/home', {title: "acceuil", newDogs: result})
+exports.homeView = async (req, res) => {
+    db.query('SELECT * FROM dogs LIMIT 10', (err, result1) => {
+        db.query('SELECT * FROM marks WHERE idUser = ?', req.user.idUser, async (err, result2) => {
+            
+            let idDogs = await result2.map(function(e) {
+                return e.idDog         
+            });
+
+            res.render('../views/users/home', {title: "accueil", newDogs: result1, userId: req.user.idUser, marked: idDogs})
+        })
     })
 }
 

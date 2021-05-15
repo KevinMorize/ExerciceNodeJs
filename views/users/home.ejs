@@ -20,10 +20,12 @@
                     <span class="date"><%= dog.birthday %></span>
                 </div>
             </a>
-            <span class="right floated">
-                <i class="heart outline like icon"></i>
-            </span>
-          </div>
+            <% if (userId !== dog.idUser) { %>
+                    <form action="/mark?id=<%= dog.idDog %>" method="post">
+                        <button type="submit"><i class="heart outline like icon"></i></button>
+                    </form>              
+            <% } %>  
+            </div>
         <% }); %>
     </div>
 
