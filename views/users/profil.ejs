@@ -1,8 +1,8 @@
 <%- include('../includes/header.ejs')%>
   
 <div id="profil-img-container">
-  <img src="/img/cover-pic.png" alt="img-cover" id="img-cover-user">
-  <img src="/img/profil-pic.png" alt="img-profil" id="img-profil-user">
+  <img src="tmp/<%= user.cover %>" alt="img-cover" id="img-cover-user">
+  <img class="ui centered medium image" src="tmp/<%= user.userAttachment %>" id="userImg" alt="userImg">
 </div>
 
 <div id="profil-infos-container">
@@ -19,7 +19,7 @@
 <h2>Mes chiens</h2>
 
 <% if (locals.dogs) { %>
-  <div class="dogCard Infinite Scroll">
+  <div class="dogCard">
     <% dogs.forEach(function(dog) { %>
       <div class="ui card">
         <a href="/dog-profil?id=<%= dog.idDog %>">

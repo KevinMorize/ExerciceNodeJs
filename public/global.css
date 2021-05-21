@@ -69,3 +69,9 @@ h3{
     align-self: baseline;
     margin-left: 5%;
 }
+
+h4{
+    margin: 0;
+    color: #6A2D8F;
+    font-family: 'Rajdhani', sans-serif;
+}

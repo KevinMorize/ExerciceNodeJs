@@ -1,8 +1,12 @@
 <%- include('../includes/header.ejs')%>
 
-<form class="ui form" href="/user-update" method='post'>
+<form class="ui form" href="/user-update" method='post' enctype="multipart/form-data">
 
-  <div class="field">
+<img class="ui avatar image" src="tmp/<%= user.cover %>"><input type="file" name="image" value="user.cover"></input>
+
+<img class="ui avatar image" src="tmp/<%= user.userAttachment %>"><input type="file" name="image" value="user.userAttachment"></input>
+
+<div class="field">
     <input type="text" name="username" placeholder="Pseudo" value="<%= user.username %>"required>
 </div>
 

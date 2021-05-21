@@ -54,7 +54,7 @@ exports.profil = async (req, res) => {
 exports.getDog = (req, res) => {
     const id = req.user.idUser
     db.query('SELECT * FROM dogs WHERE idDog = ?', req.query.id, (err, result1) => {
-        db.query('SELECT idUser, username FROM users WHERE idUser = ?', result1[0].idUser, (err, result2) => {
+        db.query('SELECT idUser, username, userAttachment FROM users WHERE idUser = ?', result1[0].idUser, (err, result2) => {
 
             if (err){
                 console.log(err)

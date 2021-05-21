@@ -33,11 +33,19 @@
 #homeNewCard{
     display: flex;
     flex-direction: row;
+    padding: 0;
 }
 
 #homeNewCard a{
+    border-radius: 0 !important;
+}
+
+
+.content{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    justify-content: center;
+    align-items: baseline;
 }
 
 

@@ -4,12 +4,16 @@ class usersModel {
 
     static updateUser (req, res) {
 
-        var param = [
-            req.body,
-            req.user.idUser
-        ]
+        let data = {
+            email: req.body.email, 
+            username: req.body.username, 
+            city: req.body.city, 
+            bio: req.body.bio, 
+            cover: req.files[0].originalname,
+            userAttachment: req.files[1].originalname,
+        }
 
-        db.query('UPDATE users SET ? WHERE idUser = ?', param, (error, response) => {
+        db.query('UPDATE users SET ? WHERE idUser = ?', [data, req.user.idUser], (error, response) => {
 
             if(error){
                 throw(error)

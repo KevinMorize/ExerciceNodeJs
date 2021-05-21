@@ -8,11 +8,10 @@
     align-items: center;
 }
 
-#img-profil-user{
+#userImg{
     margin: auto;
     margin-top: -15%;
 }
-
 
 #img-cover-user{
     width: 100%;
@@ -61,8 +60,15 @@
     width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-between;
     flex-wrap: wrap;
+}
+
+.dogCard a{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: -webkit-fill-available;
 }
 
 .ui.card{
@@ -90,6 +96,11 @@
 }
 
 /* dogProfil */
+#dogAttachment{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
 
 #dogInfosContainer{
     margin: 2% 5%;
