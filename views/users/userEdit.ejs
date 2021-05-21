@@ -1,6 +1,6 @@
 <%- include('../includes/header.ejs')%>
 
-<form class="ui form" href="/update-profil" method='post'>
+<form class="ui form" href="/user-update" method='post'>
 
   <div class="field">
     <input type="text" name="username" placeholder="Pseudo" value="<%= user.username %>"required>
@@ -19,6 +19,6 @@
 <button class="ui button" type="submit" id="confirmButton">Modifier l'utilisateur</button>
 </form>
 
-<a href="/delete-profil" id="deleteButton" onClick="return confirm('Êtes-vous sûr ?')">Supprimer mon compte</a>
+<a href="/user-delete" id="deleteButton" onClick="return confirm('Êtes-vous sûr ?')">Supprimer mon compte</a>
 
 <%- include ('../includes/footer.ejs') %>

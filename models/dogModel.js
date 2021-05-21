@@ -3,9 +3,21 @@ const db = require('../config/db')
 class dogModel {
 
     static createDog (req,res) {
-        const {icad, name, breed, birthday, sexe, size, sterile, description} = req.body
 
-        db.query('INSERT INTO dogs SET ?', {idUser: req.user.idUser, icad: icad, name: name, breed: breed, birthday: birthday, sexe: sexe, size: size, sterile: sterile, description: description}, (error, results) => {
+        let data = {
+            idUser: req.user.idUser,
+            icad: req.body.icad, 
+            name: req.body.name, 
+            breed: req.body.breed, 
+            birthday: req.body.birthday, 
+            sexe: req.body.sexe, 
+            size: req.body.size, 
+            sterile: req.body.sterile, 
+            description: req.body.description,
+            dogAttachment: req.file.originalname,
+        }
+
+        db.query('INSERT INTO dogs SET ?', data , (error, results) => {
             if (error){
                 console.log(error)
             }
@@ -15,12 +27,14 @@ class dogModel {
 
     static updateDog (req, res) {
 
-        var param = [
-            req.body,
-            req.query.id
-        ]
+        let data = { 
+            name: req.body.name,  
+            sterile: req.body.sterile, 
+            description: req.body.description,
+            dogAttachment: req.file.originalname,
+        }
 
-        db.query('UPDATE dogs SET ? WHERE idDog = ?', param, (error, response) => {
+        db.query('UPDATE dogs SET ? WHERE idDog = ?', [data, req.query.id], (error, response) => {
 
             if(error){
                 throw(error)

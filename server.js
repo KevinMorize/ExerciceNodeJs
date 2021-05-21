@@ -29,10 +29,10 @@ app.use(express.json());
 app.use(cookieParser());
     
 // Routes 
-app.use('/', require('./routes/usersRoutes'));
+app.use('/', require('./routes/viewsRoutes'));
+app.use('/', require('./routes/userRoutes'));
 app.use('/', require('./routes/dogRoutes'));
-app.use('/', require('./routes/marksRoutes'));
-app.use('/', require('./routes/adminRoutes'));
+app.use('/', require('./routes/markRoutes'));
 app.use('/', require('./routes/authRoutes'));
     
 // Server

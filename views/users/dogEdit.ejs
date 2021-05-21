@@ -1,10 +1,14 @@
 <%- include('../includes/header.ejs')%>
 
-<form class="ui form" ancre="f1" method='post'>
-  <action ancre="ancre1" href="/add-dog" methode="post"/>
-  <action ancre="ancre2" href="/update-dog" methode="post"/>
+<form class="ui form" ancre="f1" method='post' enctype="multipart/form-data">
+  <action ancre="ancre1" href="/dog-add" methode="post"/>
+  <action ancre="ancre2" href="/dog-update?=" methode="post"/>
 
-  <!--attachment-->
+  <% if (locals.dog === "none") { %>
+  <input type="file" name="image">
+  <% } else { %>
+    <input type="file" name="image" value="dog.dogAttachment"><img class="ui small image" src="tmp/<%= dog.dogAttachment %>"></input>
+  <% } %>
 
   <div class="field">
     <input type="text" name="name" value="<%= dog.name %>" placeholder="Nom" required>
@@ -14,13 +18,11 @@
   <div class="field">
     <input type="text" name="icad" placeholder="Numéro de puce" required>
   </div>
-  <% } %>
 
   <div class="field">
-    <input type="text" name="breed" value="<%= dog.breed %>" placeholder="Race" required>
+    <input type="text" name="breed" placeholder="Race" required>
   </div>
 
-  <% if (locals.dog === "none") { %>
   <p id="labeldate">Date de naissance:</p>
   <div class="field">
     <input type="date" name="birthday" required>

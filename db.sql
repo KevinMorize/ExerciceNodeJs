@@ -48,7 +48,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Dogs` (
   `sterile` TINYINT NULL,
   `dogAttachment` VARCHAR(255) NULL,
   PRIMARY KEY (`idDogs`),
-  INDEX `fk_Dogs_Users_idx` (`idUser` ASC) VISIBLE,
+  INDEX `fk_Dogs_Users_idx` (`idUser` ASC),
   CONSTRAINT `fk_Dogs_Users`
     FOREIGN KEY (`idUser`)
     REFERENCES `mydb`.`Users` (`idUsers`)
@@ -65,8 +65,8 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Marks` (
   `idDogs` INT NOT NULL,
   `isMarked` INT NULL,
   PRIMARY KEY (`idUser`, `idDogs`),
-  INDEX `fk_Users_has_Dogs_Dogs1_idx` (`idDogs` ASC) VISIBLE,
-  INDEX `fk_Users_has_Dogs_Users1_idx` (`idUser` ASC) VISIBLE,
+  INDEX `fk_Users_has_Dogs_Dogs1_idx` (`idDogs` ASC),
+  INDEX `fk_Users_has_Dogs_Users1_idx` (`idUser` ASC),
   CONSTRAINT `fk_Users_has_Dogs_Users1`
     FOREIGN KEY (`idUser`)
     REFERENCES `mydb`.`Users` (`idUsers`)

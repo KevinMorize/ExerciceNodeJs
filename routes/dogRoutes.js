@@ -3,15 +3,23 @@ const router = express.Router();
 const dogController = require('../controllers/dogController');
 const logController = require('../controllers/logController');
 
-router.get('/dog-profil', logController.loggedIn, dogController.getDogProfil)
+var multer  = require('multer');
 
-router.get('/add-dog', logController.loggedIn, dogController.getCreateDog)
-router.post('/add-dog', logController.loggedIn, dogController.createDog)
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, 'public/tmp/')
+    },
+    filename: function (req, file, cb) {
+      cb(null, file.originalname)
+    }
+});
+var upload = multer({ storage: storage });
 
-router.get('/update-dog', dogController.getUpdateDog)
-router.post('/update-dog', dogController.updateDog)
+router.post('/dog-add', logController.loggedIn, upload.single('image'),dogController.createDog)
 
-router.get('/delete-dog', dogController.deleteDog) 
+router.post('/dog-update', upload.single('image'), dogController.updateDog)
+
+router.get('/dog-delete', dogController.deleteDog) 
 
 
 module.exports = router;

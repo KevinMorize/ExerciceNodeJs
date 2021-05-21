@@ -80,7 +80,7 @@ class authModel {
 
             db.query('INSERT INTO users SET ?', {username: username, email: email, city: city, bio: bio, userAttachment: userAttachment, cover: cover, password: hashedPassword, role: 0}, (error, result1) => {
                 if (error){
-                    console.log(result1)
+                    console.log(error)
                 }
                 db.query('INSERT INTO dogs SET ?', {idUser: result1.insertId, icad: icad, name: name, breed: breed, birthday: birthday, sexe: sexe, size: size, sterile: sterile, dogAttachment: dogAttachment, description: description }, (error, result2)  => {
                     if (error) {

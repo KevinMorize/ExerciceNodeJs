@@ -33,9 +33,9 @@
 </div>
 
 <% if (locals.dog.idUser === locals.id) { %>
-    <a class="ui button" href="/update-dog?id=<%= dog.idDog %>" id="editDogButton">Modifier compagnon</a>
+    <a class="ui button" href="/dog-update?id=<%= dog.idDog %>" id="editDogButton">Modifier compagnon</a>
 
-    <a href="/delete-dog?id=<%= dog.idDog %>" id="deleteButton" onClick="return confirm('Êtes-vous sûr ?')">Supprimer ce compagnon</a>
+    <a href="/dog-delete?id=<%= dog.idDog %>" id="deleteButton" onClick="return confirm('Êtes-vous sûr ?')">Supprimer ce compagnon</a>
 <% } %>  
 
 <% if (locals.dog.idUser !== locals.id) { %>
