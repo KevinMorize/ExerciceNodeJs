@@ -48,14 +48,15 @@ hr{
     width: 90%;
     border: 1px solid #6A2D8F;
     margin-top: 5%;
-    margin-bottom: 0;
+    margin-bottom: -2px;
     position: relative;
-    left: -5%;
+    left: 0;
 }
 
 h2{
     align-self: baseline;
     margin: 0;
+    margin-left: 2%;
     background-color: #6A2D8F;
     color: white;
     border-radius: 0 0 20px 0;
