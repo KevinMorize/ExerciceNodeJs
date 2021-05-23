@@ -10,9 +10,15 @@
     <div class="dogCard Infinite Scroll" id="homeNewList">
         <% newDogs.forEach(function(dog) { %>
           <div class="ui card" id="homeNewCard">
-                <a href="/dog-profil?id=<%= dog.idDog %>" class="ui middle aligned small image"> 
+                <% if (dog.dogAttachment) { %>
+                <a href="/dog-profil?id=<%= dog.idDog %>" class="ui tiny image"> 
                     <img src="tmp/<%= dog.dogAttachment %>">    
                 </a>
+                <% } else { %>  
+                    <a href="/dog-profil?id=<%= dog.idDog %>" class="ui tiny image"> 
+                        <img src="img/profil-pic.png">    
+                    </a>
+                    <% } %> 
                 <div class="content">
                     <h4><%= dog.name %></h4>
                     <span class="breed"><%= dog.breed %></span>
@@ -20,7 +26,7 @@
                 </div>
             
                 <% if (idUser !== dog.idUser) { %>
-                    <form action="/mark?id=<%= dog.idDog %>" method="post">
+                    <form action="/mark?id=<%= dog.idDog %>" method="post" id="like">
                         <button type="submit"><i class="heart outline like icon"></i></button>
                     </form>              
                 <% } %>  

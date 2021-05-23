@@ -1,15 +1,24 @@
 <%- include('../includes/header.ejs')%>
   
 <div id="profilImgContainer">
-  <img class="ui centered image" src="tmp/<%= user.cover %>" alt="coverImg" id="coverImg">
-  <img class="ui centered circular small image" src="tmp/<%= user.userAttachment %>" id="profilImg" alt="profilImg">
+  <% if (user.cover) { %>
+    <img class="ui centered image" src="tmp/<%= user.cover %>" alt="coverImg" id="coverImg">
+  <% } else { %> 
+    <img class="ui centered image" src="img/cover-pic.png" alt="coverImg" id="coverImg">
+  <% } %>  
+  
+  <% if (user.userAttachment) { %>
+    <img class="ui centered circular small image" src="tmp/<%= user.userAttachment %>" id="profilImg" alt="profilImg">
+  <% } else { %> 
+    <img class="ui centered circular small image" src="img/profil-pic.png" id="profilImg" alt="profilImg">
+  <% } %>  
 </div>
 
 <div id="profilInfosContainer">
   <p id="userName"><%- user.username %> (<%- user.city %>)</p>
   <p id="userBio"><%- user.bio %></p>
 
-  <a class="ui icon button" href="/user-update" >
+  <a class="ui icon button" href="/user-update">
     <i class="cog icon"></i>
   </a>
 </div>
@@ -23,12 +32,13 @@
     <% dogs.forEach(function(dog) { %>
       <div class="ui card">
         <a href="/dog-profil?id=<%= dog.idDog %>">
-  
-              <img class="ui small image" src="tmp/<%= dog.dogAttachment %>">
-      
-              <h3><%= dog.name %></h3>
-          
-          </a>
+          <% if (dog.dogAttachment) { %>
+            <img src="tmp/<%= dog.dogAttachment %>">  
+          <% } else { %>
+            <img src="img/profil-pic.png">  
+          <% } %>  
+          <h3><%= dog.name %></h3>
+        </a>
       </div>
     <% }); %>
   </div>

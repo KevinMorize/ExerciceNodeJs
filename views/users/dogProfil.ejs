@@ -1,8 +1,14 @@
 <%- include('../includes/header.ejs')%>
 
+<% if (dog.dogAttachment) { %>
 <div id="dogAttachment">
     <img class="ui fluid centered image" src="tmp/<%= dog.dogAttachment %>" alt="profil img">
 </div>
+<% } else { %> 
+    <div id="dogAttachment">
+        <img class="ui fluid centered image" src="img/cover-pic.png" alt="profil img">
+    </div>
+    <% } %>  
 
 <div id="dogInfosContainer">
     <div>
@@ -27,10 +33,17 @@
 
 <h2>Propriétaire</h2>
 
-<div id="dogUser">
-    <img src="/img/profil-pic.png" alt="img-profil">
-    <p><%- user.username %></p>
-</div>
+<% if (user.userAttachment) { %>
+    <div id="dogUser">
+        <img class="ui bottom aligned avatar image" src="/tmp/<%- user.userAttachment %>" alt="img-profil">
+        <span><%- user.username %></span>
+    </div>
+    <% } else { %>  
+    <div>
+        <img class="ui bottom aligned avatar image" src="/img/profil-pic.png" alt="img-profil">
+        <span><%- user.username %></span>
+    </div>
+    <% } %>  
 
 <% if (locals.dog.idUser === locals.id) { %>
     <a class="ui button" href="/dog-update?id=<%= dog.idDog %>" id="editDogButton">Modifier compagnon</a>

@@ -2,12 +2,12 @@
 
 <form class="ui form" ancre="f1" method='post' enctype="multipart/form-data">
   <action ancre="ancre1" href="/dog-add" methode="post"/>
-  <action ancre="ancre2" href="/dog-update?=" methode="post"/>
+  <action ancre="ancre2" href="/dog-update?id=<%= dog.idDog %>" methode="post"/>
 
   <% if (locals.dog === "none") { %>
   <input type="file" name="image">
   <% } else { %>
-    <input type="file" name="image" value="dog.dogAttachment"><img class="ui small image" src="tmp/<%= dog.dogAttachment %>"></input>
+    <input type="file" name="image" value="<%= dog.dogAttachment %>"><img class="ui tiny image" src="tmp/<%= dog.dogAttachment %>"></input>
   <% } %>
 
   <div class="field">

@@ -76,3 +76,15 @@ h4{
     color: #6A2D8F;
     font-family: 'Rajdhani', sans-serif;
 }
+
+#like{
+    margin: 0;
+    width: auto;
+    align-self: baseline;
+}
+
+#like button{
+    color: red;
+    border: none;
+    background: none;
+}

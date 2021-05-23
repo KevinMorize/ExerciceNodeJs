@@ -26,6 +26,7 @@ class dogModel {
     }
 
     static updateDog (req, res) {
+        console.log (req.file)
 
         let data = { 
             name: req.body.name,  
