@@ -2,9 +2,29 @@
 
 <form class="ui form" href="/user-update" method='post' enctype="multipart/form-data">
 
-<img class="ui avatar image" src="tmp/<%= user.cover %>"><input type="file" name="image" value="user.cover"></input>
+<% if (user.cover) { %>
+  <div id="uploadFile">
+    <img class="ui avatar middle aligned image" src="tmp/<%= user.cover %>">
+    <input type="file" name="image" value="user.cover">
+  </div>
+<% } else { %> 
+  <div id="uploadFile">
+    <img class="ui avatar middle aligned image" src="img/cover-pic.png %>">
+    <input type="file" name="image" value="user.cover">
+  </div>
+<% } %>  
 
-<img class="ui avatar image" src="tmp/<%= user.userAttachment %>"><input type="file" name="image" value="user.userAttachment"></input>
+<% if (user.userAttachment) { %>
+  <div id="uploadFile">
+    <img class="ui avatar middle aligned image" src="tmp/<%= user.userAttachment %>">
+    <input type="file" name="image" value="user.userAttachment">
+  </div>
+<% } else { %> 
+  <div id="uploadFile">
+    <img class="ui avatar middle aligned image" src="img/profil-pic.png %>">
+    <input type="file" name="image" value="user.userAttachment">
+  </div>
+<% } %>  
 
 <div class="field">
     <input type="text" name="username" placeholder="Pseudo" value="<%= user.username %>"required>

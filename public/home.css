@@ -39,6 +39,7 @@
 
 #homeNewCard a{
     border-radius: 0 !important;
+    background: none !important;
 }
 
 #homeNewCard a img{

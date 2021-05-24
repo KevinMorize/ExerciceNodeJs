@@ -34,12 +34,12 @@
 <h2>Propriétaire</h2>
 
 <% if (user.userAttachment) { %>
-    <div id="dogUser">
+    <div id="userImg">
         <img class="ui bottom aligned avatar image" src="/tmp/<%- user.userAttachment %>" alt="img-profil">
         <span><%- user.username %></span>
     </div>
     <% } else { %>  
-    <div>
+    <div id="userImg">
         <img class="ui bottom aligned avatar image" src="/img/profil-pic.png" alt="img-profil">
         <span><%- user.username %></span>
     </div>

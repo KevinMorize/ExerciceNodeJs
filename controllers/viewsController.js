@@ -1,4 +1,5 @@
 const db = require('../config/db')
+const moment = require('moment');
 
 // main
 exports.home = async (req, res) => {
@@ -52,8 +53,11 @@ exports.profil = async (req, res) => {
 
 //dog
 exports.getDog = (req, res) => {
+
     const id = req.user.idUser
+
     db.query('SELECT * FROM dogs WHERE idDog = ?', req.query.id, (err, result1) => {
+        
         db.query('SELECT idUser, username, userAttachment FROM users WHERE idUser = ?', result1[0].idUser, (err, result2) => {
 
             if (err){
@@ -79,6 +83,8 @@ exports.getDog = (req, res) => {
             } else {
                 result1[0].sterile = "non-stérilisé"
             }
+
+            result1[0].birthday = moment(moment(result1[0].birthday).format('YYYYMMDD'), "YYYYMMDD").fromNow();
 
             res.render('../views/users/dogProfil', {title: "Profil de " + result1[0].name, dog: result1[0], user:result2[0], id: id})     
         })

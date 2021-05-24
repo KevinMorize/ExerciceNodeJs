@@ -9,7 +9,7 @@ exports.createDog = (req, res) => {
     }
 }
 
-exports.updateDog = (req, res) => {
+exports.updateDog = async (req, res) => {
     dogModel.updateDog(req, res)
 }
 

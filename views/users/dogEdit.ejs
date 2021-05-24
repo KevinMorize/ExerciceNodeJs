@@ -5,10 +5,21 @@
   <action ancre="ancre2" href="/dog-update?id=<%= dog.idDog %>" methode="post"/>
 
   <% if (locals.dog === "none") { %>
-  <input type="file" name="image">
+    <div id="uploadFile">
+      <img class="ui avatar middle aligned image" src="img/profil-pic.png">
+      <input type="file" name="image">
+    </div>
+  <% } else if (dog.dogAttachment) { %>
+    <div id="uploadFile">
+      <img class="ui avatar middle aligned image" src="tmp/<%= dog.dogAttachment %>">
+      <input type="file" name="image" value="<%= dog.dogAttachment %>">
+    </div>
   <% } else { %>
-    <input type="file" name="image" value="<%= dog.dogAttachment %>"><img class="ui tiny image" src="tmp/<%= dog.dogAttachment %>"></input>
-  <% } %>
+    <div id="avatarImg">
+      <img class="ui avatar middle aligned image" src="img/profil-pic.png">
+      <input type="file" name="image" value="<%= dog.dogAttachment %>">
+    </div>
+  <% } %>  
 
   <div class="field">
     <input type="text" name="name" value="<%= dog.name %>" placeholder="Nom" required>

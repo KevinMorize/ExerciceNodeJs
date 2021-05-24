@@ -4,13 +4,22 @@ class usersModel {
 
     static updateUser (req, res) {
 
-        let data = {
-            email: req.body.email, 
-            username: req.body.username, 
-            city: req.body.city, 
-            bio: req.body.bio, 
-            cover: req.files[0].originalname,
-            userAttachment: req.files[1].originalname,
+        if (req.files) {
+            var data = {
+                email: req.body.email, 
+                username: req.body.username, 
+                city: req.body.city, 
+                bio: req.body.bio, 
+                cover: req.files[0].originalname,
+                userAttachment: req.files[1].originalname,
+            }
+        } else {
+            var data = {
+                email: req.body.email, 
+                username: req.body.username, 
+                city: req.body.city, 
+                bio: req.body.bio, 
+            }
         }
 
         db.query('UPDATE users SET ? WHERE idUser = ?', [data, req.user.idUser], (error, response) => {
