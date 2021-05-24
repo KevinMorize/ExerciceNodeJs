@@ -26,7 +26,7 @@ var upload = multer({
 });
 
 //update
-router.post('/user-update', logController.loggedIn, upload.array('image') ,userController.updateUser)
+router.post('/user-update', logController.loggedIn, upload.array('image', 2) ,userController.updateUser)
 
 //delete
 router.get('/user-delete', logController.loggedIn,userController.deleteUser) 

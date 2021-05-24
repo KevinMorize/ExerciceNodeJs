@@ -17,12 +17,5 @@ exports.deleteUser = (req, res) => {
 }
 
 
-// localise //
-
-// exports.maps = async (req, res) => {
-//     mapsModel.maps(req, res)
-// }
-
-
  
 
