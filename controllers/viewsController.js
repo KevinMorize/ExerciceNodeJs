@@ -2,27 +2,62 @@ const db = require('../config/db')
 const moment = require('moment');
 
 // main
-exports.home = async (req, res) => {
-    db.query('SELECT * FROM dogs LIMIT 10', (err, result2) => {
-        db.query('SELECT * FROM marks WHERE idUser = ?', req.user.idUser, async (err, result3) => {         
-            // let idDogs = await result2.map(function(e) {
-            //     return e.idDog         
-            // });
-            res.render('../views/users/home', {title: "accueil", newDogs: result2, idUser: req.user.idUser, marked: result3})
+exports.home = (req, res) => {
+    if (req.user){
+        db.query('SELECT * FROM dogs LIMIT 10', (err, result) => {
+            db.query('SELECT * FROM marks WHERE idUser = ? AND idDog = ?', [req.user.idUser, result.idDog],(err, result2) => { 
+
+               result.map(function (e){
+
+                    let unixTimeStamp = moment().format('X') - moment(e.birthday).format('X');
+                    let year = Math.floor(unixTimeStamp / 31536000);
+                    let month = (Math.floor((unixTimeStamp / 31536000) * 10)) - (Math.floor(unixTimeStamp / 31536000) * 10);
+        
+                    if (year === 0 && month > 0){
+                        return e.birthday = month + " mois"
+                    } else if (year === 0 && month === 0){
+                        return e.birthday = "< 1 mois"
+                    } else if (year === 1){
+                        return e.birthday = year + " an et " + month + " mois"
+                    } else {
+                        return e.birthday = year + " ans et " + month + " mois"
+                    }
+               })
+
+                
+                
+                res.render('../views/users/home', {
+                    title: "accueil", 
+                    newDogs: result, 
+                    marked: result2, 
+                    user: req.user})
+            })
         })
-    })
+    } else {
+        res.redirect('/')
+    }
 }
 
 exports.localise = (req, res) => {
-    res.render('../views/users/localise', {
-        title: "autour de moi"
-    })
+    if (req.user){
+        res.render('../views/users/localise', {
+            title: "autour de moi",
+            user: req.user
+        })
+    } else {
+        res.redirect('/')
+    }
 }
 
 exports.walks = (req, res) => {
-    res.render('../views/users/walks', {
-        title: "mes balades"
-    })
+    if (req.user){
+        res.render('../views/users/walks', {
+            title: "mes balades",
+            user: req.user
+        })
+    } else {
+        res.redirect('/')
+    }
 }
 
 exports.profil = async (req, res) => {
@@ -32,11 +67,15 @@ exports.profil = async (req, res) => {
                 if (err){
                     console.log(err)
                 }
-                res.render('../views/users/profil', {title: "mon profil", user: result[0], dogs: result2})     
+                
+                res.render('../views/users/profil', {
+                    title: "mon profil", 
+                    user: result[0], 
+                    dogs: result2})     
             })
         })
     } else {
-        res.redirect("/")
+        res.redirect('/')
     }
  }
 

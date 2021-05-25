@@ -7,7 +7,7 @@ class markModel {
             if (error) {
                 console.log(error);
             } 
-        res.render('/accueil')
+        res.redirect('/accueil')
         });    
     }
 

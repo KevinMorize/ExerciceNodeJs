@@ -6,15 +6,14 @@
 </div>
 
 <h3>Nouveaux</h3>
-<p><%- locals.user %></p>
 
     <div class="dogCard Infinite Scroll" id="homeNewList">
         <% newDogs.forEach(function(dog) { %>
           <a href="/dog-profil?id=<%= dog.idDog %>" class="ui card" id="homeNewCard">
                 <% if (dog.dogAttachment) { %>
-                    <img class="ui tiny image" src="tmp/<%= dog.dogAttachment %>">    
+                    <img class="ui image" src="tmp/<%= dog.dogAttachment %>">    
                 <% } else { %>  
-                        <img class="ui tiny image" src="img/profil-pic.png">    
+                        <img class="ui image" src="img/profil-pic.png">    
                 <% } %> 
                 
                 <div class="content">
@@ -23,7 +22,7 @@
                     <span class="date"><%= dog.birthday %></span>
                 </div>
             
-                <% if (idUser !== dog.idUser) { %>
+                <% if (user.idUser !== dog.idUser) { %>
                     <form action="/mark?id=<%= dog.idDog %>" method="post" id="like">
                         <button type="submit"><i class="heart outline like icon"></i></button>
                     </form>              

@@ -36,12 +36,13 @@ main{
     height: 7.5%;
 }
 
-.ui.menu .item:before{
-    background: transparent;
+.menu .ui.avatar.image{
+    width: 3em;
+    height: 3em;
 }
 
-#menu-img-profil{
-    transform: scale(0.8);
+.ui.menu .item:before{
+    background: none;
 }
 
 hr{
@@ -71,12 +72,6 @@ h3{
     margin-left: 5%;
 }
 
-h4{
-    margin: 0;
-    color: #6A2D8F;
-    font-family: 'Rajdhani', sans-serif;
-}
-
 #like{
     margin: 0;
     width: auto;
@@ -87,4 +82,8 @@ h4{
     color: red;
     border: none;
     background: none;
+}
+
+#like i{
+    font-size: 1.5em !important;
 }
