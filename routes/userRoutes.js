@@ -26,10 +26,10 @@ var upload = multer({
 });
 
 //update
-router.post('/user-update', logController.loggedIn, upload.array('image', 2) ,userController.updateUser)
+router.post('/user-update', logController.loggedIn, upload.fields([{ name: 'image', maxCount: 1 }, { name: 'cover', maxCount: 1 }]) ,userController.updateUser)
 
 //delete
-router.get('/user-delete', logController.loggedIn,userController.deleteUser) 
+router.get('/user-delete', logController.loggedIn, userController.deleteUser) 
 
 //log
 router.get('/logOut', logController.logOut)

@@ -91,7 +91,11 @@ exports.profil = async (req, res) => {
  exports.updateUser = (req, res) => {
     if (req.user){
         db.query('SELECT * FROM users WHERE idUser = ?', [req.user.idUser], (error, result) =>{
-            res.render('../views/users/userEdit', { user: result[0], title: "Modifier mon profil", button: "edit" })
+            res.render('../views/users/userEdit', { 
+                user: result[0], 
+                title: "Modifier mon profil", 
+                button: "edit" 
+            })
         })
     } else {
         res.redirect("/")
@@ -100,8 +104,6 @@ exports.profil = async (req, res) => {
 
 //dog
 exports.getDog = (req, res) => {
-
-    const id = req.user.idUser
 
     db.query('SELECT * FROM dogs WHERE idDog = ?', req.query.id, (err, result1) => {     
         db.query('SELECT idUser, username, userAttachment FROM users WHERE idUser = ?', result1[0].idUser, (err, result2) => {
@@ -144,17 +146,32 @@ exports.getDog = (req, res) => {
                 result1[0].birthday = year + " ans et " + month + " mois"
             }
 
-            res.render('../views/users/dogProfil', {title: "Profil de " + result1[0].name, dog: result1[0], user:result2[0], id: id})     
+            res.render('../views/users/dogProfil', {
+                title: "Profil de " + result1[0].name, 
+                dog: result1[0], 
+                user:result2[0], 
+                id: req.user.idUser
+            })     
         })
     })
 } 
 
 exports.createDog = (req, res) => {
-    res.render('../views/users/dogEdit', { dog: "none", title: "ajouter un chien", button: "add"})
+    res.render('../views/users/dogEdit', { 
+        dog: "none", 
+        title: "ajouter un chien", 
+        button: "add",
+        user: req.user
+    })
 }
 
 exports.updateDog = (req, res) => {
     db.query('SELECT * FROM dogs WHERE idDog = ?', req.query.id, (error, result) =>{
-        res.render('../views/users/dogEdit', { dog: result[0], title: "modifier " + result[0].name, button: "update" })
+        res.render('../views/users/dogEdit', { 
+            dog: result[0], 
+            title: "modifier " + result[0].name, 
+            button: "update",
+            user: req.user
+        })
     })
 }

@@ -14,7 +14,7 @@ router.get('/user-update', logController.loggedIn, viewsController.updateUser)
 
 //dog
 router.get('/dog-profil', logController.loggedIn, viewsController.getDog)
-router.get('/dog-add', viewsController.createDog)
-router.get('/dog-update', viewsController.updateDog)
+router.get('/dog-add', logController.loggedIn, viewsController.createDog)
+router.get('/dog-update', logController.loggedIn, viewsController.updateDog)
 
 module.exports = router;

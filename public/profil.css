@@ -151,6 +151,7 @@
     object-fit: cover;
     width: 4em;
     height: 4em;
+    aspect-ratio: 1/1;
 }
 
 #editDogButton{
