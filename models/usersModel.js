@@ -3,7 +3,6 @@ const db = require('../config/db')
 class usersModel {
 
     static updateUser (req, res) {
-        console.log(req.files)
         if (req.files) {
             var data = {
                 email: req.body.email, 

@@ -3,7 +3,26 @@ const db = require('../config/db')
 class markModel {
  
     static createMark (req, res) {
-        db.query('INSERT INTO marks SET ?' , {idUser: req.user.idUser, idDog: req.query.id}, (error, result)  => {
+        let data = {
+            idUser: req.user.idUser, 
+            idDog: req.query.id, 
+            isMarked: "marked",
+        }
+
+        db.query('INSERT INTO marks SET ?' , [data], (error, result)  => {
+            if (error) {
+                console.log(error);
+            } 
+        res.redirect('/accueil')
+        });    
+    }
+
+    static updateMark (req, res) {
+        let data = {
+            isMarked: "marked",
+        }
+
+        db.query('UPDATE marks SET ? WHERE idUser = ? AND idDog = ?' , [data, req.user.idUser, req.query.id], (error, result)  => {
             if (error) {
                 console.log(error);
             } 
@@ -12,12 +31,16 @@ class markModel {
     }
 
     static deleteMark (req, res) {
-        db.query('DELETE FROM marks WHERE idDog = ?', req.query.id, (err, result) => {
-            if (err){
-                console.log(err)
-            }    
-            res.redirect('/accueil')
-        })
+        let data = {
+            isMarked: "unMarked",
+        }
+        
+        db.query('UPDATE marks SET ? WHERE idUser = ? AND idDog = ?' , [data, req.user.idUser, req.query.id], (error, result)  => {
+            if (error) {
+                console.log(error);
+            } 
+        res.redirect('/accueil')
+        });    
     }
 
 }
