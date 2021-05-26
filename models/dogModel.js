@@ -57,7 +57,6 @@ class dogModel {
             }
 
         db.query('UPDATE dogs SET ? WHERE idDog = ?', [data, req.query.id], (error, response) => {
-
             if(error){
                 throw(error)
             }

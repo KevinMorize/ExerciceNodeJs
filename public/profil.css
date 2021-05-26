@@ -20,6 +20,7 @@
     object-fit: cover;
     aspect-ratio: 1 / 1;
     border: 3px solid #fff;
+    background-color: white;
 }
 
 #profilInfosContainer{
@@ -124,18 +125,51 @@
     padding: 2% 5%;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    font-size: 1.5em;   
-    font-family: 'Rajdhani', sans-serif;
+    justify-content: space-between;  
     color: #6A2D8F !important;
+}
+
+#dogInfosContainer p{
+    margin-bottom: 0em;
+}
+
+#dogName{
+    font-size: 2em;
+    font-family: 'Rajdhani', sans-serif;
+}
+
+#dogBreed{
+    font-size: 1.2em;
+    font-family: 'Rajdhani', sans-serif;
+}
+
+#dogAge{
+    font-size: 1.5em;
+    font-family: 'Rajdhani', sans-serif;
+}
+
+#dogSex{
+    font-size: 2em;
+    font-family: 'Rajdhani', sans-serif;
+}
+
+#dogSize{
+    font-size: 1.2em;
+    font-family: 'Rajdhani', sans-serif;
+}
+
+#dogSterile{
+    font-size: 1.5em;
+    font-family: 'Rajdhani', sans-serif;
 }
 
 #dogBio{
     width: 70%;
     margin-top: 5%;
-    font-size: 1.5em;   
+    font-size: 1.2em;   
     font-family: 'Rajdhani', sans-serif;
     color: #6A2D8F !important;
+    word-break: break-word;
 }
 
 #userImg{
@@ -185,17 +219,4 @@
     padding-top: 5%;
     padding-bottom: 5%;
     font-size: larger;
-}
-
-#labeldate{
-    align-self: baseline;
-    font-family: 'Port Lligat Sans', sans-serif !important;
-    color: #6A2D8F;
-    font-size: 1.2em;
-}
-
-#uploadFile {
-    display: flex;
-    align-items: center;
-    margin-bottom: 5%;
 }

@@ -4,6 +4,7 @@
   <action ancre="ancre1" href="/dog-add" methode="post"/>
   <action ancre="ancre2" href="/dog-update?id=<%= dog.idDog %>" methode="post"/>
 
+  <p>Photo de profil:</p>
   <% if (locals.dog === "none") { %>
     <div id="uploadFile">
       <img class="ui avatar middle aligned image" src="img/profil-pic.png">
@@ -15,12 +16,13 @@
       <input type="file" name="image" value="<%= dog.dogAttachment %>">
     </div>
   <% } else { %>
-    <div id="avatarImg">
+    <div id="uploadFile">
       <img class="ui avatar middle aligned image" src="img/profil-pic.png">
       <input type="file" name="image" value="<%= dog.dogAttachment %>">
     </div>
   <% } %>  
 
+  <p>Informations:</p>
   <div class="field">
     <input type="text" name="name" value="<%= dog.name %>" placeholder="Nom" required>
   </div>
@@ -39,6 +41,7 @@
     <input type="date" name="birthday" required>
   </div>
 
+  <p id="labeldate">Sexe:</p>
   <div class="inline fields" id="check">
     <div class="inline field" id="checkfield">
         <input type="radio" name="sexe" value="1" tabindex="0" class="hidden">
@@ -114,7 +117,9 @@
           <label>Non</label>
         </div>
       </div>
-      <% } %>  
+    <% } %>  
+    
+    <p>Description:</p>
 
   <textarea rows="2" name="description" placeholder="Ajoutez un petit mot sur votre ami"><%= dog.description %></textarea>
 

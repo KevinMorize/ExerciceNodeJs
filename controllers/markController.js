@@ -8,10 +8,8 @@ exports.mark = (req, res) => {
             }
             if (result.length < 1){
                 markModel.createMark(req, res)
-            } else if (result.isMarked === "unMarked") {
-                markModel.updateMark(req, res)
             } else {
-                markModel.deleteMark(req, res)
+                markModel.updateMark(req, res)
             }
         })
 }

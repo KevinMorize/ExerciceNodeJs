@@ -6,20 +6,27 @@ form{
     padding: 0;
     width: 80%;
     margin: auto;
-    margin-top: 10%;
+    margin-top: 5%;
     margin-bottom: 0;
+}
+
+form p{
+    align-self: baseline;
+    font-family: 'Port Lligat Sans', sans-serif !important;
+    color: #6A2D8F;
+    font-size: 1.2em;
+    margin-top: 5%;
 }
 
 .field{
     width: 100%;
-    margin-bottom: 10% !important;
+    margin-bottom: 2% !important;
 }
 
 input{
     background-color: #6A2D8F !important;
     font-family: 'Rajdhani', sans-serif;
     color: white !important;
-    border: 1px solid white !important;
     border-radius: 5px !important;
     min-height: 45px;
 }
@@ -31,6 +38,7 @@ input::placeholder{
 
 label{
     color: white !important;
+    font-family: 'Rajdhani', sans-serif;
 }
 
 textarea{
@@ -92,4 +100,38 @@ textarea::placeholder{
     color: white !important;
     border-radius: 5px !important;
     min-height: 45px;
+}
+
+/* upload input */
+
+#uploadFile {
+    display: flex;
+    align-items: center;
+}
+
+#uploadFile input {
+background: none !important;
+border: none;
+}
+
+#uploadFile input::-webkit-file-upload-button {
+    visibility: hidden;
+  }
+
+#uploadFile input::before {
+    content: 'Choisir une image';
+    display: inline-block;
+    color: #6A2D8F ;
+    padding: 5px 10px;
+    outline: none;
+    white-space: nowrap;
+    cursor: pointer;
+    font-size: 1em;
+    text-decoration: underline;
+    word-break: normal;
+    font-family: 'Rajdhani', sans-serif;
+}
+
+#uploadFileLabel{
+    margin-bottom: 2% !important;
 }

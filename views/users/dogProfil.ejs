@@ -6,7 +6,7 @@
 </div>
 <% } else { %> 
     <div id="dogAttachment">
-        <img class="ui fluid centered image" src="img/cover-pic.png" alt="profil img">
+        <img class="ui fluid centered image" src="img/cover-pic.png" alt="profil img" style="object-fit: contain;">
     </div>
     <% } %>  
 
@@ -18,40 +18,42 @@
     </div>
     <div>
         <p id="dogSex"><%- dog.sexe %></p>
-        <p id="dogSterile"><%- dog.size %></p>
+        <p id="dogSize">(<%- dog.size %>)</p>
         <p id="dogSterile"><%- dog.sterile %></p>
     </div>
 </div>
 
-<hr>
+<% if (dog.description) { %>
+    <hr>
 
-<div id="dogBio">
-    <p><%- dog.description %></p>
-</div>
+    <div id="dogBio">
+        <p><%- dog.description %></p>
+    </div>
+<% } %>  
 
 <hr>
 
 <h2>Propriétaire</h2>
 
-<% if (user.userAttachment) { %>
+<% if (owner.userAttachment) { %>
     <div id="userImg">
-        <img class="ui bottom aligned avatar image" src="/tmp/<%- user.userAttachment %>" alt="img-profil">
-        <span><%- user.username %></span>
+        <img class="ui bottom aligned avatar image" src="/tmp/<%- owner.userAttachment %>" alt="img-profil">
+        <span><%- owner.username %></span>
     </div>
     <% } else { %>  
     <div id="userImg">
         <img class="ui bottom aligned avatar image" src="/img/profil-pic.png" alt="img-profil">
-        <span><%- user.username %></span>
+        <span><%- owner.username %></span>
     </div>
     <% } %>  
 
-<% if (locals.dog.idUser === locals.id) { %>
+<% if (dog.idUser === user.idUser) { %>
     <a class="ui button" href="/dog-update?id=<%= dog.idDog %>" id="editDogButton">Modifier compagnon</a>
 
     <a href="/dog-delete?id=<%= dog.idDog %>" id="deleteButton" onClick="return confirm('Êtes-vous sûr ?')">Supprimer ce compagnon</a>
 <% } %>  
 
-<% if (locals.dog.idUser !== locals.id) { %>
+<% if (dog.idUser !== user.idUser) { %>
     <a class="ui button" href="" id="editDogButton">Inviter ce compagnon</a>
 <% } %>  
 

@@ -6,16 +6,7 @@ const { mark } = require('./markController');
 exports.home = (req, res) => {
     if (req.user){
         db.query('SELECT * FROM dogs LIMIT 10', (err, result) => {
-            db.query('SELECT * FROM marks WHERE idUser = ?', [req.user.idUser],(err, result2) => {
-
-                result.map(function(elem){
-                    result2.map(function(e){
-                        if(elem.idDog === e.idDog){
-                        var mark = "liked"
-                        }
-                        return mark
-                    }) 
-                }) 
+            db.query('SELECT * FROM marks',(err, result2) => {
 
                 result.map(function (e){
                     let unixTimeStamp = moment().format('X') - moment(e.birthday).format('X');
@@ -37,7 +28,7 @@ exports.home = (req, res) => {
                     title: "accueil", 
                     user: req.user,
                     newDogs: result,  
-                    marked: mark,
+                    marked: result2,
                 })
             })   
         })
@@ -149,8 +140,8 @@ exports.getDog = (req, res) => {
             res.render('../views/users/dogProfil', {
                 title: "Profil de " + result1[0].name, 
                 dog: result1[0], 
-                user:result2[0], 
-                id: req.user.idUser
+                owner:result2[0],
+                user: req.user,
             })     
         })
     })
