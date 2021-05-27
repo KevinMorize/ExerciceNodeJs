@@ -15,7 +15,7 @@ class markModel {
                 console.log(error);
             }           
             
-            res.redirect('HTTP_REFERER');
+            res.redirect('back');
         });    
     }
 
@@ -37,7 +37,7 @@ class markModel {
                     console.log(error);
                 } 
 
-            res.redirect('HTTP_REFERER')
+            res.redirect('back')
             });
         })    
     }

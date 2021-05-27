@@ -120,7 +120,6 @@ exports.getDog = (req, res) => {
     db.query('SELECT * FROM dogs WHERE idDog = ?', req.query.id, (err, result1) => {     
         db.query('SELECT idUser, username, userAttachment FROM users WHERE idUser = ?', result1[0].idUser, (err, result2) => {
             db.query('SELECT * FROM marks WHERE idUser = ? AND idDog = ? ', [req.user.idUser, req.query.id], (err, result3) => {
-                console.log(result3[0])
 
                 if (err){
                     console.log(err)

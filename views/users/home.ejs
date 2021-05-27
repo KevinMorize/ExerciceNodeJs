@@ -9,7 +9,7 @@
 
     <div class="dogCard Infinite Scroll" id="homeNewList">
         <% newDogs.forEach(function(dog) { %>
-          <a href="/dog-profil?id=<%= dog.idDog %>" class="ui card" id="homeNewCard">
+          <a href="/dog-profil?id=<%= dog.idDog %>" class="ui card" id="verticalCard">
                 <% if (dog.dogAttachment) { %>
                     <img class="ui image" src="tmp/<%= dog.dogAttachment %>">    
                 <% } else { %>  

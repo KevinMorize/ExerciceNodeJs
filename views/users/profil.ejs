@@ -37,7 +37,7 @@
           <% } else { %>
             <img src="img/profil-pic.png">  
           <% } %>  
-          <h3><%= dog.name %></h3>
+          <h4><%= dog.name %></h4>
         </a>
       </div>
     <% }); %>
@@ -52,7 +52,7 @@
 
 <% if (marked) { %>
   <% marked.forEach(function(mark) { %>
-    <a href="/dog-profil?id=<%= mark.idDog %>" class="ui card" id="homeNewCard">
+    <a href="/dog-profil?id=<%= mark.idDog %>" class="ui card" id="verticalCard">
           <% if (mark.dogAttachment) { %>
               <img class="ui image" src="tmp/<%= mark.dogAttachment %>">    
           <% } else { %>  
