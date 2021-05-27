@@ -24,27 +24,19 @@
                 
                 <% if (dog.idUser !== user.idUser) { %> <!--si chien n'appartient pas au user-->
 
-                    <% if (dog.isLiked === "liked") { %> <!--si chien a été liké-->
-
                         <% marked.forEach(function(mark) { %>
 
-                            <% if (dog.idDog === mark.idDog && mark.isMarked === "marked" && mark.idUser === user.idUser) { %> <!--si chien est liké par ce user -->
+                            <% if (dog.idDog === mark.idDog && mark.isMarked === "marked") { %> <!--si chien est liké par ce user -->
                                 <form action="/mark?id=<%= dog.idDog %>" method="post" id="like">
                                     <button type="submit"><i class="heart like icon"></i></button>
                                 </form>              
-                            <% } else if (dog.idDog === mark.idDog && mark.isMarked === "unMarked" && mark.idUser === user.idUser) { %>  <!--si chien est unliké par ce user -->
+                            <% } else if (dog.idDog === mark.idDog && mark.isMarked === "unMarked") { %>  <!--si chien est unliké par ce user -->
                                 <form action="/mark?id=<%= dog.idDog %>" method="post" id="like">
                                     <button type="submit"><i class="heart outline like icon"></i></button>
                                 </form>
                             <% } %>
 
                         <% }); %>  
-
-                    <% } else { %>  <!--si chien n'a jamais été liké-->
-                        <form action="/mark?id=<%= dog.idDog %>" method="post" id="like">
-                            <button type="submit"><i class="heart outline like icon"></i></button>
-                        </form>   
-                    <% } %>
                 <% } %>      
             </a>
         <% }); %>

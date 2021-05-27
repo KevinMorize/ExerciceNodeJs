@@ -27,7 +27,7 @@
 
 <h2>Mes chiens</h2>
 
-<% if (locals.dogs) { %>
+<% if (dogs) { %>
   <div class="dogCard">
     <% dogs.forEach(function(dog) { %>
       <div class="ui card">
@@ -49,5 +49,27 @@
 <hr>
 
 <h2>Mes favoris</h2>
+
+<% if (marked) { %>
+  <% marked.forEach(function(mark) { %>
+    <a href="/dog-profil?id=<%= mark.idDog %>" class="ui card" id="homeNewCard">
+          <% if (mark.dogAttachment) { %>
+              <img class="ui image" src="tmp/<%= mark.dogAttachment %>">    
+          <% } else { %>  
+                  <img class="ui image" src="img/profil-pic.png" style="object-fit: contain">    
+          <% } %> 
+          
+          <div class="content">
+              <h4><%= mark.name %></h4>
+              <span class="breed"><%= mark.breed %></span>
+              <span class="date"><%= mark.birthday %></span>
+          </div>
+      
+          <form action="/mark?id=<%= mark.idDog %>" method="post" id="like">
+            <button type="submit" onclick="return confirm('Supprimer des favoris ?')"><i class="heart like icon"></i></button>
+          </form>              
+      </a>
+  <% }); %>
+<% } %>
 
 <%- include ('../includes/footer.ejs') %>

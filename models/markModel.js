@@ -9,23 +9,13 @@ class markModel {
             isMarked: "marked",
         } 
 
-        let data2 = {
-            isLiked: "liked",
-        } 
-
         db.query('INSERT INTO marks SET ?' , [data], (error, result)  => {
+
             if (error) {
                 console.log(error);
-            } 
-
-            db.query('UPDATE dogs SET ? WHERE idDog = ?' , [data2, req.query.id], (error, result)  => {
-                if (error) {
-                    console.log(error);
-                } 
+            }           
             
-                res.redirect('/accueil');
-
-            }); 
+            res.redirect('HTTP_REFERER');
         });    
     }
 
@@ -47,7 +37,7 @@ class markModel {
                     console.log(error);
                 } 
 
-            res.redirect('/accueil')
+            res.redirect('HTTP_REFERER')
             });
         })    
     }

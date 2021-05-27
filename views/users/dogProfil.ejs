@@ -8,7 +8,19 @@
     <div id="dogAttachment">
         <img class="ui fluid centered image" src="img/cover-pic.png" alt="profil img" style="object-fit: contain;">
     </div>
-    <% } %>  
+<% } %>  
+
+<% if (dog.idUser !== user.idUser) { %>
+    <% if (marked && marked.isMarked === "marked") { %>
+        <form action="/mark?id=<%= dog.idDog %>" method="post" id="like">
+            <button type="submit"><i class="heart like icon"></i></button>
+        </form>              
+    <% } else if (marked === undefined || marked.isMarked === "unMarked") { %> 
+        <form action="/mark?id=<%= dog.idDog %>" method="post" id="like">
+            <button type="submit"><i class="heart outline like icon"></i></button>
+        </form>
+    <% } %>
+<% } %>   
 
 <div id="dogInfosContainer">
     <div>
