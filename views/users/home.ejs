@@ -21,23 +21,6 @@
                     <span class="breed"><%= dog.breed %></span>
                     <span class="date"><%= dog.birthday %></span>
                 </div>
-                
-                <% if (dog.idUser !== user.idUser) { %> <!--si chien n'appartient pas au user-->
-
-                        <% marked.forEach(function(mark) { %>
-
-                            <% if (dog.idDog === mark.idDog && mark.isMarked === "marked") { %> <!--si chien est liké par ce user -->
-                                <form action="/mark?id=<%= dog.idDog %>" method="post" id="like">
-                                    <button type="submit"><i class="heart like icon"></i></button>
-                                </form>              
-                            <% } else if (dog.idDog === mark.idDog && mark.isMarked === "unMarked") { %>  <!--si chien est unliké par ce user -->
-                                <form action="/mark?id=<%= dog.idDog %>" method="post" id="like">
-                                    <button type="submit"><i class="heart outline like icon"></i></button>
-                                </form>
-                            <% } %>
-
-                        <% }); %>  
-                <% } %>      
             </a>
         <% }); %>
     </div>

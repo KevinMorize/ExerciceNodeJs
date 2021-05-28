@@ -1,12 +1,13 @@
 const db = require('../config/db')
 const moment = require('moment');
 const { mark } = require('./markController');
+const { end } = require('../config/db');
 
 // main
 exports.home = (req, res) => {
     if (req.user){
         db.query('SELECT * FROM dogs LIMIT 10', (err, result) => {
-            db.query('SELECT * FROM marks WHERE idUser', [req.user.idUser],(err, result2) => {
+            db.query('SELECT * FROM marks WHERE idUser = ?', [req.user.idUser],(err, result2) => {
 
                 result.map(function (e){
                     let unixTimeStamp = moment().format('X') - moment(e.birthday).format('X');
@@ -23,12 +24,21 @@ exports.home = (req, res) => {
                         return e.birthday = year + " ans et " + month + " mois"
                     }
                 })
+
+                result.forEach(function (dog){
+                    result2.map(function(mark){
+                        if(dog.idDog === mark.idDog && mark.isMarked === "marked"){
+                            return marks = {idDog: dog.idDog, marked: "marked"}
+                        } else {
+                            return marks = {idDog: dog.idDog, marked: "unMarked"}
+                        }
+                    })
+                })
                 
                 res.render('../views/users/home', {
                     title: "accueil", 
                     user: req.user,
                     newDogs: result,  
-                    marked: result2,
                 })
             })   
         })
