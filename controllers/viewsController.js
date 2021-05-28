@@ -7,7 +7,6 @@ const { end } = require('../config/db');
 exports.home = (req, res) => {
     if (req.user){
         db.query('SELECT * FROM dogs LIMIT 10', (err, result) => {
-            db.query('SELECT * FROM marks WHERE idUser = ?', [req.user.idUser],(err, result2) => {
 
                 result.map(function (e){
                     let unixTimeStamp = moment().format('X') - moment(e.birthday).format('X');
@@ -26,21 +25,23 @@ exports.home = (req, res) => {
                 })
 
                 result.forEach(function (dog){
-                    result2.map(function(mark){
-                        if(dog.idDog === mark.idDog && mark.isMarked === "marked"){
-                            return marks = {idDog: dog.idDog, marked: "marked"}
-                        } else {
-                            return marks = {idDog: dog.idDog, marked: "unMarked"}
+                    db.query('SELECT * FROM marks WHERE idUser = ? AND idDog = ?', [req.user.idUser, dog.idDog],(err, result2) => {
+                        if (result2.length > 0) {
+                            var mark = "marked"
+                           } else {
+                            var mark = "unMarked"
                         }
-                    })
+                        console.log({dog: dog.idDog, mark: mark} )
+                        return mark = {dog: dog.idDog, mark: mark} 
+                    })        
                 })
                 
                 res.render('../views/users/home', {
                     title: "accueil", 
                     user: req.user,
-                    newDogs: result,  
+                    newDogs: result, 
+                    marked: marked, 
                 })
-            })   
         })
     } else {
         res.redirect('/')
@@ -73,8 +74,8 @@ exports.profil = async (req, res) => {
     if (req.user){
         db.query('SELECT * FROM users WHERE idUser = ?', [req.user.idUser], (err, result) => {
             db.query('SELECT * FROM dogs WHERE idUser = ?', [req.user.idUser], (err, result2) => {
-                db.query('SELECT * FROM dogs INNER JOIN marks ON dogs.idDog = marks.idDog AND marks.isMarked = "marked" AND marks.idUser = ? ORDER BY dogs.name', [req.user.idUser], (err, result3) => {
-                   
+                db.query('SELECT * FROM dogs INNER JOIN marks ON dogs.idDog = marks.idDog AND marks.idUser = ? ORDER BY dogs.name', [req.user.idUser], (err, result3) => {
+
                     if (err){
                         console.log(err)
                     }

@@ -11,11 +11,11 @@
 <% } %>  
 
 <% if (dog.idUser !== user.idUser) { %>
-    <% if (marked && marked.isMarked === "marked") { %>
+    <% if (marked) { %>
         <form action="/mark?id=<%= dog.idDog %>" method="post" id="like">
             <button type="submit"><i class="heart like icon"></i></button>
         </form>              
-    <% } else if (marked === undefined || marked.isMarked === "unMarked") { %> 
+    <% } else if (marked === undefined) { %> 
         <form action="/mark?id=<%= dog.idDog %>" method="post" id="like">
             <button type="submit"><i class="heart outline like icon"></i></button>
         </form>

@@ -9,7 +9,7 @@ exports.mark = (req, res) => {
             if (result.length < 1){
                 markModel.createMark(req, res)
             } else {
-                markModel.updateMark(req, res)
+                markModel.deleteMark(req, res)
             }
         })
 }
