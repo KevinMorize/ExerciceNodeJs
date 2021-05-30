@@ -2,30 +2,34 @@
 
 <form class="ui form" href="/user-update" method='post' enctype="multipart/form-data">
 
+  <% if (locals.message) { %>
+    <div class="ui red message"><%- locals.message %></div>
+  <% } %>
+
 <!-- images -->
 <p id="uploadFileLabel">Photo de couverture:</p>
 <% if (user.cover) { %>
   <div id="uploadFile">
-    <img class="ui avatar middle aligned image" src="tmp/<%= user.cover %>">
-    <input type="file" name="cover" accept=".jpg, .jpeg, .png" id="coverInput">
+    <img class="ui avatar middle aligned image" src="tmp/<%= user.cover %>" id="coverInputImg">
+    <input type="file" name="cover" accept=".jpg, .jpeg, .png" id="coverInput" onchange="document.getElementById('coverInputImg').src = window.URL.createObjectURL(this.files[0])">
   </div>
 <% } else { %>
   <div id="uploadFile">
-    <img class="ui avatar middle aligned image" src="img/cover-pic.png %>">
-    <input type="file" name="cover" accept=".jpg, .jpeg, .png" id="coverInput">
+    <img class="ui avatar middle aligned image" src="img/cover-pic.png %>" id="coverInputImg">
+    <input type="file" name="cover" accept=".jpg, .jpeg, .png" id="coverInput" onchange="document.getElementById('coverInputImg').src = window.URL.createObjectURL(this.files[0])">
   </div>
 <% } %>  
 
 <p id="uploadFileLabel">Photo de profil:</p>
 <% if (user.userAttachment) { %>
   <div id="uploadFile">
-    <img class="ui avatar middle aligned image" src="tmp/<%= user.userAttachment %>">
-    <input type="file" name="image" accept=".jpg, .jpeg, .png">
+    <img class="ui avatar middle aligned image" src="tmp/<%= user.userAttachment %>" id="profilInputImg">
+    <input type="file" name="image" accept=".jpg, .jpeg, .png" onchange="document.getElementById('profilInputImg').src = window.URL.createObjectURL(this.files[0])">
   </div>
 <% } else { %> 
   <div id="uploadFile">
-    <img class="ui avatar middle aligned image" src="img/profil-pic.png %>">
-    <input type="file" name="image" accept=".jpg, .jpeg, .png">
+    <img class="ui avatar middle aligned image" src="img/profil-pic.png %>" id="profilInputImg">
+    <input type="file" name="image" accept=".jpg, .jpeg, .png" onchange="document.getElementById('profilInputImg').src = window.URL.createObjectURL(this.files[0])">
   </div>
 <% } %>  
 
@@ -49,7 +53,7 @@
   <input type="text" name="city" placeholder="<%= user.city %>" value="<%= user.city %>">
 </div>
 
-<p>bio:</p>
+<p>Bio:</p>
 <textarea name="bio" placeholder="ajouter une description" rows="2"><%= user.bio %></textarea>
 
 <button class="ui button" type="submit" id="confirmButton">Modifier l'utilisateur</button>

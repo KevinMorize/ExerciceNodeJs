@@ -166,8 +166,9 @@
 }
 
 #dogBio{
-    width: 70%;
+    width: 90%;
     margin-top: 5%;
+    text-align: center;
     font-size: 1.2em;   
     font-family: 'Rajdhani', sans-serif;
     color: #6A2D8F !important;

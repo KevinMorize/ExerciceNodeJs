@@ -8,7 +8,7 @@
     width: 100%;
     background-color: #E2CAEE !important;
     margin: 0 !important;
-    height: 8%;
+    min-height: 8%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;

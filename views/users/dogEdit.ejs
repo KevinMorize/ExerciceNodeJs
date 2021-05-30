@@ -5,6 +5,7 @@
   <action ancre="ancre2" href="/dog-update?id=<%= dog.idDog %>" methode="post"/>
 
   <p>Photo de profil:</p>
+
   <% if (locals.dog === "none") { %>
     <div id="uploadFile">
       <img class="ui avatar middle aligned image" src="img/profil-pic.png">
@@ -23,20 +24,21 @@
   <% } %>  
 
   <p>Informations:</p>
+  
   <div class="field">
-    <input type="text" name="name" value="<%= dog.name %>" placeholder="Nom" required>
+    <input type="text" name="name" value="<%= dog.name %>" placeholder="Nom (requis)" minlength="2" maxlength="13" required>
   </div>
 
   <% if (locals.dog === "none") { %>
   <div class="field">
-    <input type="text" name="icad" placeholder="Numéro de puce" maxlength="11" required>
+    <input type="text" name="icad" placeholder="Numéro de puce (requis)" maxlength="11" required>
   </div>
 
   <div class="field">
-    <input type="text" name="breed" placeholder="Race" required>
+    <input type="text" name="breed" placeholder="Race (requis)" required>
   </div>
 
-  <p id="labeldate">Date de naissance:</p>
+  <p id="labeldate">Date de naissance (requis):</p>
   <div class="field">
     <input type="date" name="birthday" required>
   </div>
@@ -54,7 +56,7 @@
     </div>
   </div>
 
-  <p id="labeldate">Taille:</p>
+  <p id="labeldate">Taille (requis):</p>
   <div class="inline fields" id="check">
     <div class="inline field" id="checkfield">
       <input type="radio" name="size" value="1" tabindex="0" class="hidden">
@@ -72,7 +74,7 @@
     </div> 
   </div>
 
-  <p id="labeldate">Stérilisé:</p>
+  <p id="labeldate">Stérilisé (requis):</p>
 
   <div class="inline fields" id="check">
     <div class="inline field" id="checkfield">

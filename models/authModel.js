@@ -60,20 +60,7 @@ class authModel {
         const PASSWORD_REGEX = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$/;
         const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-        const dogData = { 
-            icad : req.body.icad, 
-            name : req.body.name, 
-            breed : req.body.breed, 
-            birthday : req.body.birthday, 
-            sexe : req.body.sexe, 
-            size : req.body.size, 
-            sterile : req.body.sterile, 
-            description : req.body.description,
-        }
-
         db.query("SELECT email FROM users WHERE email = ?", [req.body.email], async (error, results) => {
-
-            console.log(req.body.password, req.body.passwordConfirm)
 
             if(error) {
                 console.log(error);
@@ -113,7 +100,19 @@ class authModel {
                     console.log(error)
                 }
 
-                db.query('INSERT INTO dogs SET ?', [result.insertId, dogData], (error, result2)  => {
+                let dogData = { 
+                    idUser: result.insertId,
+                    icad: req.body.icad, 
+                    name: req.body.name, 
+                    breed: req.body.breed, 
+                    birthday: req.body.birthday, 
+                    sexe: req.body.sexe, 
+                    size: req.body.size, 
+                    sterile: req.body.sterile, 
+                    description: req.body.description,
+                }
+        
+                db.query('INSERT INTO dogs SET ?', [dogData], (error, result2)  => {
                     if (error) {
                         console.log(error);
                     } 
