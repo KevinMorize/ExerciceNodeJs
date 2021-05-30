@@ -24,23 +24,28 @@ exports.home = (req, res) => {
                     }
                 })
 
-                result.forEach(function (dog){
-                    db.query('SELECT * FROM marks WHERE idUser = ? AND idDog = ?', [req.user.idUser, dog.idDog],(err, result2) => {
-                        if (result2.length > 0) {
-                            var mark = "marked"
-                           } else {
-                            var mark = "unMarked"
-                        }
-                        console.log({dog: dog.idDog, mark: mark} )
-                        return mark = {dog: dog.idDog, mark: mark} 
-                    })        
-                })
+
+                // result.forEach(function (dog){
+                //     db.query('SELECT * FROM marks WHERE idUser = ? AND idDog = ?', [req.user.idUser, dog.idDog],(err, result2) => {
+                //         if (result2.length >= 1){
+                //             isMarked(marked)
+                //         } else {
+                //             isMarked(undefined)
+                //         }
+                //     }) 
+                // })
+
+                // function isMarked (data) {
+                //     var marked = []
+                //     if (data) {
+                //         marked.push(data)
+                //     }
+                // }
                 
                 res.render('../views/users/home', {
                     title: "accueil", 
                     user: req.user,
-                    newDogs: result, 
-                    marked: marked, 
+                    newDogs: result,
                 })
         })
     } else {

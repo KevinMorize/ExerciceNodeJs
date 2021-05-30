@@ -57,32 +57,63 @@ class authModel {
 
     // register //
     static register (req, res) {
-        const { username, email, city, bio, password, passwordConfirm, userAttachment, cover, icad, name, breed, birthday, sexe, size, sterile, dogAttachment, description } = req.body
+        const PASSWORD_REGEX = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$/;
+        const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-        db.query("SELECT email FROM users WHERE email = ?", [email], async (error, results) => {
+        const dogData = { 
+            icad : req.body.icad, 
+            name : req.body.name, 
+            breed : req.body.breed, 
+            birthday : req.body.birthday, 
+            sexe : req.body.sexe, 
+            size : req.body.size, 
+            sterile : req.body.sterile, 
+            description : req.body.description,
+        }
+
+        db.query("SELECT email FROM users WHERE email = ?", [req.body.email], async (error, results) => {
+
+            console.log(req.body.password, req.body.passwordConfirm)
 
             if(error) {
                 console.log(error);
             }
 
             if(results.length > 0) {
-                return res.render('../views/users/register', {
+                return res.status(400).render('../views/users/register', {
                     emailMessage: 'Cet e-mail est déjà utilisé'
                 })
-            
-            } else if(password !== passwordConfirm) {
-                return res.render('../views/users/register', {
+            } else if (!EMAIL_REGEX.test(req.body.email)) {
+                return res.status(400).render('../views/users/register', {
+                    emailMessage: 'email invalide'
+                });
+            } else if(req.body.password !== req.body.passwordConfirm) {
+                return res.status(400).render('../views/users/register', {
                     passwordMessage: 'Les mot-de-passe ne correspondent pas'
+                });
+            } else if (!PASSWORD_REGEX.test(req.body.password)) {
+                return res.status(400).render('../views/users/register', {
+                    passwordMessage: 'Mot-de-passe non valide (au moins 8 caractères, 1 majuscule, 1 chiffre et 1 caractère spécial'
                 });
             }
 
-            let hashedPassword = await bcrypt.hash(password, 8)
+            let hashedPassword = await bcrypt.hash(req.body.password, 8)
 
-            db.query('INSERT INTO users SET ?', {username: username, email: email, city: city, bio: bio, userAttachment: userAttachment, cover: cover, password: hashedPassword, role: 0}, (error, result1) => {
+            let userData = { 
+                password: hashedPassword,
+                username : req.body.username, 
+                email : req.body.email,  
+                city : req.body.city, 
+                bio : req.body.bio, 
+                role : 0,
+            }
+
+            db.query('INSERT INTO users SET ?', [userData], (error, result) => {
                 if (error){
                     console.log(error)
                 }
-                db.query('INSERT INTO dogs SET ?', {idUser: result1.insertId, icad: icad, name: name, breed: breed, birthday: birthday, sexe: sexe, size: size, sterile: sterile, dogAttachment: dogAttachment, description: description }, (error, result2)  => {
+
+                db.query('INSERT INTO dogs SET ?', [result.insertId, dogData], (error, result2)  => {
                     if (error) {
                         console.log(error);
                     } 

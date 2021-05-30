@@ -2,6 +2,7 @@
 
 <form class="ui form" href="/user-update" method='post' enctype="multipart/form-data">
 
+<!-- images -->
 <p id="uploadFileLabel">Photo de couverture:</p>
 <% if (user.cover) { %>
   <div id="uploadFile">
@@ -30,12 +31,17 @@
 
 <p>Pseudo:</p>
 <div class="field">
-    <input type="text" name="username" placeholder="<%= user.username %>" value="<%= user.username %>"required>
+    <input type="text" name="username" placeholder="<%= user.username %>" value="<%= user.username %>" minlength="2" maxlength="13" required>
 </div>
 
 <p>e-mail:</p>
 <div class="field">
   <input type="email" name="email" placeholder="<%= user.email %>" value="<%= user.email %>" required>
+</div>
+
+<p>Confimez l'e-mail:</p>
+<div class="field">
+  <input type="email" name="emailConfirm" value="<%= user.email %>" required>
 </div>
 
 <p>Ville ou CP:</p>

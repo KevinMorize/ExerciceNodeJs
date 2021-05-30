@@ -31,7 +31,7 @@ class dogModel {
             }
         }
 
-        db.query('INSERT INTO dogs SET ?', data , (error, results) => {
+        db.query('INSERT INTO dogs SET ?', [data] , (error, results) => {
             if (error){
                 console.log(error)
             }
