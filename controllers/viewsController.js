@@ -66,7 +66,7 @@ exports.localise = (req, res) => {
 
 exports.walks = (req, res) => {
     if (req.user){
-        res.render('../views/users/walks', {
+        res.render('../views/users/walk', {
             title: "mes balades",
             user: req.user
         })
@@ -205,4 +205,23 @@ exports.updateDog = (req, res) => {
             user: req.user
         })
     })
+}
+
+
+//balades
+exports.createWalk = (req, res) => {
+    if (req.user){
+        db.query('SELECT * FROM dogs INNER JOIN marks ON dogs.idDog = marks.idDog AND marks.idUser = ?', [req.user.idUser], (err, result) => {
+            console.log(result)
+            if (err){
+                throw (err)
+            }
+            res.render('../views/users/walkCreate', { 
+                title: "Balades création", 
+                user: req.user,
+                marks: result,
+            })
+        })
+    }
+    
 }
