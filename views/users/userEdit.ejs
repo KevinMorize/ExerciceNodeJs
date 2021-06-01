@@ -15,7 +15,7 @@
   </div>
 <% } else { %>
   <div id="uploadFile">
-    <img class="ui avatar middle aligned image" src="img/cover-pic.png %>" id="coverInputImg">
+    <img class="ui avatar middle aligned image" src="img/cover-pic.png" id="coverInputImg">
     <input type="file" name="cover" accept=".jpg, .jpeg, .png" id="coverInput" onchange="document.getElementById('coverInputImg').src = window.URL.createObjectURL(this.files[0])">
   </div>
 <% } %>  

@@ -10,8 +10,38 @@
 <input type="time" />
 
 <p>Ajouter un participant :</p>
-<input type="search" />
+<input type="text" id="search" placeholder="ajouter un compagnon"/>
+<div id="matchList"></div>
 
 </form>
+
+<script type="text/javascript" >
+    const search = document.getElementById('search');
+    const matchList = document.getElementById('matchList');
+
+    const searchMarks = async searchText => {
+        const res = await <%- JSON.stringify(data) %>;
+        
+        let matches = res.filter(marks => {
+            const regex = new RegExp(`^${searchText}`, 'gi')
+            return marks.name.match(regex)
+        })
+
+        if (searchText.length === 0) {
+            matches = []
+        }
+
+        outputHtml(matches)
+        console.log(matches)
+    }
+
+    const outputHmtl = matches => {
+
+    }
+
+
+    search.addEventListener('input', () => searchMarks (search.value));
+
+</script>
 
 <%- include ('../includes/footer.ejs') %>

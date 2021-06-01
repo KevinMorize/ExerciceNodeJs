@@ -6,22 +6,17 @@
 
   <p>Photo de profil:</p>
 
-  <% if (locals.dog === "none") { %>
+  <% if (locals.dog && dog.dogAttachment) { %>
     <div id="uploadFile">
-      <img class="ui avatar middle aligned image" src="img/profil-pic.png">
-      <input type="file" name="image">
-    </div>
-  <% } else if (dog.dogAttachment) { %>
-    <div id="uploadFile">
-      <img class="ui avatar middle aligned image" src="tmp/<%= dog.dogAttachment %>">
-      <input type="file" name="image" value="<%= dog.dogAttachment %>">
+      <img class="ui avatar middle aligned image" src="tmp/<%= dog.dogAttachment %>" id="dogInputAttachment">
+      <input type="file" name="image" value="<%= dog.dogAttachment %>" accept=".jpg, .jpeg, .png" onchange="document.getElementById('dogInputAttachment').src = window.URL.createObjectURL(this.files[0])">
     </div>
   <% } else { %>
     <div id="uploadFile">
-      <img class="ui avatar middle aligned image" src="img/profil-pic.png">
-      <input type="file" name="image" value="<%= dog.dogAttachment %>">
+      <img class="ui avatar middle aligned image" src="img/profil-pic.png" id="dogInputAttachment">
+      <input type="file" name="image" accept=".jpg, .jpeg, .png" onchange="document.getElementById('dogInputAttachment').src = window.URL.createObjectURL(this.files[0])">
     </div>
-  <% } %>  
+  <% } %>
 
   <p>Informations:</p>
   
@@ -89,7 +84,7 @@
   </div>
   <% } %>  
 
-  <% if (locals.dog.sterile === 1) { %>
+  <% if (dog.sterile === 1) { %>
     <p id="labeldate">Stérilisé:</p>
 
     <div class="inline fields" id="check">
@@ -105,7 +100,7 @@
     </div>
     <% } %> 
     
-    <% if (locals.dog.sterile === 0) { %>
+    <% if (dog.sterile === 0) { %>
       <p id="labeldate">Stérilisé:</p>
   
       <div class="inline fields" id="check">
@@ -121,17 +116,17 @@
       </div>
     <% } %>  
     
-    <p>Description:</p>
+  <p>Description:</p>
 
   <textarea rows="2" name="description" placeholder="Ajoutez un petit mot sur votre ami"><%= dog.description %></textarea>
 
-<% if (locals.button === "add") { %>
-<button class="ui button" id="confirmButton" action="ancre1">Ajouter</button>
-<% } %>
+  <% if (button === "add") { %>
+  <button class="ui button" id="confirmButton" action="ancre1">Ajouter</button>
+  <% } %>
 
-<% if (locals.button === "update") { %>
-  <button class="ui button" id="confirmButton" action="ancre2">Confirmer</button>
-<% } %>
+  <% if (button === "update") { %>
+    <button class="ui button" id="confirmButton" action="ancre2">Confirmer</button>
+  <% } %>
 
 </form>
 

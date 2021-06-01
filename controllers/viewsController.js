@@ -1,7 +1,6 @@
 const db = require('../config/db')
 const moment = require('moment');
-const { mark } = require('./markController');
-const { end } = require('../config/db');
+
 
 // main
 exports.home = (req, res) => {
@@ -209,17 +208,15 @@ exports.updateDog = (req, res) => {
 
 
 //balades
-exports.createWalk = (req, res) => {
+exports.createWalk = async (req, res) => {
     if (req.user){
-        db.query('SELECT * FROM dogs INNER JOIN marks ON dogs.idDog = marks.idDog AND marks.idUser = ?', [req.user.idUser], (err, result) => {
-            console.log(result)
-            if (err){
-                throw (err)
-            }
+        db.query('SELECT name, breed, dogAttachment FROM dogs INNER JOIN marks ON dogs.idDog = marks.idDog AND marks.idUser = ?', [req.user.idUser], (err, result) => {
+
+            // res.send(JSON.stringify(result))
             res.render('../views/users/walkCreate', { 
                 title: "Balades création", 
                 user: req.user,
-                marks: result,
+                data: result,
             })
         })
     }
