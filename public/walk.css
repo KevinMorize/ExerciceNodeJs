@@ -1,0 +1,26 @@
+#addFriend{
+    position: relative;
+    width: 100%;
+}
+
+#matchList{
+    position: absolute;
+    overflow: scroll;
+    width: 50%;
+    background-color: white;
+    max-height: 200px;
+}
+
+#matchList #verticalCard {
+    width: 100%;
+}
+
+#selectedArea{
+    width: -webkit-fill-available;
+    margin-top: 5%
+}
+
+#selectedArea img{
+    object-fit: cover;
+    aspect-ratio: 1/1;
+}

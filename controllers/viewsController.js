@@ -210,15 +210,15 @@ exports.updateDog = (req, res) => {
 //balades
 exports.createWalk = async (req, res) => {
     if (req.user){
-        db.query('SELECT name, breed, dogAttachment FROM dogs INNER JOIN marks ON dogs.idDog = marks.idDog AND marks.idUser = ?', [req.user.idUser], (err, result) => {
-
-            // res.send(JSON.stringify(result))
-            res.render('../views/users/walkCreate', { 
-                title: "Balades création", 
-                user: req.user,
-                data: result,
+        db.query('SELECT * FROM dogs INNER JOIN marks ON dogs.idDog = marks.idDog AND marks.idUser = ?', [req.user.idUser], (err, result) => {
+            db.query('SELECT * FROM dogs WHERE dogs.idUser = ?', [req.user.idUser], (err, result2) => {
+                        res.render('../views/users/walkCreate', { 
+                            title: "Balades création", 
+                            user: req.user,
+                            marks: result,
+                            dogs: result2
+                        })
             })
         })
     }
-    
 }

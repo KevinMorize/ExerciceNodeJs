@@ -9,39 +9,109 @@
 <p>Au :</p>
 <input type="time" />
 
-<p>Ajouter un participant :</p>
-<input type="text" id="search" placeholder="ajouter un compagnon"/>
+<div id="addFriend">
+<input type="text" id="search" value="" />
 <div id="matchList"></div>
+</div>
+
+<div id="selectedArea">
+</div>
+
+
+<!-- <p>Sélectionnez un compagnon avec qui partir:</p>
+<div class="field">
+    <select id="invitation" name="invitation" placeholder="Sélectionnez un compagnon">
+        <option>-</option>
+        <% if (dogs) { %>
+            <% dogs.forEach(function(dog) { %>
+                <option value="<%= dog.idDog %>"><%= dog.name %></option>
+            <% }); %>
+        <% } %>
+        <% if (marks) { %>
+            <% marks.forEach(function(mark) { %>
+                <option value="<%= mark.idDog %>"><%= mark.name %></option>
+            <% }); %>
+        <% } %>
+    </select>
+
+    <a id="add" class="ui primary">Ajouter un autre compagnon</a>
+</div>  -->
 
 </form>
 
-<script type="text/javascript" >
-    const search = document.getElementById('search');
-    const matchList = document.getElementById('matchList');
+<script type="text/javascript">
+    // const select = document.getElementById('invitation')
+    // const add = document.getElementById('add')
 
-    const searchMarks = async searchText => {
-        const res = await <%- JSON.stringify(data) %>;
-        
-        let matches = res.filter(marks => {
-            const regex = new RegExp(`^${searchText}`, 'gi')
-            return marks.name.match(regex)
-        })
+    // add.addEventListener('click', () => addSelectField())
 
-        if (searchText.length === 0) {
-            matches = []
-        }
+    // function addSelectField(e){
+    //     var newSelect = select.cloneNode(true);
+    //     let parentDiv = add.parentNode
+    //     parentDiv.insertBefore(newSelect, add)
+    // }
 
-        outputHtml(matches)
-        console.log(matches)
-    }
+    //jcbdhkzbc//
 
-    const outputHmtl = matches => {
+const search = document.getElementById('search');
+const matchList = document.getElementById('matchList');
+const selectedArea = document.getElementById('selectedArea');
 
-    }
+search.addEventListener('focus', () => searchMarks(search.value));
+search.addEventListener('input', () => searchMarks(search.value));
+
+const searchMarks = async searchText => {
+    const res = await (<%- JSON.stringify(marks) %>);
+    console.log(res)
+    
+    let matches = res.filter(marks => {
+        const regex = new RegExp(`^${searchText}`, 'gi')
+        return marks.name.match(regex)
+    })
+
+    outputHtml(matches);
+};
+
+const outputHtml = matches => {
+    if (matches.length > 0) {
+        const html = matches.map(match => 
+            `
+            <div class="ui card" id="verticalCard" onclick="selectedFriend('${match.dogAttachment}','${match.name}')">
+                <img class="ui image" src="tmp/${match.dogAttachment}">
+                <div class="content">       
+                <h4>${match.name}</h4>
+                <span class="breed">${match.breed}</span>
+                </div>
+            </div> 
+            `
+        ).join('');  
+
+        matchList.innerHTML = html;
+    };           
+}
+
+function selectedFriend(image, name) {
+    var newMatchImg = document.createElement('img')
+    newMatchImg.src = 'tmp/' + image
+    newMatchImg.className = 'ui bottom aligned avatar image'
+
+    var newMatchName = document.createElement('span')
+    var name = document.createTextNode(name)
+    newMatchName.appendChild(name)
+
+    var newMatchinput = document.createElement('input')
+    newMatchinput.type = 'hidden'
+    newMatchinput.name = 'invited'
+    newMatchinput.value = 1
+
+    selectedArea.appendChild(newMatchImg)
+    selectedArea.appendChild(newMatchName)
+    selectedArea.appendChild(newMatchinput)
+
+    matchList.innerHTML = "";
+
+}
 
 
-    search.addEventListener('input', () => searchMarks (search.value));
 
 </script>
-
-<%- include ('../includes/footer.ejs') %>
