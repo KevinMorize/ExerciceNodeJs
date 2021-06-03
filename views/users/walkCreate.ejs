@@ -9,65 +9,37 @@
 <p>Au :</p>
 <input type="time" />
 
+<p>Sélectionnez un compagnon à inviter:</p>
 <div id="addFriend">
-<input type="text" id="search" value="" />
+<input type="text" id="search" autocomplete="off"/>
 <div id="matchList"></div>
 </div>
 
 <div id="selectedArea">
 </div>
 
-
-<!-- <p>Sélectionnez un compagnon avec qui partir:</p>
-<div class="field">
-    <select id="invitation" name="invitation" placeholder="Sélectionnez un compagnon">
-        <option>-</option>
-        <% if (dogs) { %>
-            <% dogs.forEach(function(dog) { %>
-                <option value="<%= dog.idDog %>"><%= dog.name %></option>
-            <% }); %>
-        <% } %>
-        <% if (marks) { %>
-            <% marks.forEach(function(mark) { %>
-                <option value="<%= mark.idDog %>"><%= mark.name %></option>
-            <% }); %>
-        <% } %>
-    </select>
-
-    <a id="add" class="ui primary">Ajouter un autre compagnon</a>
-</div>  -->
-
 </form>
 
+<%- include ('../includes/footer.ejs') %>
+
 <script type="text/javascript">
-    // const select = document.getElementById('invitation')
-    // const add = document.getElementById('add')
-
-    // add.addEventListener('click', () => addSelectField())
-
-    // function addSelectField(e){
-    //     var newSelect = select.cloneNode(true);
-    //     let parentDiv = add.parentNode
-    //     parentDiv.insertBefore(newSelect, add)
-    // }
-
-    //jcbdhkzbc//
 
 const search = document.getElementById('search');
 const matchList = document.getElementById('matchList');
 const selectedArea = document.getElementById('selectedArea');
+const form = document.getElementsByTagName('form');
 
 search.addEventListener('focus', () => searchMarks(search.value));
 search.addEventListener('input', () => searchMarks(search.value));
 
 const searchMarks = async searchText => {
     const res = await (<%- JSON.stringify(marks) %>);
-    console.log(res)
     
     let matches = res.filter(marks => {
         const regex = new RegExp(`^${searchText}`, 'gi')
         return marks.name.match(regex)
     })
+
 
     outputHtml(matches);
 };
@@ -76,7 +48,7 @@ const outputHtml = matches => {
     if (matches.length > 0) {
         const html = matches.map(match => 
             `
-            <div class="ui card" id="verticalCard" onclick="selectedFriend('${match.dogAttachment}','${match.name}')">
+            <div class="ui card" id="verticalCard" onclick="selectedFriend('${match.dogAttachment}','${match.name}','${match.idDog}')">
                 <img class="ui image" src="tmp/${match.dogAttachment}">
                 <div class="content">       
                 <h4>${match.name}</h4>
@@ -90,28 +62,40 @@ const outputHtml = matches => {
     };           
 }
 
-function selectedFriend(image, name) {
+function selectedFriend(image, name, id) {
+
+    var newMatchDiv = document.createElement('div')
+    newMatchDiv.className = "selectedDiv"
+
     var newMatchImg = document.createElement('img')
     newMatchImg.src = 'tmp/' + image
-    newMatchImg.className = 'ui bottom aligned avatar image'
+    newMatchImg.className = 'ui avatar image'
+    newMatchDiv.appendChild(newMatchImg)
+    selectedArea.appendChild(newMatchDiv)
 
     var newMatchName = document.createElement('span')
+    newMatchDiv.appendChild(newMatchName)
     var name = document.createTextNode(name)
     newMatchName.appendChild(name)
 
     var newMatchinput = document.createElement('input')
     newMatchinput.type = 'hidden'
     newMatchinput.name = 'invited'
-    newMatchinput.value = 1
+    newMatchinput.className = "hiddenInputMatch"
+    newMatchinput.value = id
+    newMatchDiv.appendChild(newMatchinput)
 
-    selectedArea.appendChild(newMatchImg)
-    selectedArea.appendChild(newMatchName)
-    selectedArea.appendChild(newMatchinput)
+    var deleteMatchButton = document.createElement('button')
+    deleteMatchButton.type = "button"
+    deleteMatchButton.onclick = function(){
+        this.parentNode.parentNode.removeChild(this.parentNode)
+    }
+    deleteMatchButton.className = "circular ui icon button"
+    newMatchDiv.appendChild(deleteMatchButton)
+    var icoDeleteMatchButton = document.createElement('i')
+    icoDeleteMatchButton.className = "close icon"
+    deleteMatchButton.appendChild(icoDeleteMatchButton)
 
     matchList.innerHTML = "";
-
 }
-
-
-
 </script>

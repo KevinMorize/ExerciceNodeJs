@@ -6,9 +6,11 @@
 #matchList{
     position: absolute;
     overflow: scroll;
-    width: 50%;
+    width: 70%;
     background-color: white;
     max-height: 200px;
+    z-index: 1000;
+    overflow-x: auto;
 }
 
 #matchList #verticalCard {
@@ -17,10 +19,35 @@
 
 #selectedArea{
     width: -webkit-fill-available;
-    margin-top: 5%
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.selectedDiv{
+    margin-top: 5%;
+    margin-right: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #selectedArea img{
     object-fit: cover;
-    aspect-ratio: 1/1;
+}
+
+#selectedArea span{
+    margin-left: 5%;
+    margin-right: 5%;
+    font-family: 'Rajdhani', sans-serif;
+    color: #6A2D8F !important;
+}
+
+.selectedDiv .ui.circular.button{
+    background-color:transparent;
+    border: 1px solid #6A2D8F;
+    transform: scale(0.8);
+}
+
+.selectedDiv i{
+    color: #6A2D8F;
 }
