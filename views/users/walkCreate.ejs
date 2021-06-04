@@ -1,22 +1,45 @@
 <%- include('../includes/header.ejs')%>
 
-<form class="ui form" action="/walk-create" method='post'>
+<form class="ui form" action="/walk-create" method='post' id="createWalkForm">
 
-<p>Le :</p>
-<input type="date" />
-<p>De :</p>
-<input type="time" />
-<p>Au :</p>
-<input type="time" />
+<div id="walkDate">
+<p>Séléctionnez une date:</p>
+    <div class="walkDateInput">
+        <label>le</label>
+        <input type="date" name="day"/>
+    </div>
+
+    <div class="walkDateInput">
+        <label>de</label>
+        <input type="time" name="start"/>
+
+        <label>à</label>
+        <input type="time" name="end"/>
+    </div>
+
+</div>
+
+<p>Ajoutez un lieu de rendez-vous:</p>
+
+<input type="text" name="adress" placeholder="adresse">
+<div id="walkAdressInput">
+    <input type="text" name="city" placeholder="Ville">
+    <input type="text" name="zip" placeholder="Code Postal" maxlength="5">
+</div>
+
+<p>Description:</p>
+<textarea rows="3" name="description" placeholder="Ajoutez ici des détails sur la balade"></textarea>
 
 <p>Sélectionnez un compagnon à inviter:</p>
 <div id="addFriend">
-<input type="text" id="search" autocomplete="off"/>
+<input type="text" id="search" autocomplete="off" placeholder="Entrez le nom du compagnon"/>
 <div id="matchList"></div>
 </div>
 
 <div id="selectedArea">
 </div>
+
+<button class="ui button" id="confirmButton" action="ancre2">Confirmer</button>
 
 </form>
 
@@ -27,7 +50,6 @@
 const search = document.getElementById('search');
 const matchList = document.getElementById('matchList');
 const selectedArea = document.getElementById('selectedArea');
-const form = document.getElementsByTagName('form');
 
 search.addEventListener('focus', () => searchMarks(search.value));
 search.addEventListener('input', () => searchMarks(search.value));
@@ -59,7 +81,15 @@ const outputHtml = matches => {
         ).join('');  
 
         matchList.innerHTML = html;
+        addMatchTitle()
     };           
+}
+
+function addMatchTitle(){
+        var title = document.createElement('p')
+        matchList.insertBefore(title, matchList.childNodes[0]);
+        var titleText = document.createTextNode('Suggestions:')
+        title.appendChild(titleText)
 }
 
 function selectedFriend(image, name, id) {
@@ -98,4 +128,5 @@ function selectedFriend(image, name, id) {
 
     matchList.innerHTML = "";
 }
+
 </script>

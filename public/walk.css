@@ -1,16 +1,64 @@
+#createWalkForm p{
+  margin-top: 15%;
+}
+
+#createWalkForm p:nth-child(1){
+    margin-top: 0;
+  }
+
+#walkDate{
+    width: 100%;
+}
+
+#walkDate div:nth-of-type(2){
+    margin-top: 5%;
+}
+
+#walkDate div:nth-of-type(2) label:nth-of-type(2){
+    margin-left: 5%;
+}
+
+.walkDateInput{
+    display: flex;
+    align-items: center;
+}
+
+.walkDateInput label{
+    margin-right: 5%;
+    color: #6A2D8F !important;
+}
+
+#walkAdressInput{
+    display: flex;
+    margin-top: 5%;
+}
+
+#walkAdressInput input:nth-of-type(2){
+    margin-left: 5%;
+}
+
+#createWalkForm textarea{
+    margin-bottom: 0 !important;
+}
+
 #addFriend{
     position: relative;
     width: 100%;
 }
 
 #matchList{
-    position: absolute;
+    position: relative;
     overflow: scroll;
     width: 70%;
+    padding: 5%;
     background-color: white;
     max-height: 200px;
     z-index: 1000;
     overflow-x: auto;
+}
+
+body ::-webkit-scrollbar {
+    display: none;
 }
 
 #matchList #verticalCard {
@@ -44,10 +92,25 @@
 
 .selectedDiv .ui.circular.button{
     background-color:transparent;
-    border: 1px solid #6A2D8F;
     transform: scale(0.8);
 }
 
 .selectedDiv i{
     color: #6A2D8F;
+}
+
+@media (max-width: 768px) {
+    #matchList{
+        width: 100%;
+    }
+
+    #selectedArea{
+        flex-direction: column;
+        align-items: baseline;
+    }
+
+    .selectedDiv{
+        margin: 0;
+    }
+
 }

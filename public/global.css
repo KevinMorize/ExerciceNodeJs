@@ -38,7 +38,8 @@ main{
 .menu{
     background-color: #E2CAEE !important;
     margin: 0 !important;
-    height: 7.5%;
+    height: 7.5%;    
+    z-index: 10000 !important;
 }
 
 .menu .ui.avatar.image{
