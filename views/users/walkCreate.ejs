@@ -16,7 +16,6 @@
         <label>à</label>
         <input type="time" name="end"/>
     </div>
-
 </div>
 
 <p>Ajoutez un lieu de rendez-vous:</p>
@@ -37,6 +36,16 @@
 </div>
 
 <div id="selectedArea">
+    <% if (query) { %>
+        <div class="selectedDiv">
+            <img src ="tmp/<%- query.dogAttachment %>" class="ui avatar image" />
+            <span><%- query.name %></span>
+            <input type="hidden" name="invited" class="hiddenInputMatch" value="<%- query.idDog %>" />
+            <button type="button" class="circular ui icon button" onclick= "this.parentNode.parentNode.removeChild(this.parentNode)">
+                <i class="close icon"></i>
+            </button>
+        </div>
+    <% } %>
 </div>
 
 <button class="ui button" id="confirmButton" action="ancre2">Confirmer</button>
@@ -50,6 +59,7 @@
 const search = document.getElementById('search');
 const matchList = document.getElementById('matchList');
 const selectedArea = document.getElementById('selectedArea');
+const getSelected = document.getElementsByClassName('hiddenInputMatch');
 
 search.addEventListener('focus', () => searchMarks(search.value));
 search.addEventListener('input', () => searchMarks(search.value));
@@ -62,15 +72,14 @@ const searchMarks = async searchText => {
         return marks.name.match(regex)
     })
 
-
     outputHtml(matches);
 };
 
-const outputHtml = matches => {
+const outputHtml = (matches) => {
     if (matches.length > 0) {
-        const html = matches.map(match => 
+        var html = matches.map(match =>
             `
-            <div class="ui card" id="verticalCard" onclick="selectedFriend('${match.dogAttachment}','${match.name}','${match.idDog}')">
+            <div class="ui card" id="verticalCard" class="selectedMatch" value="${match.idDog}" onclick="selectedFriend('${match.dogAttachment}','${match.name}','${match.idDog}')">
                 <img class="ui image" src="tmp/${match.dogAttachment}">
                 <div class="content">       
                 <h4>${match.name}</h4>
@@ -78,7 +87,7 @@ const outputHtml = matches => {
                 </div>
             </div> 
             `
-        ).join('');  
+        ).join(''); 
 
         matchList.innerHTML = html;
         addMatchTitle()
@@ -91,6 +100,14 @@ function addMatchTitle(){
         var titleText = document.createTextNode('Suggestions:')
         title.appendChild(titleText)
 }
+
+function preventSelected(){
+        for(let i = 0; i = getSelected.length - 1; i++ ){
+            console.log(getSelected.value)
+        }
+
+}
+
 
 function selectedFriend(image, name, id) {
 
@@ -127,6 +144,7 @@ function selectedFriend(image, name, id) {
     deleteMatchButton.appendChild(icoDeleteMatchButton)
 
     matchList.innerHTML = "";
+    preventSelected()
 }
 
 </script>

@@ -52,7 +52,7 @@
     width: 70%;
     padding: 5%;
     background-color: white;
-    max-height: 200px;
+    max-height: 300px;
     z-index: 1000;
     overflow-x: auto;
 }
@@ -111,6 +111,7 @@ body ::-webkit-scrollbar {
 
     .selectedDiv{
         margin: 0;
+        margin-top: 5%;
     }
 
 }

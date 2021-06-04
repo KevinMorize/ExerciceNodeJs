@@ -212,12 +212,16 @@ exports.createWalk = async (req, res) => {
     if (req.user){
         db.query('SELECT * FROM dogs INNER JOIN marks ON dogs.idDog = marks.idDog AND marks.idUser = ?', [req.user.idUser], (err, result) => {
             db.query('SELECT * FROM dogs WHERE dogs.idUser = ?', [req.user.idUser], (err, result2) => {
+                db.query('SELECT * FRom dogs WHERE idDog = ?', [req.query.id], (err, result3) => {
+
                         res.render('../views/users/walkCreate', { 
                             title: "Balades création", 
                             user: req.user,
                             marks: result,
-                            dogs: result2
+                            dogs: result2,
+                            query: result3[0],
                         })
+                })
             })
         })
     }

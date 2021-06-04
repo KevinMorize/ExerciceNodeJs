@@ -66,7 +66,7 @@
 <% } %>  
 
 <% if (dog.idUser !== user.idUser) { %>
-    <a class="ui button" href="" id="editDogButton">Inviter ce compagnon</a>
+    <a class="ui button" href="/walk-create?id=<%= dog.idDog %>" id="editDogButton">Inviter ce compagnon</a>
 <% } %>  
 
 <%- include ('../includes/footer.ejs') %>
