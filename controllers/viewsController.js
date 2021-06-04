@@ -6,6 +6,7 @@ const moment = require('moment');
 exports.home = (req, res) => {
     if (req.user){
         db.query('SELECT * FROM dogs LIMIT 10', (err, result) => {
+            db.query('SELECT * FROM marks WHERE idUser = ?', [req.user.idUser],(err, result2) => {
 
                 result.map(function (e){
                     let unixTimeStamp = moment().format('X') - moment(e.birthday).format('X');
@@ -22,30 +23,14 @@ exports.home = (req, res) => {
                         return e.birthday = year + " ans et " + month + " mois"
                     }
                 })
-
-
-                // result.forEach(function (dog){
-                //     db.query('SELECT * FROM marks WHERE idUser = ? AND idDog = ?', [req.user.idUser, dog.idDog],(err, result2) => {
-                //         if (result2.length >= 1){
-                //             isMarked(marked)
-                //         } else {
-                //             isMarked(undefined)
-                //         }
-                //     }) 
-                // })
-
-                // function isMarked (data) {
-                //     var marked = []
-                //     if (data) {
-                //         marked.push(data)
-                //     }
-                // }
                 
                 res.render('../views/users/home', {
                     title: "accueil", 
                     user: req.user,
                     newDogs: result,
+                    marked: result2,
                 })
+            })
         })
     } else {
         res.redirect('/')

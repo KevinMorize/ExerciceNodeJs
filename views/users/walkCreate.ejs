@@ -59,10 +59,11 @@
 const search = document.getElementById('search');
 const matchList = document.getElementById('matchList');
 const selectedArea = document.getElementById('selectedArea');
-const getSelected = document.getElementsByClassName('hiddenInputMatch');
 
 search.addEventListener('focus', () => searchMarks(search.value));
 search.addEventListener('input', () => searchMarks(search.value));
+
+matchList.style.display = "none"
 
 const searchMarks = async searchText => {
     const res = await (<%- JSON.stringify(marks) %>);
@@ -72,6 +73,7 @@ const searchMarks = async searchText => {
         return marks.name.match(regex)
     })
 
+    matchList.style.display = "block"
     outputHtml(matches);
 };
 
@@ -100,14 +102,6 @@ function addMatchTitle(){
         var titleText = document.createTextNode('Suggestions:')
         title.appendChild(titleText)
 }
-
-function preventSelected(){
-        for(let i = 0; i = getSelected.length - 1; i++ ){
-            console.log(getSelected.value)
-        }
-
-}
-
 
 function selectedFriend(image, name, id) {
 
@@ -143,8 +137,7 @@ function selectedFriend(image, name, id) {
     icoDeleteMatchButton.className = "close icon"
     deleteMatchButton.appendChild(icoDeleteMatchButton)
 
-    matchList.innerHTML = "";
-    preventSelected()
+    matchList.style.display = "none"
 }
 
 </script>
