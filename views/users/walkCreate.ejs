@@ -1,6 +1,6 @@
 <%- include('../includes/header.ejs')%>
 
-<form class="ui form" action="/walk-create" method='post' id="createWalkForm">
+<form class="ui form" href="/walk-create" method='post' id="createWalkForm">
 
 <div id="walkDate">
 <p>Séléctionnez une date:</p>
@@ -48,7 +48,7 @@
     <% } %>
 </div>
 
-<button class="ui button" id="confirmButton" action="ancre2">Confirmer</button>
+<button type="submit" class="ui button" id="confirmButton">Confirmer</button>
 
 </form>
 

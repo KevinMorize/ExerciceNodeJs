@@ -33,6 +33,7 @@ app.use('/', require('./routes/viewsRoutes'));
 app.use('/', require('./routes/userRoutes'));
 app.use('/', require('./routes/dogRoutes'));
 app.use('/', require('./routes/markRoutes'));
+app.use('/', require('./routes/walkRoutes'));
 app.use('/', require('./routes/authRoutes'));
     
 // Server
