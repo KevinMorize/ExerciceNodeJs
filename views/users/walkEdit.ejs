@@ -6,28 +6,37 @@
 <p>Séléctionnez une date:</p>
     <div class="walkDateInput">
         <label>le</label>
-        <input type="date" name="day"/>
+        <input type="date" name="day" required/>
     </div>
 
     <div class="walkDateInput">
         <label>de</label>
-        <input type="time" name="start"/>
+        <input type="time" name="start" id="start"/>
 
         <label>à</label>
-        <input type="time" name="end"/>
+        <input type="time" name="end" id="end"/>
     </div>
 </div>
 
 <p>Ajoutez un lieu de rendez-vous:</p>
 
-<input type="text" name="adress" placeholder="adresse">
+<input type="text" name="adress" placeholder="adresse" required>
 <div id="walkAdressInput">
-    <input type="text" name="city" placeholder="Ville">
-    <input type="text" name="zip" placeholder="Code Postal" maxlength="5">
+    <input type="text" name="zip" placeholder="Code Postal" maxlength="5" required>
+    <input type="text" name="city" placeholder="Ville" required>
 </div>
 
 <p>Description:</p>
 <textarea rows="3" name="description" placeholder="Ajoutez ici des détails sur la balade"></textarea>
+
+<p>Sélectionner mon/mes compagnons:</p>
+<div id="addDogs">
+    <% dogs.forEach(function(dog) { %>
+    <input type="checkbox" id="<%= dog.idDog %>" name="invited" value="<%= dog.idDog %>"/>
+    <label for="<%= dog.idDog %>"><img class="ui avatar image" src="tmp/<%= dog.dogAttachment %>" /></label>
+    <% }) %>
+</div>
+
 
 <p>Sélectionnez un compagnon à inviter:</p>
 <div id="addFriend">
@@ -36,7 +45,7 @@
 </div>
 
 <div id="selectedArea">
-    <% if (query) { %>
+    <% if (locals.query) { %>
         <div class="selectedDiv">
             <img src ="tmp/<%- query.dogAttachment %>" class="ui avatar image" />
             <span><%- query.name %></span>
@@ -56,9 +65,18 @@
 
 <script type="text/javascript">
 
+//time
+const walkSection = document.getElementById('walkDate');
+const start = document.getElementById('start');
+const end = document.getElementById('end');
+
+//suggest
 const search = document.getElementById('search');
 const matchList = document.getElementById('matchList');
 const selectedArea = document.getElementById('selectedArea');
+
+//select
+const selectedList = document.getElementsByClassName('hiddenInputMatch');
 
 search.addEventListener('focus', () => searchMarks(search.value));
 search.addEventListener('input', () => searchMarks(search.value));
@@ -139,5 +157,41 @@ function selectedFriend(image, name, id) {
 
     matchList.style.display = "none"
 }
+
+$('form').submit(function(e){
+
+    //selectedCHeck
+    if(selectedList.length < 2){
+        e.preventDefault()
+        var message = document.createElement('div')
+        message.className = ('ui red message')
+        message.id = ('selectErrorMessage')
+        selectedArea.appendChild(message)
+        var messageText = document.createTextNode("Les balades c'est mieux à deux")
+        message.appendChild(messageText)
+    }
+
+    // timeCheck
+    var startHour = start.value.slice(0, 2)
+    var endHour = end.value.slice(0, 2)
+    var startMin = start.value.slice(3)
+    var endMin = end.value.slice(3)
+
+    if (startHour === "00"){
+        var startHour = "24"
+    } else if (endHour === "00"){
+        var endHour = "24"
+    }
+
+    if(startHour && startMin && endHour && endMin && (startHour + startMin >= endHour + endMin)){
+        e.preventDefault()
+        var message = document.createElement('div')
+        message.className = ('ui red message')
+        message.id = ('timeErrorMessage')
+        walkDate.appendChild(message)
+        var messageText = document.createTextNode("L'heure de retour doit être supérieure à l'heure de départ")
+        message.appendChild(messageText)
+    }
+});
 
 </script>

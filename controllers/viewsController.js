@@ -191,15 +191,14 @@ exports.updateDog = (req, res) => {
     })
 }
 
-
 //balades
 exports.createWalk = async (req, res) => {
     if (req.user){
         db.query('SELECT * FROM dogs INNER JOIN marks ON dogs.idDog = marks.idDog AND marks.idUser = ?', [req.user.idUser], (err, result) => {
             db.query('SELECT * FROM dogs WHERE dogs.idUser = ?', [req.user.idUser], (err, result2) => {
-                db.query('SELECT * FRom dogs WHERE idDog = ?', [req.query.id], (err, result3) => {
+                db.query('SELECT * FROM dogs WHERE idDog = ?', [req.query.id], (err, result3) => {
 
-                        res.render('../views/users/walkCreate', { 
+                        res.render('../views/users/walkEdit', { 
                             title: "Balades création", 
                             user: req.user,
                             marks: result,
@@ -211,3 +210,4 @@ exports.createWalk = async (req, res) => {
         })
     }
 }
+
