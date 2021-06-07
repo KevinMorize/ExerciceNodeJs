@@ -23,7 +23,7 @@
 <input type="text" name="adress" placeholder="adresse" required>
 <div id="walkAdressInput">
     <input type="text" name="zip" placeholder="Code Postal" maxlength="5" required>
-    <input type="text" name="city" placeholder="Ville" required>
+    <input type="text" name="city" placeholder="Ville" onchange="select()" required>
 </div>
 
 <p>Description:</p>
@@ -32,8 +32,8 @@
 <p>Sélectionner mon/mes compagnons:</p>
 <div id="addDogs">
     <% dogs.forEach(function(dog) { %>
-    <input type="checkbox" id="<%= dog.idDog %>" name="invited" value="<%= dog.idDog %>"/>
-    <label for="<%= dog.idDog %>"><img class="ui avatar image" src="tmp/<%= dog.dogAttachment %>" /></label>
+    <input type="checkbox" id="check<%= dog.idDog %>" class="dogInputMatch" name="invited" value="<%= dog.idDog %>"/>
+    <label for="check<%= dog.idDog %>"><%= dog.name %><img class="ui avatar image" src="tmp/<%= dog.dogAttachment %>"/></label>
     <% }) %>
 </div>
 
@@ -76,7 +76,9 @@ const matchList = document.getElementById('matchList');
 const selectedArea = document.getElementById('selectedArea');
 
 //select
-const selectedList = document.getElementsByClassName('hiddenInputMatch');
+const selectedMatch = document.getElementsByClassName('hiddenInputMatch');
+const selectedDogInput = document.getElementsByClassName('dogInputMatch');
+const selectedDogArea = document.getElementById('addDogs');
 
 search.addEventListener('focus', () => searchMarks(search.value));
 search.addEventListener('input', () => searchMarks(search.value));
@@ -158,14 +160,27 @@ function selectedFriend(image, name, id) {
     matchList.style.display = "none"
 }
 
-$('form').submit(function(e){
 
+
+
+$('form').submit(async function(e){
+    
     //selectedCHeck
-    if(selectedList.length < 2){
+    await Array.from(selectedDogInput).map(function(elem){
+        if(!(elem.checked === true || selectedMatch.length < 1)){
+            e.preventDefault()
+            var message = document.createElement('div')
+            message.className = ('ui red message')
+            selectedDogArea.appendChild(message)
+            var messageText = document.createTextNode("Veuillez inviter au moins un compagnon")
+            message.appendChild(messageText)
+        }
+    })
+
+    if(selectedMatch.length < 1){
         e.preventDefault()
         var message = document.createElement('div')
         message.className = ('ui red message')
-        message.id = ('selectErrorMessage')
         selectedArea.appendChild(message)
         var messageText = document.createTextNode("Les balades c'est mieux à deux")
         message.appendChild(messageText)

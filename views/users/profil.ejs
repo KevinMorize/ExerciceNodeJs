@@ -27,8 +27,8 @@
 
 <h2>Mes chiens</h2>
 
-<% if (dogs) { %>
   <div class="dogCard">
+    <% if (dogs) { %>
     <% dogs.forEach(function(dog) { %>
       <div class="ui card">
         <a href="/dog-profil?id=<%= dog.idDog %>">
@@ -41,15 +41,20 @@
         </a>
       </div>
     <% }); %>
+    <% } %>
+    <div class="ui card">
+      <a id="addDogButton" href="/dog-add">
+        <img src="img/add.png"/>
+        <h4>Ajouter</h4>
+      </a>
+    </div>
   </div>
-<% } %>
-
-<a id="addDogButton" href="/dog-add">Ajouter un chien <i class="plus square icon"></i></a>
 
 <hr>
 
 <h2>Mes favoris</h2>
 
+<div id="marksProfilDiv">
 <% if (marked) { %>
   <% marked.forEach(function(mark) { %>
     <a href="/dog-profil?id=<%= mark.idDog %>" class="ui card" id="verticalCard">
@@ -71,5 +76,5 @@
       </a>
   <% }); %>
 <% } %>
-
+</div>
 <%- include ('../includes/footer.ejs') %>

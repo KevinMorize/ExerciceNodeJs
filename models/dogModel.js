@@ -3,7 +3,7 @@ const db = require('../config/db')
 class dogModel {
 
     static createDog (req,res) {
-        console.log(req.file)
+        
         if (req.file){
             var data = {
                 idUser: req.user.idUser,

@@ -41,16 +41,85 @@
     margin-bottom: 0 !important;
 }
 
+/* add dogs */
+
 #addFriend{
     position: relative;
     width: 100%;
 }
+
+#addDogs{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+}
+
+#addDogs input {
+    position: absolute;
+    left: -9999px;
+  }
+  
+#addDogs label {
+    display: block;
+    position: relative;
+    width: fit-content;
+    margin-top: 5%;
+    padding: 5px 14px 5px 60px;
+    border: 1px solid #fff;
+    border-radius: 100px;
+    color: #fff;
+    font-size: 1.3em;
+    background-color: #6A2D8F;
+    box-shadow: 0px 0px 4px rgb(0 0 0 / 25%);
+    white-space: nowrap;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color .2s, box-shadow .2s;
+  }
+
+  #addDogs label img{
+    object-fit: cover;
+    width: 2em;
+    height: 2em;
+    margin: 0 10%;
+    aspect-ratio: 1/1;
+  }
+  
+#addDogs label::before {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: 20%;
+    left: 5%;
+    width: 30px;
+    aspect-ratio: 1/1;
+    border: 1px solid #fff;
+    border-radius: 100px;
+    transition: background-color .2s;
+  }
+
+#addDogs label:hover, #addDogs input:focus + #addDogs label {
+    box-shadow: 0px 0px 4px rgb(0 0 0 / 60%);
+  }
+  
+#addDogs input:checked + label {
+    background-color: green;
+  }
+  
+#addDogs input:checked + label::before {
+    background-color: #fff;
+  }
+
+/* matches */
 
 #matchList{
     position: relative;
     overflow: scroll;
     width: 70%;
     padding: 5%;
+    padding-top: 0;
     background-color: white;
     max-height: 300px;
     z-index: 1000;
@@ -65,6 +134,11 @@ body ::-webkit-scrollbar {
     width: 100%;
 }
 
+/* selected */
+#search{
+    margin-bottom: 5%;
+}
+
 #selectedArea{
     width: -webkit-fill-available;
     display: flex;
@@ -77,6 +151,10 @@ body ::-webkit-scrollbar {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.selectedDiv .ui.red.message {
+    margin-top: 2em !important;
 }
 
 #selectedArea img{
