@@ -3,9 +3,12 @@ const db = require('../config/db')
 class walkModel {
 
     static createWalk (req, res) {
+        console.log(req.user)
 
         let data = {
             idUser: req.user.idUser,
+            username: req.user.username,
+            userAttachment: req.user.userAttachment,
             day: req.body.day,
             start: req.body.start,
             end: req.body.end,
@@ -34,7 +37,6 @@ class walkModel {
                                 idUser: id.idUser,
                                 idDog: element,
                                 accept: 1,
-                                owner: 1
                             }
                         } else {
                             var data2 = {
@@ -42,7 +44,6 @@ class walkModel {
                                 idUser: id.idUser,
                                 idDog: element,
                                 accept: 2,
-                                owner: 0,
                             }
                         }
                         db.query('INSERT INTO invitations SET ?', [data2], (error, result3) => {

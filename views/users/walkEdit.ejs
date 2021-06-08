@@ -160,22 +160,19 @@ function selectedFriend(image, name, id) {
     matchList.style.display = "none"
 }
 
-
-
-
 $('form').submit(async function(e){
     
     //selectedCHeck
-    await Array.from(selectedDogInput).map(function(elem){
-        if(!(elem.checked === true || selectedMatch.length < 1)){
-            e.preventDefault()
-            var message = document.createElement('div')
-            message.className = ('ui red message')
-            selectedDogArea.appendChild(message)
-            var messageText = document.createTextNode("Veuillez inviter au moins un compagnon")
-            message.appendChild(messageText)
-        }
-    })
+    // await Array.from(selectedDogInput).map(function(elem){
+    //     if(elem.checked === true){
+    //         e.preventDefault()
+    //         var message = document.createElement('div')
+    //         message.className = ('ui red message')
+    //         selectedDogArea.appendChild(message)
+    //         var messageText = document.createTextNode("Veuillez inviter au moins un compagnon")
+    //         message.appendChild(messageText)
+    //     }
+    // })
 
     if(selectedMatch.length < 1){
         e.preventDefault()

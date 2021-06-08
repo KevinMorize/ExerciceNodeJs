@@ -42,12 +42,6 @@
 }
 
 /* add dogs */
-
-#addFriend{
-    position: relative;
-    width: 100%;
-}
-
 #addDogs{
     width: 100%;
     height: fit-content;
@@ -113,6 +107,12 @@
   }
 
 /* matches */
+#addFriend{
+    position: relative;
+    width: 100%;
+    margin-bottom: 5%;
+}
+
 
 #matchList{
     position: relative;
@@ -135,10 +135,6 @@ body ::-webkit-scrollbar {
 }
 
 /* selected */
-#search{
-    margin-bottom: 5%;
-}
-
 #selectedArea{
     width: -webkit-fill-available;
     display: flex;
@@ -151,10 +147,6 @@ body ::-webkit-scrollbar {
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.selectedDiv .ui.red.message {
-    margin-top: 2em !important;
 }
 
 #selectedArea img{

@@ -50,9 +50,16 @@ exports.localise = (req, res) => {
 
 exports.walks = (req, res) => {
     if (req.user){
-        res.render('../views/users/walk', {
-            title: "mes balades",
-            user: req.user
+        // invitation
+        db.query('SELECT * FROM walks WHERE idWalk IN (SELECT idWalk FROM invitations WHERE idUser = ? AND accept = 2)', [req.user.idUser], (error, result) => {
+            if(error){
+                throw error
+            }   
+            res.render('../views/users/walk', {
+                title: "mes balades",
+                user: req.user,
+                invitations: result,
+            })
         })
     } else {
         res.redirect('/')

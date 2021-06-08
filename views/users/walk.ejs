@@ -2,7 +2,27 @@
 
 <hr>
 <h2>Invitations</h2>
-<p>ici toutes vos invitations en attente</p>
+<% if (invitations.length > 0) { %> 
+    <% invitations.forEach(function(invit) { %>
+        <a href="" class="ui card" id="verticalCard">
+              <% if (invit.userAttachment) { %>
+                  <img class="ui image" src="tmp/<%= invit.userAttachment %>">    
+              <% } else if (own.idUser === invit.idUser) { %>  
+                      <img class="ui image" src="img/profil-pic.png" style="object-fit: contain">    
+              <% } %> 
+
+              <div class="content">
+                  <h4><%= invit.date %></h4>
+                  <span><%= invit.start %> - <%= invit.end %></span>
+              </div>           
+          </a>
+      <% }); %>
+    
+<% } else { %> 
+    <p>ici toutes vos invitations en attente</p>   
+<% } %>
+
+
 
 <hr>
 <h2>Acceptées</h2>
