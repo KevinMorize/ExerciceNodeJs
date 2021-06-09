@@ -2,27 +2,46 @@
 
 <hr>
 <h2>Invitations</h2>
-<% if (invitations.length > 0) { %> 
-    <% invitations.forEach(function(invit) { %>
-        <a href="" class="ui card" id="verticalCard">
-              <% if (invit.userAttachment) { %>
-                  <img class="ui image" src="tmp/<%= invit.userAttachment %>">    
-              <% } else if (own.idUser === invit.idUser) { %>  
-                      <img class="ui image" src="img/profil-pic.png" style="object-fit: contain">    
-              <% } %> 
+<div id="walkSectionCards">
+    <% if (invited.length > 0) { %> 
+        <% invited.forEach(function(invit) { %>
+            <% if (invit.day !== false) { %> 
+                <a href="" class="ui card" id="verticalCard">
+                    <% if (invit.userAttachment) { %>
+                        <img class="ui image" src="tmp/<%= invit.userAttachment %>">    
+                    <% } else { %>  
+                            <img class="ui image" src="img/profil-pic.png" style="object-fit: contain">    
+                    <% } %> 
 
-              <div class="content">
-                  <h4><%= invit.date %></h4>
-                  <span><%= invit.start %> - <%= invit.end %></span>
-              </div>           
-          </a>
-      <% }); %>
-    
-<% } else { %> 
-    <p>ici toutes vos invitations en attente</p>   
-<% } %>
-
-
+                    <div class="content">
+                        <h3><%= invit.username %></h3>
+                        <h4><%= invit.day %></h4>
+                        <span><%= invit.start %> - <%= invit.end %></span>
+                    </div> 
+                    <div id="invitedDogAvatarImg"> 
+                        <% if (invitations.length > 0) { %> 
+                            <% invitations.map(function(check) { %>
+                                <% if (check.idWalk === invit.idWalk) { %>
+                                    <% dogs.forEach(function(dog) { %>
+                                        <% if (dog.idDog === check.idDog) { %>
+                                            <% if (dog.dogAttachment) { %>
+                                            <img class="ui avatar image" src="tmp/<%= dog.dogAttachment %>"> 
+                                            <% } else { %>  
+                                            <img class="ui avatar image" src="img/profil-pic.png" style="object-fit: contain">
+                                            <% } %>  
+                                        <% } %>
+                                    <% }); %>
+                                <% } %>
+                            <% }); %>
+                        <% } %>
+                    </div>  
+                </a>
+            <% } %>
+        <% }); %>
+    <% } else { %> 
+        <p>ici toutes vos invitations en attente</p>   
+    <% } %>
+</div>
 
 <hr>
 <h2>Acceptées</h2>
@@ -30,7 +49,29 @@
 
 <hr>
 <h2>Créees</h2>
-<p>ici toutes les balades dont vous êtes le propriétaire</p>
+
+<div id="walkSectionCards">
+    <% if (created.length > 0) { %> 
+        <% created.forEach(function(create) { %>
+            <a href="" class="ui card" id="verticalCard">
+                <% if (create.userAttachment) { %>
+                    <img class="ui image" src="tmp/<%= create.userAttachment %>">    
+                <% } else { %>  
+                        <img class="ui image" src="img/profil-pic.png" style="object-fit: contain">    
+                <% } %> 
+
+                <div class="content">
+                    <h3><%= create.username %></h3>
+                    <h4><%= create.day %></h4>
+                    <span><%= create.start %> - <%= create.end %></span>
+                </div>           
+            </a>
+        <% }); %>
+    <% } else { %> 
+        <p>ici toutes les balades dont vous êtes le propriétaire</p> 
+    <% } %>
+</div>
+
 
 <a id="addDogButton" href="/walk-create">Créer une balade <i class="plus square icon"></i></a>
 

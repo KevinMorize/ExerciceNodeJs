@@ -1,7 +1,6 @@
 const db = require('../config/db')
 const moment = require('moment');
 
-
 // main
 exports.home = (req, res) => {
     if (req.user){
@@ -51,14 +50,63 @@ exports.localise = (req, res) => {
 exports.walks = (req, res) => {
     if (req.user){
         // invitation
-        db.query('SELECT * FROM walks WHERE idWalk IN (SELECT idWalk FROM invitations WHERE idUser = ? AND accept = 2)', [req.user.idUser], (error, result) => {
+        db.query('SELECT * FROM walks WHERE idWalk IN (SELECT idWalk FROM invitations WHERE idUser = ? AND accept = 2)', [req.user.idUser], (error, invitationWalkResult) => {
             if(error){
                 throw error
-            }   
-            res.render('../views/users/walk', {
-                title: "mes balades",
-                user: req.user,
-                invitations: result,
+            }
+
+            invitationWalkResult.forEach(function (e){
+                let checkDate = moment().format('X') - moment(e.day).format('X');
+                let day = moment(e.day).format('MMMM Do YYYY');
+                if (e.day && checkDate < 0){
+                    e.day = day
+                } else if (checkDate > 0){
+                    e.day = false
+                }
+                if (e.start){
+                    e.start = e.start.slice(0, 2) + "h" + e.start.slice(3, 5)
+                }  
+                if (e.end){
+                    e.end = e.end.slice(0, 2) + "h" + e.end.slice(3, 5)
+                }
+
+            })
+
+            // invite table
+            db.query('SELECT idWalk, idDog FROM invitations WHERE idWalk IN (SELECT idWalk FROM invitations WHERE idUser = ? AND accept = 2)', [req.user.idUser], (error, inviteTableResult) => {
+
+                // dogImg
+                db.query('SELECT idDog, dogAttachment FROM dogs WHERE idDog IN(SELECT idDog FROM invitations WHERE idWalk IN (SELECT idWalk FROM invitations WHERE idUser = ? AND accept = 2))', [req.user.idUser], (error, dogInvitationResult) => {
+
+                    // created
+                    db.query('SELECT * FROM walks WHERE idUser = ?', [req.user.idUser], (error, createWalkResult) => {
+                        if(error){
+                            throw error
+                        }
+                        createWalkResult.map(function (elem){
+                            let day = moment(elem.day).format('MMMM Do YYYY');
+
+                            if (elem.day){
+                                elem.day = day
+                            }  
+                            if (elem.start){
+                                elem.start = elem.start.slice(0, 2) + "h" + elem.start.slice(3, 5)
+                            }  
+                            if (elem.end){
+                                elem.end = elem.end.slice(0, 2) + "h" + elem.end.slice(3, 5)
+                            }
+                        }) 
+
+                        res.render('../views/users/walk', {
+                            title: "mes balades",
+                            user: req.user,
+                            invited: invitationWalkResult,
+                            created: createWalkResult,
+                            dogs: dogInvitationResult,
+                            invitations: inviteTableResult,
+                        })
+                    })
+                })
             })
         })
     } else {
@@ -106,7 +154,7 @@ exports.profil = async (req, res) => {
     }
  }
 
- //user
+//user
  exports.updateUser = (req, res) => {
     if (req.user){
         db.query('SELECT * FROM users WHERE idUser = ?', [req.user.idUser], (error, result) =>{
