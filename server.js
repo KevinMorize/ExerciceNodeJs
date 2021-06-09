@@ -37,6 +37,6 @@ app.use('/', require('./routes/walkRoutes'));
 app.use('/', require('./routes/authRoutes'));
     
 // Server
-app.listen(8181, () => {
+app.listen(8080, () => {
     console.log("I'm listening on localhost:8080");
 })

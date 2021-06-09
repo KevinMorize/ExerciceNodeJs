@@ -6,13 +6,12 @@
     <% if (invited.length > 0) { %> 
         <% invited.forEach(function(invit) { %>
             <% if (invit.day !== false) { %> 
-                <a href="" class="ui card" id="verticalCard">
+                <a href="/walk-view?id=<%= invit.idWalk %>" class="ui card" id="verticalCard">
                     <% if (invit.userAttachment) { %>
                         <img class="ui image" src="tmp/<%= invit.userAttachment %>">    
                     <% } else { %>  
                             <img class="ui image" src="img/profil-pic.png" style="object-fit: contain">    
                     <% } %> 
-
                     <div class="content">
                         <h3><%= invit.username %></h3>
                         <h4><%= invit.day %></h4>
@@ -22,7 +21,7 @@
                         <% if (invitations.length > 0) { %> 
                             <% invitations.map(function(check) { %>
                                 <% if (check.idWalk === invit.idWalk) { %>
-                                    <% dogs.forEach(function(dog) { %>
+                                    <% dogsInvited.forEach(function(dog) { %>
                                         <% if (dog.idDog === check.idDog) { %>
                                             <% if (dog.dogAttachment) { %>
                                             <img class="ui avatar image" src="tmp/<%= dog.dogAttachment %>"> 
@@ -49,23 +48,40 @@
 
 <hr>
 <h2>Créees</h2>
-
 <div id="walkSectionCards">
     <% if (created.length > 0) { %> 
         <% created.forEach(function(create) { %>
-            <a href="" class="ui card" id="verticalCard">
-                <% if (create.userAttachment) { %>
-                    <img class="ui image" src="tmp/<%= create.userAttachment %>">    
-                <% } else { %>  
-                        <img class="ui image" src="img/profil-pic.png" style="object-fit: contain">    
-                <% } %> 
-
-                <div class="content">
-                    <h3><%= create.username %></h3>
-                    <h4><%= create.day %></h4>
-                    <span><%= create.start %> - <%= create.end %></span>
-                </div>           
-            </a>
+            <% if (create.day !== false) { %> 
+                <a href="/walk-view?id=<%= create.idWalk %>" class="ui card" id="verticalCard">
+                    <% if (create.userAttachment) { %>
+                        <img class="ui image" src="tmp/<%= create.userAttachment %>">    
+                    <% } else { %>  
+                            <img class="ui image" src="img/profil-pic.png" style="object-fit: contain">    
+                    <% } %> 
+                    <div class="content">
+                        <h3><%= create.username %></h3>
+                        <h4><%= create.day %></h4>
+                        <span><%= create.start %> - <%= create.end %></span>
+                    </div> 
+                    <div id="invitedDogAvatarImg"> 
+                        <% if (creation.length > 0) { %> 
+                            <% creation.map(function(check) { %>
+                                <% if (check.idWalk === create.idWalk) { %>
+                                    <% dogsCreated.forEach(function(dog) { %>
+                                        <% if (dog.idDog === check.idDog) { %>
+                                            <% if (dog.dogAttachment) { %>
+                                            <img class="ui avatar image" src="tmp/<%= dog.dogAttachment %>"> 
+                                            <% } else { %>  
+                                            <img class="ui avatar image" src="img/profil-pic.png" style="object-fit: contain">
+                                            <% } %>  
+                                        <% } %>
+                                    <% }); %>
+                                <% } %>
+                            <% }); %>
+                        <% } %>
+                    </div>            
+                </a>
+            <% } %> 
         <% }); %>
     <% } else { %> 
         <p>ici toutes les balades dont vous êtes le propriétaire</p> 

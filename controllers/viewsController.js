@@ -49,14 +49,14 @@ exports.localise = (req, res) => {
 
 exports.walks = (req, res) => {
     if (req.user){
-        // invitation
+        // invitations
         db.query('SELECT * FROM walks WHERE idWalk IN (SELECT idWalk FROM invitations WHERE idUser = ? AND accept = 2)', [req.user.idUser], (error, invitationWalkResult) => {
             if(error){
                 throw error
             }
 
             invitationWalkResult.forEach(function (e){
-                let checkDate = moment().format('X') - moment(e.day).format('X');
+                var checkDate = moment().format('X') - moment(e.day).format('X');
                 let day = moment(e.day).format('MMMM Do YYYY');
                 if (e.day && checkDate < 0){
                     e.day = day
@@ -72,10 +72,10 @@ exports.walks = (req, res) => {
 
             })
 
-            // invite table
+            // invited table
             db.query('SELECT idWalk, idDog FROM invitations WHERE idWalk IN (SELECT idWalk FROM invitations WHERE idUser = ? AND accept = 2)', [req.user.idUser], (error, inviteTableResult) => {
 
-                // dogImg
+                // invitedDogImg
                 db.query('SELECT idDog, dogAttachment FROM dogs WHERE idDog IN(SELECT idDog FROM invitations WHERE idWalk IN (SELECT idWalk FROM invitations WHERE idUser = ? AND accept = 2))', [req.user.idUser], (error, dogInvitationResult) => {
 
                     // created
@@ -84,11 +84,13 @@ exports.walks = (req, res) => {
                             throw error
                         }
                         createWalkResult.map(function (elem){
+                            var checkDate = moment().format('X') - moment(elem.day).format('X');
                             let day = moment(elem.day).format('MMMM Do YYYY');
-
-                            if (elem.day){
+                            if (elem.day && checkDate < 0){
                                 elem.day = day
-                            }  
+                            } else if (checkDate > 0){
+                                elem.day = false
+                            }
                             if (elem.start){
                                 elem.start = elem.start.slice(0, 2) + "h" + elem.start.slice(3, 5)
                             }  
@@ -97,13 +99,25 @@ exports.walks = (req, res) => {
                             }
                         }) 
 
-                        res.render('../views/users/walk', {
-                            title: "mes balades",
-                            user: req.user,
-                            invited: invitationWalkResult,
-                            created: createWalkResult,
-                            dogs: dogInvitationResult,
-                            invitations: inviteTableResult,
+                        // created table
+                        db.query('SELECT idWalk, idDog FROM invitations WHERE idWalk IN (SELECT idWalk FROM walks WHERE idUser = ?)', [req.user.idUser], (error, createTableResult) => {
+
+                            // dogCreatedImg
+                            db.query('SELECT idDog, dogAttachment FROM dogs WHERE idDog IN(SELECT idDog FROM invitations WHERE idWalk IN (SELECT idWalk FROM walks WHERE idUser = ?))', [req.user.idUser], (error, dogCreateResult) => {
+                                if(error){
+                                    throw error
+                                }
+                                res.render('../views/users/walk', {
+                                    title: "mes balades",
+                                    user: req.user,
+                                    invited: invitationWalkResult,
+                                    invitations: inviteTableResult,
+                                    dogsInvited: dogInvitationResult,
+                                    created: createWalkResult,
+                                    creation: createTableResult,
+                                    dogsCreated: dogCreateResult                    
+                                })
+                            })
                         })
                     })
                 })
@@ -263,6 +277,43 @@ exports.createWalk = async (req, res) => {
                 })
             })
         })
+    } else {
+        res.redirect('/')
+    }
+}
+
+exports.walkView = async (req, res) => {
+    if (req.user){
+        db.query('SELECT * FROM walks WHERE idWalk = ?', [req.query.id], (err, result) => {
+            db.query('SELECT * FROM invitations WHERE idWalk = ?', [req.query.id], (err, result2) => {
+                db.query('SELECT idDog, dogAttachment, name, breed, birthday FROM dogs WHERE idDog IN (SELECT idDog FROM invitations WHERE idWalk = ?)', [req.query.id], (err, result3) => {
+
+                    result.forEach(function (e){
+                        let day = moment(e.day).format('MMMM Do YYYY');
+                        if (e.day){
+                            e.day = day
+                        }
+                        if (e.start){
+                            e.start = e.start.slice(0, 2) + "h" + e.start.slice(3, 5)
+                        }  
+                        if (e.end){
+                            e.end = e.end.slice(0, 2) + "h" + e.end.slice(3, 5)
+                        }
+        
+                    })
+
+                        res.render('../views/users/walkView', { 
+                            title: "Balades avec " + result[0].username,
+                            user: req.user,
+                            walk: result[0],
+                            check: result2,
+                            dogs: result3,
+                        })
+                })
+            })
+        })
+    } else {
+        res.redirect('/')
     }
 }
 
