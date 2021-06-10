@@ -26,6 +26,20 @@
     <% } %>
 </div>
 
+<% if (walk.idUser !== user.idUser && check.accept === 2) { %>
+  <div class="acceptInvitButton">
+    <a href="/walk-accept?id=<%= walk.idWalk %>" class="ui green button">Accepter</a>
+    <a href="/walk-declined?id=<%= walk.idWalk %>" class="ui red button">Refuser</a>
+  </div>
+<% } %>
+
+<% if (walk.idUser !== user.idUser && check.accept === 1) { %>
+  <div class="acceptInvitButton">
+    <a href="/walk-declined?id=<%= walk.idWalk %>" class="ui yellow button" onClick="return confirm('Êtes-vous sûr ?')">Annuler</a>
+  </div>
+<% } %>
+
+
 
 
 <%- include ('../includes/footer.ejs') %>

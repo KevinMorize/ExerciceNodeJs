@@ -3,7 +3,6 @@ const db = require('../config/db')
 class walkModel {
 
     static createWalk (req, res) {
-        console.log(req.user)
 
         let data = {
             idUser: req.user.idUser,
@@ -57,6 +56,26 @@ class walkModel {
             res.redirect('/balades')
         })
     }
+
+    static accepted (req, res) {
+
+        db.query('UPDATE invitations SET accept = 1 WHERE idWalk = ? AND idUser = ?', [req.query.id, req.user.idUser], (error, response) => {
+            if(error){
+                throw(error)
+            }
+                res.redirect('/balades')
+        })
+    }
+
+    static declined (req, res) {
+        db.query('DELETE FROM invitations WHERE idWalk = ? AND idUser = ?', [req.query.id, req.user.idUser], (error, response) => {
+            if(error){
+                throw(error)
+            }
+                res.redirect('/balades')
+        })
+    }
+    
     
 }
 
