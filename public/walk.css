@@ -11,11 +11,8 @@
     align-self: flex-start;
 }
 
-.walkSectionCards h3{
-    margin: 0;
-}
-
 .walkSectionCards h4{
+    margin-top: 2%;
     font-size: larger;
 }
 
@@ -26,6 +23,7 @@
 
 .walkSectionCards #verticalCard {
     margin-bottom: 5% !important;
+    box-shadow: none !important;
 }
 
 .walkSectionCards #verticalCard img{
@@ -34,8 +32,6 @@
 
 .invitedDogAvatarImg{
     align-self: flex-end;
-    padding-bottom: 2%;
-    padding-right: 2%;
 }
 
 .walkSectionCards #verticalCard .ui.avatar.image{
@@ -46,8 +42,17 @@
     transform: scale(1.2);
 }
 
-#createWalk{
-    
+#addWalkButton{
+    margin-top: 5%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+#addWalkButton img{
+    max-width: 95%;
+    margin: auto;
 }
 
 /* global create */

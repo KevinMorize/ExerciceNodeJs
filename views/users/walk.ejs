@@ -1,4 +1,7 @@
 <%- include('../includes/header.ejs')%>
+<a href="/walk-create" id="addWalkButton">
+    <img src="/img/addWalk.png"/>
+</a>
 
 <hr>
 <h2>Invitations</h2>
@@ -13,27 +16,28 @@
                             <img class="ui image" src="img/profil-pic.png" style="object-fit: contain">    
                     <% } %> 
                     <div class="content">
-                        <h3><%= invit.username %></h3>
-                        <h4><%= invit.day %></h4>
-                        <span><%= invit.start %> - <%= invit.end %></span>
-                    </div> 
-                    <div class="invitedDogAvatarImg"> 
-                        <% if (invitations.length > 0) { %> 
-                            <% invitations.map(function(check) { %>
-                                <% if (check.idWalk === invit.idWalk) { %>
-                                    <% dogsInvited.forEach(function(dog) { %>
-                                        <% if (dog.idDog === check.idDog) { %>
-                                            <% if (dog.dogAttachment) { %>
-                                            <img class="ui avatar image" src="tmp/<%= dog.dogAttachment %>"> 
-                                            <% } else { %>  
-                                            <img class="ui avatar image" src="img/profil-pic.png" style="object-fit: contain">
-                                            <% } %>  
-                                        <% } %>
-                                    <% }); %>
-                                <% } %>
-                            <% }); %>
-                        <% } %>
-                    </div>  
+                        <div>
+                            <h4><%= invit.day %></h4>
+                            <span><%= invit.start %> - <%= invit.end %></span>
+                        </div> 
+                        <div class="invitedDogAvatarImg"> 
+                            <% if (invitations.length > 0) { %> 
+                                <% invitations.map(function(check) { %>
+                                    <% if (check.idWalk === invit.idWalk) { %>
+                                        <% dogsInvited.forEach(function(dog) { %>
+                                            <% if (dog.idDog === check.idDog) { %>
+                                                <% if (dog.dogAttachment) { %>
+                                                <img class="ui avatar image" src="tmp/<%= dog.dogAttachment %>"> 
+                                                <% } else { %>  
+                                                <img class="ui avatar image" src="img/profil-pic.png" style="object-fit: contain">
+                                                <% } %>  
+                                            <% } %>
+                                        <% }); %>
+                                    <% } %>
+                                <% }); %>
+                            <% } %>
+                        </div>
+                    </div>
                 </a> 
             <% } %>
         <% }); %>
@@ -51,29 +55,30 @@
                         <img class="ui image" src="tmp/<%= accept.userAttachment %>">    
                     <% } else { %>  
                             <img class="ui image" src="img/profil-pic.png" style="object-fit: contain">    
-                    <% } %> 
+                    <% } %>
                     <div class="content">
-                        <h3><%= accept.username %></h3>
-                        <h4><%= accept.day %></h4>
-                        <span><%= accept.start %> - <%= accept.end %></span>
-                    </div> 
-                    <div class="invitedDogAvatarImg"> 
-                        <% if (acceptation.length > 0) { %> 
-                            <% acceptation.map(function(check) { %>
-                                <% if (check.idWalk === accept.idWalk) { %>
-                                    <% dogsAccepted.forEach(function(dog) { %>
-                                        <% if (dog.idDog === check.idDog) { %>
-                                            <% if (dog.dogAttachment) { %>
-                                            <img class="ui avatar image" src="tmp/<%= dog.dogAttachment %>"> 
-                                            <% } else { %>  
-                                            <img class="ui avatar image" src="img/profil-pic.png" style="object-fit: contain">
-                                            <% } %>  
-                                        <% } %>
-                                    <% }); %>
-                                <% } %>
-                            <% }); %>
-                        <% } %>
-                    </div>  
+                        <div>
+                            <h4><%= accept.day %></h4>
+                            <span><%= accept.start %> - <%= accept.end %></span>
+                        </div> 
+                        <div class="invitedDogAvatarImg"> 
+                            <% if (acceptation.length > 0) { %> 
+                                <% acceptation.map(function(check) { %>
+                                    <% if (check.idWalk === accept.idWalk) { %>
+                                        <% dogsAccepted.forEach(function(dog) { %>
+                                            <% if (dog.idDog === check.idDog) { %>
+                                                <% if (dog.dogAttachment) { %>
+                                                <img class="ui avatar image" src="tmp/<%= dog.dogAttachment %>"> 
+                                                <% } else { %>  
+                                                <img class="ui avatar image" src="img/profil-pic.png" style="object-fit: contain">
+                                                <% } %>  
+                                            <% } %>
+                                        <% }); %>
+                                    <% } %>
+                                <% }); %>
+                            <% } %>
+                        </div>  
+                    </div>
                 </a>
             <% } %>
         <% }); %>
@@ -94,34 +99,32 @@
                             <img class="ui image" src="img/profil-pic.png" style="object-fit: contain">    
                     <% } %> 
                     <div class="content">
-                        <h3><%= create.username %></h3>
-                        <h4><%= create.day %></h4>
-                        <span><%= create.start %> - <%= create.end %></span>
-                    </div> 
-                    <div class="invitedDogAvatarImg"> 
-                        <% if (creation.length > 0) { %> 
-                            <% creation.map(function(check) { %>
-                                <% if (check.idWalk === create.idWalk) { %>
-                                    <% dogsCreated.forEach(function(dog) { %>
-                                        <% if (dog.idDog === check.idDog) { %>
-                                            <% if (dog.dogAttachment) { %>
-                                            <img class="ui avatar image" src="tmp/<%= dog.dogAttachment %>"> 
-                                            <% } else { %>  
-                                            <img class="ui avatar image" src="img/profil-pic.png" style="object-fit: contain">
-                                            <% } %>  
-                                        <% } %>
-                                    <% }); %>
-                                <% } %>
-                            <% }); %>
-                        <% } %>
-                    </div>            
+                        <div>
+                            <h4><%= create.day %></h4>
+                            <span><%= create.start %> - <%= create.end %></span>
+                        </div> 
+                        <div class="invitedDogAvatarImg"> 
+                            <% if (creation.length > 0) { %> 
+                                <% creation.map(function(check) { %>
+                                    <% if (check.idWalk === create.idWalk) { %>
+                                        <% dogsCreated.forEach(function(dog) { %>
+                                            <% if (dog.idDog === check.idDog) { %>
+                                                <% if (dog.dogAttachment) { %>
+                                                <img class="ui avatar image" src="tmp/<%= dog.dogAttachment %>"> 
+                                                <% } else { %>  
+                                                <img class="ui avatar image" src="img/profil-pic.png" style="object-fit: contain">
+                                                <% } %>  
+                                            <% } %>
+                                        <% }); %>
+                                    <% } %>
+                                <% }); %>
+                            <% } %>
+                        </div> 
+                    </div>           
                 </a>
             <% } %> 
         <% }); %>
     <% } %>
 </div>
-
-
-<a href="/walk-create" id="createWalk"><i class="plus square icon"></i></a>
 
 <%- include ('../includes/footer.ejs') %>
