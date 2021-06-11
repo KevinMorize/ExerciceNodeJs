@@ -1,5 +1,4 @@
-
-/* view invitations */
+/* main page */
 .walkSectionCards{
     width: 100%;
     padding: 0 5% 0 2%;
@@ -7,27 +6,35 @@
     overflow-y: scroll;
 }
 
-.walkSectionCards .content{
-    align-self: flex-start;
-}
-
-.walkSectionCards h4{
-    margin-top: 2%;
-    font-size: larger;
-}
-
-.walkSectionCards p{
-    text-align: center;
-    margin: 10% 0 10% 0;
-}
-
 .walkSectionCards #verticalCard {
     margin-bottom: 5% !important;
     box-shadow: none !important;
 }
 
+.walkSectionCards #verticalCard .content{
+    height: 100px;
+    justify-content: space-between !important;
+}
+
+.walkSectionCards #verticalCard h4{
+    margin-top: 2%;
+    font-size: x-large;
+}
+
+.walkSectionCards #verticalCard span{
+    margin-top: 2%;
+    font-size: large;
+}
+
+.walkSectionCards #verticalCard p{
+    text-align: center;
+    margin: 10% 0 10% 0;
+}
+
+
 .walkSectionCards #verticalCard img{
-    aspect-ratio: 5 / 4 !important;
+    aspect-ratio: 1 / 1 !important;
+    border-radius: 10px 10px 10px 10px !important;
 }
 
 .invitedDogAvatarImg{
@@ -55,7 +62,7 @@
     margin: auto;
 }
 
-/* global create */
+/* main add */
 #createWalkForm p{
   margin-top: 15%;
 }
@@ -99,138 +106,143 @@
     margin-bottom: 0 !important;
 }
 
-/* add dogs */
-#addDogs{
-    width: 100%;
-    height: fit-content;
-    display: flex;
-    justify-content: flex-start;
-    flex-direction: column;
-}
+    /* add dogs */
+    #addDogs{
+        width: 100%;
+        height: fit-content;
+        display: flex;
+        justify-content: flex-start;
+        flex-direction: column;
+    }
 
-#addDogs input {
-    position: absolute;
-    left: -9999px;
-  }
-  
-#addDogs label {
-    display: block;
-    position: relative;
-    width: fit-content;
-    margin-top: 5%;
-    padding: 5px 14px 5px 60px;
-    border: 1px solid #fff;
-    border-radius: 100px;
-    color: #fff;
-    font-size: 1.3em;
-    background-color: #6A2D8F;
-    box-shadow: 0px 0px 4px rgb(0 0 0 / 25%);
-    white-space: nowrap;
-    cursor: pointer;
-    user-select: none;
-    transition: background-color .2s, box-shadow .2s;
-  }
+    #addDogs input {
+        position: absolute;
+        left: -9999px;
+    }
+    
+    #addDogs label {
+        display: block;
+        position: relative;
+        width: fit-content;
+        margin-top: 5%;
+        padding: 5px 14px 5px 60px;
+        border: 1px solid #fff;
+        border-radius: 100px;
+        color: #fff;
+        font-size: 1.3em;
+        background-color: #6A2D8F;
+        box-shadow: 0px 0px 4px rgb(0 0 0 / 25%);
+        white-space: nowrap;
+        cursor: pointer;
+        user-select: none;
+        transition: background-color .2s, box-shadow .2s;
+    }
 
-  #addDogs label img{
-    object-fit: cover;
-    width: 2em;
-    height: 2em;
-    margin: 0 10%;
-    aspect-ratio: 1/1;
-  }
-  
-#addDogs label::before {
-    content: '';
-    display: block;
-    position: absolute;
-    bottom: 20%;
-    left: 5%;
-    width: 30px;
-    aspect-ratio: 1/1;
-    border: 1px solid #fff;
-    border-radius: 100px;
-    transition: background-color .2s;
-  }
+    #addDogs label img{
+        object-fit: cover;
+        width: 2em;
+        height: 2em;
+        margin: 0 10%;
+        aspect-ratio: 1/1;
+    }
+    
+    #addDogs label::before {
+        content: '';
+        display: block;
+        position: absolute;
+        bottom: 20%;
+        left: 5%;
+        width: 30px;
+        aspect-ratio: 1/1;
+        border: 1px solid #fff;
+        border-radius: 100px;
+        transition: background-color .2s;
+    }
 
-#addDogs label:hover, #addDogs input:focus + #addDogs label {
-    box-shadow: 0px 0px 4px rgb(0 0 0 / 60%);
-  }
-  
-#addDogs input:checked + label {
-    background-color: green;
-  }
-  
-#addDogs input:checked + label::before {
-    background-color: #fff;
-  }
+    #addDogs label:hover, #addDogs input:focus + #addDogs label {
+        box-shadow: 0px 0px 4px rgb(0 0 0 / 60%);
+    }
+    
+    #addDogs input:checked + label {
+        background-color: green;
+    }
+    
+    #addDogs input:checked + label::before {
+        background-color: #fff;
+    }
 
-/* matches */
-#addFriend{
-    position: relative;
-    width: 100%;
-    margin-bottom: 5%;
-}
+    /* matches */
+    #addFriend{
+        position: relative;
+        width: 100%;
+        margin-bottom: 5%;
+    }
 
 
-#matchList{
-    position: relative;
-    overflow: scroll;
-    width: 70%;
-    padding: 5%;
-    padding-top: 0;
-    background-color: white;
-    max-height: 300px;
-    z-index: 1000;
-    overflow-x: auto;
-}
+    #matchList{
+        position: relative;
+        overflow: scroll;
+        width: 70%;
+        padding: 5%;
+        padding-top: 0;
+        background-color: white;
+        max-height: 300px;
+        z-index: 1000;
+        overflow-x: auto;
+    }
 
-body ::-webkit-scrollbar {
-    display: none;
-}
+    body ::-webkit-scrollbar {
+        display: none;
+    }
 
-#matchList #verticalCard {
-    width: 100%;
-}
+    #matchList #verticalCard {
+        width: 100%;
+    }
 
-/* selected */
-#selectedArea{
-    width: -webkit-fill-available;
-    display: flex;
-    flex-wrap: wrap;
-}
+    /* selected */
+    #selectedArea{
+        width: -webkit-fill-available;
+        display: flex;
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
 
-.selectedDiv{
-    margin-top: 5%;
-    margin-right: 5%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+    .selectedDiv{
+        width: 50%;
+        display: flex;
+        align-items: center;
+    }
 
-#selectedArea img{
-    object-fit: cover;
-}
+    #selectedArea img{
+        object-fit: cover;
+    }
 
-#selectedArea span{
-    margin-left: 5%;
-    margin-right: 5%;
-    font-family: 'Rajdhani', sans-serif;
-    color: #6A2D8F !important;
-}
+    #selectedArea span{
+        align-self: flex-end;
+        margin-right: 5%;
+        font-family: 'Rajdhani', sans-serif;
+        color: #6A2D8F !important;
+    }
 
-.selectedDiv .ui.circular.button{
-    background-color:transparent;
-    transform: scale(0.8);
-}
+    .selectedDiv .ui.circular.button{
+        background-color: red;
+        transform: scale(0.8);
+        align-self: baseline;
+        margin-top: -15px;
+        margin-right: -20px;
+        z-index: 1000;
+    }
 
-.selectedDiv i{
-    color: #a257d1;
-}
+    .selectedDiv i{
+        color: white;
+    }
 
 /* walkView */
 .acceptInvitButton{
-    width: 90%;
-    margin-top: 10%;
+    width: 100%;
+    margin-bottom: 5%;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -239,6 +251,86 @@ body ::-webkit-scrollbar {
 
 .acceptInvitButton a{
     width: 40%;
+}
+
+.walkDateContent{
+    width: 90%;
+    margin-top: 5%;
+    display: flex;
+    flex-direction: column;
+    background-color: #E2CAEE;
+    border-radius: 10px;
+}
+
+.walkDateContent img{
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 10px 10px 0 0;
+}
+
+.walkDateContent div:nth-of-type(1){
+    padding: 5%;
+    display: flex;
+    flex-direction: column;
+}
+
+.walkDateContent div h3{
+    width: 100%;
+    margin: 0;
+}
+
+.walkDateContent div h4{
+    color: #6A2D8F !important;
+    margin: 0;
+}
+
+#walkInfoContent{
+    width: 90%;
+    margin-top: 2%;
+}
+
+#walkInfoContent h3{
+    margin: 0;
+}
+
+#walkInfoContent h4{
+    font-size: small;
+}
+
+#walkInfoContent p{
+    text-align: center;
+    margin-top: 3%;
+}
+
+#walkInfoContent hr{
+    width: 100%;
+    margin-bottom: 5%;
+}
+
+#walkInfoContent .dogCard{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-items: center;
+    overflow: inherit;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+#walkInfoContent .ui.card{
+    margin: 2% 0 0 0 !important;
+    padding-right: 0 !important; 
+}
+
+#walkInfoContent img{
+    width: 60px;
+}
+
+#updateWalkButton {
+    background-color: #6A2D8F;
+    color: white;
 }
 
 /* media */

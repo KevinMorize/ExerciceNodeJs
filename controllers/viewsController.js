@@ -291,13 +291,13 @@ exports.updateDog = (req, res) => {
 }
 
 //balades
-exports.createWalk = async (req, res) => {
+exports.createWalk = (req, res) => {
     if (req.user){
         db.query('SELECT * FROM dogs INNER JOIN marks ON dogs.idDog = marks.idDog AND marks.idUser = ?', [req.user.idUser], (err, result) => {
             db.query('SELECT * FROM dogs WHERE dogs.idUser = ?', [req.user.idUser], (err, result2) => {
                 db.query('SELECT * FROM dogs WHERE idDog = ?', [req.query.id], (err, result3) => {
 
-                        res.render('../views/users/walkEdit', { 
+                        res.render('../views/users/walkAdd', { 
                             title: "Balades création", 
                             user: req.user,
                             marks: result,
@@ -311,6 +311,24 @@ exports.createWalk = async (req, res) => {
         res.redirect('/')
     }
 }
+
+exports.updateWalk = (req, res) => {
+    if (req.user){
+        db.query('SELECT * FROM walks where idWalk = ?', [req.query.id], (err, result) => {
+
+            result[0].day = moment(result[0].day).format('YYYY-MM-DD');
+            result[0].start = result[0].start.slice(0, 2) + ":" + result[0].start.slice(3, 5)
+            result[0].end = result[0].end.slice(0, 2) + ":" + result[0].end.slice(3, 5)
+
+
+            res.render('../views/users/walkEdit', { 
+                title: "Balades création", 
+                user: req.user,
+                walkEdit: result[0],
+            })
+        })
+    }
+} 
 
 exports.walkView = async (req, res) => {
     if (req.user){

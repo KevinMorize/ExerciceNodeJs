@@ -19,6 +19,7 @@ router.get('/dog-update', logController.loggedIn, viewsController.updateDog)
 
 // walk
 router.get('/walk-create', logController.loggedIn, viewsController.createWalk);
+router.get('/walk-update', logController.loggedIn, viewsController.updateWalk);
 router.get('/walk-view', logController.loggedIn, viewsController.walkView);
 
 module.exports = router;
