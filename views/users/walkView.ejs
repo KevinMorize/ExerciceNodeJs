@@ -2,12 +2,36 @@
 
 <% if (walk) { %>
 
-<div class="walkDateContent">
+<div class="walkContent">
   <img src="tmp/<%= walk.userAttachment %>" class="ui centered image" id="userInvitationimg" />
   <div>
     <h3><%= walk.day %></h3>
     <h4><%= walk.start %> - <%= walk.end %></h4>
   </div>
+
+  <div id="walkInfoContent">
+    <hr>
+    <h3><%= walk.adress %></h3>
+    <h3><%= walk.zip %> - <%= walk.city %></h3>
+    <hr>
+    <p><%= walk.description %></p>
+    <div class="dogCard">
+        <% if (dogs) { %>
+          <% dogs.forEach(function(dog) { %>
+            <div class="ui card">
+              <a href="/dog-profil?id=<%= dog.idDog %>">
+                <% if (dog.dogAttachment) { %>
+                  <img src="tmp/<%= dog.dogAttachment %>">  
+                <% } else { %>
+                  <img src="img/profil-pic.png">  
+                <% } %>  
+                <h4><%= dog.name %></h4>
+              </a>
+            </div>
+          <% }); %>
+        <% } %>
+      </div>
+    </div>
 
   <% if (walk.idUser !== user.idUser && check.accept === 2) { %>
     <div class="acceptInvitButton">
@@ -25,33 +49,10 @@
   <% if (walk.idUser === user.idUser) { %>
     <div class="acceptInvitButton">
       <a href="/walk-update?id=<%= walk.idWalk %>" class="ui button" id="updateWalkButton">Modifier</a>
+      <a href="/walk-declined?id=<%= walk.idWalk %>" class="ui red button">Supprimer</a>
     </div>
   <% } %>
 </div>
-
-<div id="walkInfoContent">
-  <h3><%= walk.adress %></h3>
-  <h3><%= walk.zip %> - <%= walk.city %></h3>
-  <hr>
-  <p><%= walk.description %></p>
-  <hr>
-  <div class="dogCard">
-      <% if (dogs) { %>
-        <% dogs.forEach(function(dog) { %>
-          <div class="ui card">
-            <a href="/dog-profil?id=<%= dog.idDog %>">
-              <% if (dog.dogAttachment) { %>
-                <img src="tmp/<%= dog.dogAttachment %>">  
-              <% } else { %>
-                <img src="img/profil-pic.png">  
-              <% } %>  
-              <h4><%= dog.name %></h4>
-            </a>
-          </div>
-        <% }); %>
-      <% } %>
-    </div>
-  </div>
 
 <% } %>
 

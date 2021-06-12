@@ -68,15 +68,25 @@ class walkModel {
     }
 
     static declined (req, res) {
-        db.query('DELETE FROM invitations WHERE idWalk = ? AND idUser = ?', [req.query.id, req.user.idUser], (error, response) => {
-            if(error){
-                throw(error)
+        db.query('SELECT idUser FROM walks WHERE idWalk = ?', [req.query.id], (err, result) => {
+            console.log(result[0].idUser, )
+            if (result[0].idUser === req.user.idUser){
+                db.query('DELETE FROM walks WHERE idWalk = ?', [req.query.id], (error, response) => {
+                    if(error){
+                        throw(error)
+                    }
+                        res.redirect('/balades')
+                })              
+            } else {
+                db.query('DELETE FROM invitations WHERE idWalk = ? AND idUser = ?', [req.query.id, req.user.idUser], (error, response) => {
+                    if(error){
+                        throw(error)
+                    }
+                        res.redirect('/balades')
+                })
             }
-                res.redirect('/balades')
         })
     }
-    
-    
 }
 
 module.exports = walkModel
