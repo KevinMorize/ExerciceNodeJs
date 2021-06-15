@@ -24,6 +24,7 @@ class walkModel {
             if(error){
                 throw(error)
             }
+      
             invitation.forEach(function(element){
                 db.query('SELECT idUser FROM dogs WHERE idDog = ?', [element], (error, result2) => {
                     if(error){
@@ -57,6 +58,26 @@ class walkModel {
         })
     }
 
+    static updateWalk (req, res) {
+
+        let data = {
+            day: req.body.day,
+            start: req.body.start,
+            end: req.body.end,
+            adress: req.body.adress,
+            zip: req.body.zip,
+            city: req.body.city,
+            description: req.body.description
+        }
+
+        db.query('UPDATE walks SET ? WHERE idWalk = ?', [data, req.query.id], (error, result) => {
+            if(error){
+                throw(error)
+            }
+            res.redirect('/balades')
+        })
+    }
+
     static accepted (req, res) {
 
         db.query('UPDATE invitations SET accept = 1 WHERE idWalk = ? AND idUser = ?', [req.query.id, req.user.idUser], (error, response) => {
@@ -69,7 +90,6 @@ class walkModel {
 
     static declined (req, res) {
         db.query('SELECT idUser FROM walks WHERE idWalk = ?', [req.query.id], (err, result) => {
-            console.log(result[0].idUser, )
             if (result[0].idUser === req.user.idUser){
                 db.query('DELETE FROM walks WHERE idWalk = ?', [req.query.id], (error, response) => {
                     if(error){

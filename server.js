@@ -15,12 +15,13 @@ const app = express()
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.static('public'));
+app.use(express.static('utils'))
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // DotEnv
 dotenv.config({ path: './.env'})
-    
+
 // Parse URL-encoded bodies (sent by HTML forms)
 app.use(express.urlencoded({extended : false}));
     

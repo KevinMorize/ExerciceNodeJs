@@ -1,54 +1,56 @@
 <%- include('../includes/header.ejs')%>
 
-<form class="ui form" href="/walk-update" method='post' id="createWalkForm">
+<form class="ui form" href="/walk-update?id=<%= walkEdit.idWalk %>" method='post' id="createWalkForm">
 
     <% if (walkEdit) { %>
-    <p>Modifier la date et/ou l'heure du rendez-vous:</p>  
-    <div id="walkDate">
-            <div class="walkDateInput">
-                <label>le</label>
-                <input type="date" name="day" value="<%= walkEdit.day %>" required/>
+        <p>Modifier la date et/ou l'heure du rendez-vous:</p>  
+        <div id="walkDate">
+                <div class="walkDateInput">
+                    <label>le</label>
+                    <input type="date" name="day" id="day" value="<%= walkEdit.day %>" required/>
+                </div>
+            
+                <div class="walkDateInput">
+                    <label>de</label>
+                    <input type="time" name="start" id="start" value="<%= walkEdit.start %>" required/>
+            
+                    <label>à</label>
+                    <input type="time" name="end" id="end" value="<%= walkEdit.end %>" required/>
+                </div>
             </div>
-        
-            <div class="walkDateInput">
-                <label>de</label>
-                <input type="time" name="start" id="start" value="<%= walkEdit.start %>" required/>
-        
-                <label>à</label>
-                <input type="time" name="end" id="end" value="<%= walkEdit.end %>" required/>
+            
+            <p>Modifier le lieu de rendez-vous:</p>   
+            <input type="text" name="adress" placeholder="adresse" value="<%= walkEdit.adress %>" required>
+            <div id="walkAdressInput">
+                <input type="text" name="zip" placeholder="Code Postal" maxlength="5" value="<%= walkEdit.zip %>" required>
+                <input type="text" name="city" placeholder="Ville" onchange="select()" value="<%= walkEdit.city %>" required>
             </div>
-        </div>
-        
-        <p>Modifier le lieu de rendez-vous:</p>   
-        <input type="text" name="adress" placeholder="adresse" value="<%= walkEdit.adress %>" required>
-        <div id="walkAdressInput">
-            <input type="text" name="zip" placeholder="Code Postal" maxlength="5" value="<%= walkEdit.zip %>" required>
-            <input type="text" name="city" placeholder="Ville" onchange="select()" value="<%= walkEdit.city %>" required>
-        </div>
-        
-        <p>Modifier la description:</p>
-        <textarea rows="3" name="description" placeholder="Ajoutez ici des détails sur la balade" value="<%= walkEdit.description %>"><%= walkEdit.description %></textarea>
-        
-        <button type="submit" class="ui button" id="confirmButton">Confirmer</button>      
+            
+            <p>Modifier la description:</p>
+            <textarea rows="3" name="description" placeholder="Ajoutez ici des détails sur la balade" value="<%= walkEdit.description %>"><%= walkEdit.description %></textarea>
+            
+            <button type="submit" class="ui button" id="confirmButton">Confirmer</button>      
 
         <% } %>
 
 <%- include ('../includes/footer.ejs') %>
 
-<script type="text/javascript">
+<script>
 
-    //time
-    const walkDate = document.getElementById('walkDate');
-    const start = document.getElementById('start');
-    const end = document.getElementById('end');
+//time
+const walkDate = document.getElementById('walkDate');
+const day = document.getElementById('day');
+const start = document.getElementById('start');
+const end = document.getElementById('end');
     
-    $('form').submit(async function(e){
+$('form').submit(async function(e){
     
         // timeCheck
         var startHour = start.value.slice(0, 2)
         var endHour = end.value.slice(0, 2)
         var startMin = start.value.slice(3)
         var endMin = end.value.slice(3)
+        var checkDate = moment().format('X') - moment(day.value).format('X');
     
         if (startHour === "00"){
             var startHour = "24"
@@ -65,6 +67,16 @@
             var messageText = document.createTextNode("L'heure de retour doit être supérieure à l'heure de départ")
             message.appendChild(messageText)
         }
+
+        if(checkDate > 0){
+            e.preventDefault()
+            var message = document.createElement('div')
+            message.className = ('ui red message')
+            message.id = ('dayErrorMessage')
+            walkDate.appendChild(message)
+            var messageText = document.createTextNode("Les voyages dans le temps sont malheureusement impossibles")
+            message.appendChild(messageText)
+        }
     });
     
-    </script>
+</script>

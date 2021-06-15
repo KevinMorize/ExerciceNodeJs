@@ -5,6 +5,8 @@ const logController = require('../controllers/logController');
 
 router.post('/walk-create', logController.loggedIn, walkController.createWalk);
 
+router.post('/walk-update', logController.loggedIn, walkController.updateWalk);
+
 router.get('/walk-accept', logController.loggedIn, walkController.walkAccepted);
 
 router.get('/walk-declined', logController.loggedIn, walkController.walkDeclined);

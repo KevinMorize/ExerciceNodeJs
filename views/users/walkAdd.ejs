@@ -6,7 +6,7 @@
         <p>Séléctionnez une date:</p>
             <div class="walkDateInput">
                 <label>le</label>
-                <input type="date" name="day" required/>
+                <input type="date" name="day"id="day" required/>
             </div>
         
             <div class="walkDateInput">
@@ -65,20 +65,22 @@
 
 <script type="text/javascript">
 
-//time
-const walkSection = document.getElementById('walkDate');
-const start = document.getElementById('start');
-const end = document.getElementById('end');
-
 //suggest
+const addDogArea = document.getElementById('ddDogs');
 const search = document.getElementById('search');
 const matchList = document.getElementById('matchList');
 const selectedArea = document.getElementById('selectedArea');
 
-//select
+//selected
 const selectedMatch = document.getElementsByClassName('hiddenInputMatch');
 const selectedDogInput = document.getElementsByClassName('dogInputMatch');
 const selectedDogArea = document.getElementById('addDogs');
+
+//time
+const walkDate = document.getElementById('walkDate');
+const day = document.getElementById('day');
+const start = document.getElementById('start');
+const end = document.getElementById('end');
 
 search.addEventListener('focus', () => searchMarks(search.value));
 search.addEventListener('input', () => searchMarks(search.value));
@@ -114,13 +116,6 @@ const outputHtml = (matches) => {
         matchList.innerHTML = html;
         addMatchTitle()
     };           
-}
-
-function addMatchTitle(){
-        var title = document.createElement('p')
-        matchList.insertBefore(title, matchList.childNodes[0]);
-        var titleText = document.createTextNode('Suggestions:')
-        title.appendChild(titleText)
 }
 
 function selectedFriend(image, name, id) {
@@ -160,6 +155,13 @@ function selectedFriend(image, name, id) {
     matchList.style.display = "none"
 }
 
+function addMatchTitle(){
+        var title = document.createElement('p')
+        matchList.insertBefore(title, matchList.childNodes[0]);
+        var titleText = document.createTextNode('Suggestions:')
+        title.appendChild(titleText)
+}
+
 $('form').submit(async function(e){
     
     //selectedCHeck
@@ -173,7 +175,7 @@ $('form').submit(async function(e){
     //         message.appendChild(messageText)
     //     }
     // })
-
+    
     if(selectedMatch.length < 1){
         e.preventDefault()
         var message = document.createElement('div')
@@ -182,19 +184,20 @@ $('form').submit(async function(e){
         var messageText = document.createTextNode("Les balades c'est mieux à deux")
         message.appendChild(messageText)
     }
-
+    
     // timeCheck
     var startHour = start.value.slice(0, 2)
     var endHour = end.value.slice(0, 2)
     var startMin = start.value.slice(3)
     var endMin = end.value.slice(3)
-
+    var checkDate = moment().format('X') - moment(day.value).format('X');
+    
     if (startHour === "00"){
         var startHour = "24"
     } else if (endHour === "00"){
         var endHour = "24"
     }
-
+    
     if(startHour && startMin && endHour && endMin && (startHour + startMin >= endHour + endMin)){
         e.preventDefault()
         var message = document.createElement('div')
@@ -202,6 +205,16 @@ $('form').submit(async function(e){
         message.id = ('timeErrorMessage')
         walkDate.appendChild(message)
         var messageText = document.createTextNode("L'heure de retour doit être supérieure à l'heure de départ")
+        message.appendChild(messageText)
+    }
+    
+    if(checkDate > 0){
+        e.preventDefault()
+        var message = document.createElement('div')
+        message.className = ('ui red message')
+        message.id = ('dayErrorMessage')
+        walkDate.appendChild(message)
+        var messageText = document.createTextNode("Les voyages dans le temps sont malheureusement impossibles")
         message.appendChild(messageText)
     }
 });

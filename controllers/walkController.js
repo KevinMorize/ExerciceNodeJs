@@ -9,6 +9,14 @@ exports.createWalk = (req, res) => {
     }
 }
 
+exports.updateWalk = (req, res) => {  
+    if(req.user){
+        walkModel.updateWalk(req, res)
+    }  else {
+        res.redirect('/')
+    }
+}
+
 exports.walkAccepted = (req, res) => {  
     if(req.user){
             walkModel.accepted(req, res)
@@ -16,7 +24,6 @@ exports.walkAccepted = (req, res) => {
         res.redirect('/')
     }
 }
-
 
 exports.walkDeclined = (req, res) => {  
     if(req.user){

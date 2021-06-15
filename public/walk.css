@@ -1,13 +1,23 @@
 /* main page */
+#walkSection{
+    width: 100%;
+    padding: 2% 3% 0 3%;
+}
+
+#walkSection h2{
+    width: fit-content;
+    margin: 5% 0 5% 0;
+}
+
 .walkSectionCards{
     width: 100%;
-    padding: 0 5% 0 2%;
+    padding-right: 5%;
     max-height: 350px;
     overflow-y: scroll;
 }
 
 .walkSectionCards #verticalCard {
-    margin-bottom: 5% !important;
+    margin: 0 !important;
     box-shadow: none !important;
 }
 
@@ -25,12 +35,6 @@
     margin-top: 2%;
     font-size: large;
 }
-
-.walkSectionCards #verticalCard p{
-    text-align: center;
-    margin: 10% 0 10% 0;
-}
-
 
 .walkSectionCards #verticalCard img{
     aspect-ratio: 1 / 1 !important;
@@ -59,7 +63,7 @@
 
 #addWalkButton img{
     max-width: 95%;
-    margin: auto;
+    margin: 0 3% 0 2%;
 }
 
 /* main add */
@@ -243,7 +247,7 @@
 /* walkView */
 .acceptInvitButton{
     width: 100%;
-    margin: 10% 0 10% 0;
+    margin: 10% 0 5% 0;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -270,7 +274,7 @@
 }
 
 .walkContent div:nth-of-type(1){
-    padding: 5% 5% 0 5%;
+    padding: 5%;
     display: flex;
     flex-direction: column;
 }
@@ -286,7 +290,8 @@
 }
 
 #walkInfoContent{
-    padding: 0 5% 0 5%;
+    width: 90%;
+    padding-top: 5%;
 }
 
 #walkInfoContent h3{
@@ -299,6 +304,7 @@
 
 #walkInfoContent p{
     margin-top: 0;
+    font-style: italic;
 }
 
 #walkInfoContent hr{
