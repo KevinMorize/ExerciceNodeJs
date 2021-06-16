@@ -19,6 +19,7 @@
 .walkSectionCards #verticalCard {
     margin: 0 !important;
     box-shadow: none !important;
+    padding-bottom: 5%;
 }
 
 .walkSectionCards #verticalCard .content{
@@ -291,7 +292,7 @@
 
 #walkInfoContent{
     width: 90%;
-    padding-top: 5%;
+    padding-top: 5%;    
 }
 
 #walkInfoContent h3{

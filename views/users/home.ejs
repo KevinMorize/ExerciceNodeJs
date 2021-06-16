@@ -1,35 +1,51 @@
 <%- include('../includes/header.ejs')%>
 
-<h3>Nouveaux</h3>
+<div class="ui input" id="searchbar">
+    <input type="text" placeholder="Entrez le nom ou la race d'un compagnon">
+</div>
 
-    <div class="dogCard Infinite Scroll" id="homeNewList">
-        <% newDogs.map(function(dog) { %>
-            <a href="/dog-profil?id=<%= dog.idDog %>" class="ui card" id="verticalCard">
-                <% if (dog.dogAttachment) { %>
-                    <img class="ui image" src="tmp/<%= dog.dogAttachment %>">    
-                <% } else { %>  
-                        <img class="ui image" src="img/profil-pic.png" style="object-fit: contain;">    
-                <% } %> 
-                
-                <div class="content">
-                    <h4><%= dog.name %></h4>
-                    <span class="breed"><%= dog.breed %></span>
-                    <span class="date"><%= dog.birthday %></span>
-                </div>
+<div class="homeTitles">
+<h3>Nouveaux :</h3>
+</div>
 
-                <!-- <% marked.map(function(mark) { %>  
-                    <% if (dog.idDog) { %>
-                        <form action="/mark?id=<%= mark.idDog %>" method="post" id="like">
-                            <button type="submit"><i class="heart like icon"></i></button>
-                        </form>   
+<div class="dog card" id="newDogsSection">
+    <% newDogs.map(function(dog) { %>
+        <div class="ui card">
+            <a href="/dog-profil?id=<%= dog.idDog %>">
+                    <% if (dog.dogAttachment) { %>
+                        <img class="ui image" src="tmp/<%= dog.dogAttachment %>">    
                     <% } else { %>  
-                        <form action="/mark?id=<%= mark.idDog %>" method="post" id="like">
-                            <button type="submit"><i class="heart outline like icon"></i></button>
-                        </form>   
+                        <img class="ui image" src="img/profil-pic.png" style="object-fit: contain;">    
                     <% } %> 
-                <% }) %> -->
+                    
+                    <div class="content">
+                        <h4><%= dog.name %></h4>
+                        <span class="breed"><%= dog.breed %></span>
+                        <span class="date"><%= dog.birthday %></span>
+                    </div>
+
+                    <!-- <% marked.map(function(mark) { %>  
+                        <% if (dog.idDog) { %>
+                            <form action="/mark?id=<%= mark.idDog %>" method="post" id="like">
+                                <button type="submit"><i class="heart like icon"></i></button>
+                            </form>   
+                        <% } else { %>  
+                            <form action="/mark?id=<%= mark.idDog %>" method="post" id="like">
+                                <button type="submit"><i class="heart outline like icon"></i></button>
+                            </form>   
+                        <% } %> 
+                    <% }) %> -->
             </a>
-        <% }); %>
-    </div>
+        </div>
+    <% }); %>
+</div>
+
+<div class="homeTitles">
+    <h3>Recherchés :</h3>
+</div>
 
 <%- include ('../includes/footer.ejs') %>
+
+<script type="text/javascript">
+
+</script>
