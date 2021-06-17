@@ -17,6 +17,7 @@ app.set('views', path.join(__dirname, 'views'));
 
 app.use(express.static('public'));
 app.use(express.static('utils'))
+app.use(express.static('data'))
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());

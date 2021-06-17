@@ -21,7 +21,7 @@ search.addEventListener('focusout', () => preventSearchMarks(search.value));
 matchList.style.display = "none"
 
 const searchMarks = async searchText => {
-    const res = await (JSON.parse('<%- JSON.stringify(marks) %>'));
+    const res = await (JSON.parse('<%- JSON.stringify(../../data/breed.json) %>'));
     
     let matches = res.filter(marks => {
         const regex = new RegExp(`^${searchText}`, 'gi')

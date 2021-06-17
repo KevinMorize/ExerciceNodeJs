@@ -30,7 +30,8 @@
   </div>
 
   <div class="field">
-    <input type="text" name="breed" placeholder="Race (requis)" required>
+    <input type="text" name="breed" placeholder="Entrez un nom de race (requis)" id="breedSearch" autocomplete="off" required>
+    <div id="breedList"></div>
   </div>
 
   <p id="labeldate">Date de naissance (requis):</p>
@@ -129,5 +130,47 @@
   <% } %>
 
 </form>
+
+<script>
+  //suggest
+const search = document.getElementById('breedSearch');
+const matchList = document.getElementById('breedList');
+
+search.addEventListener('keyup', () => searchMarks(search.value));
+
+const searchMarks = async searchText => {
+    const res = await fetch('https://api.thedogapi.com/v1/breeds?');
+    const breed = await res.json();
+    
+    let matches = breed.filter(match => {
+        const regex = new RegExp(`^${searchText}`, 'gi')
+        return match.name.match(regex)
+    })
+
+    console.log(matches)
+
+    if (searchText === ""){
+      matchList.innerHTML = "";
+      matches = [];
+    }
+    outputHtml(matches);
+};
+
+const outputHtml = (matches) => {
+    if (matches.length > 0) {
+        var html = matches.map(match =>
+            `
+            <div id="breedMatches">
+            <div value="${match.name}" onclick="">
+              ${match.name}
+            </div> 
+            </div>
+            `
+        ).join(''); 
+
+        matchList.innerHTML = html;
+    };           
+}
+</script>
 
 <%- include ('../includes/footer.ejs') %>
