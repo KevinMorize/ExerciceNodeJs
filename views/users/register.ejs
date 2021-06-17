@@ -47,7 +47,8 @@
     </div>
     
     <div class="field">
-      <input type="text" name="breed" placeholder="Race (requis)">
+      <input type="text" name="breed" placeholder="Race (requis)" id="breedSearch" autocomplete="off" required>
+      <div id="breedList"></div>
     </div>
 
     <p id="labeldate">Date de naissance (requis):</p>
@@ -102,5 +103,7 @@
     <button class="login-button"  type="submit">Confirmer<img src="/img/balades.png" alt="img-login" id="img-login2"></button>
 
 </form>
+
+<script type="text/javascript" src="breedSuggest.js"></script>
 
 <%- include ('../includes/footerIndex.ejs') %>

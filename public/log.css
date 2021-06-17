@@ -5,6 +5,11 @@ body {
     background-color: #E2CAEE;
     font-family: 'Rajdhani', sans-serif;
     color: #6A2D8F;
+
+}
+
+body ::-webkit-scrollbar {
+    display: none;
 }
 
 h1{
@@ -93,6 +98,24 @@ label{
     color: white !important;
 }
 
+#breedList {
+    position: absolute;
+    width: 100%;
+    max-height: 330px;
+    overflow: scroll;
+    background-color: #E2CAEE;
+    border-radius: 10px;
+    border-right: 1px solid #6A2D8F;
+    border-left: 1px solid #6A2D8F;
+}
+
+#breedList .breedMatch {
+    color: #6A2D8F;
+    padding: 3%;
+    font-size: 1.5em;
+    font-family: 'Rajdhani', sans-serif;
+}
+
 /* Checkbox */
 #check{
     width: 100%;
@@ -136,67 +159,4 @@ label{
     left: 80%;
 }
 
-/* Admin */
-#adminHome{
-    margin-top: 10%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-#adminHome a{
-    padding: 10px !important;
-}
-
-#adminHome a i{
-    margin: 0;
-}
-
-#addUserButton{
-    width: 100%;
-    margin-top: 10% !important;
-    margin-bottom: 10% !important;
-    background-color: #FEE600;
-    color: #6D4434;
-    border: 2px solid #6D4434 !important;
-    border-radius: 5px !important;
-    padding-top: 7%;
-    padding-bottom: 7%;
-    font-size: larger;
-}
-
-#editButton{
-    background-color: #FEE600;
-    border: 2px solid #6D4434 !important;
-}
-
-#editButton i{
-    color: #6D4434;
-}
-
-table{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
-
-tbody{
-    width: 70%;
-}
-
-tr{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin-bottom: 10%;
-}
-
-td{
-    font-size: large;
-    margin-bottom: 3%;
-}
-
-td a{
-    width: 20%;
-}
 

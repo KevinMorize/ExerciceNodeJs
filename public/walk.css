@@ -196,10 +196,6 @@
         overflow-x: auto;
     }
 
-    body ::-webkit-scrollbar {
-        display: none;
-    }
-
     #matchList #verticalCard {
         width: 100%;
     }
