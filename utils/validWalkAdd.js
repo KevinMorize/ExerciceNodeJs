@@ -1,5 +1,4 @@
 //suggest
-const addDogArea = document.getElementById('ddDogs');
 const search = document.getElementById('search');
 const matchList = document.getElementById('matchList');
 const selectedArea = document.getElementById('selectedArea');
@@ -15,13 +14,14 @@ const day = document.getElementById('day');
 const start = document.getElementById('start');
 const end = document.getElementById('end');
 
+search.addEventListener('keyup', () => searchMarks(search.value));
 search.addEventListener('focus', () => searchMarks(search.value));
-search.addEventListener('input', () => searchMarks(search.value));
+search.addEventListener('focusout', () => preventSearchMarks(search.value));
 
 matchList.style.display = "none"
 
 const searchMarks = async searchText => {
-    const res = await (<%- JSON.stringify(marks) %>);
+    const res = await (JSON.parse('<%- JSON.stringify(marks) %>'));
     
     let matches = res.filter(marks => {
         const regex = new RegExp(`^${searchText}`, 'gi')
@@ -29,6 +29,7 @@ const searchMarks = async searchText => {
     })
 
     matchList.style.display = "block"
+    matchList.innerHTML = ""
     outputHtml(matches);
 };
 
@@ -47,8 +48,14 @@ const outputHtml = (matches) => {
         ).join(''); 
 
         matchList.innerHTML = html;
-        addMatchTitle()
     };           
+}
+
+function preventSearchMarks(searchText){
+     if (searchText.length === 0){
+        matchList.style.display = "none"
+        matchList.innerHTML = ""
+     }
 }
 
 function selectedFriend(image, name, id) {
@@ -88,42 +95,32 @@ function selectedFriend(image, name, id) {
     matchList.style.display = "none"
 }
 
-function addMatchTitle(){
-        var title = document.createElement('p')
-        matchList.insertBefore(title, matchList.childNodes[0]);
-        var titleText = document.createTextNode('Suggestions:')
-        title.appendChild(titleText)
-}
-
-$('form').submit(async function(e){
-    
-    //selectedCHeck
-    // await Array.from(selectedDogInput).map(function(elem){
-    //     if(elem.checked === true){
-    //         e.preventDefault()
-    //         var message = document.createElement('div')
-    //         message.className = ('ui red message')
-    //         selectedDogArea.appendChild(message)
-    //         var messageText = document.createTextNode("Veuillez inviter au moins un compagnon")
-    //         message.appendChild(messageText)
-    //     }
-    // })
+$(document).on('submit', "form", async function(e) {
     
     if(selectedMatch.length < 1){
         e.preventDefault()
-        var message = document.createElement('div')
-        message.className = ('ui red message')
-        selectedArea.appendChild(message)
-        var messageText = document.createTextNode("Les balades c'est mieux à deux")
-        message.appendChild(messageText)
-    }
+        e.stopPropagation()
+        function addErrorMsg(event){
+            if (error === true){
+                event.preventDefault()
+            } else {
+                var message = document.createElement('div')
+                message.className = ('ui red message')
+                selectedArea.appendChild(message)
+                var messageText = document.createTextNode("Les balades c'est mieux à deux")
+                message.appendChild(messageText)
+                var error = true
+            }
+        }
+    } 
+      
     
     // timeCheck
     var startHour = start.value.slice(0, 2)
     var endHour = end.value.slice(0, 2)
     var startMin = start.value.slice(3)
     var endMin = end.value.slice(3)
-    var checkDate = moment().format('X') - moment(day.value).format('X');
+    var checkDate = Date.parse(day.value) - Date.now()
     
     if (startHour === "00"){
         var startHour = "24"
@@ -141,7 +138,7 @@ $('form').submit(async function(e){
         message.appendChild(messageText)
     }
     
-    if(checkDate > 0){
+    if(checkDate < 0){
         e.preventDefault()
         var message = document.createElement('div')
         message.className = ('ui red message')

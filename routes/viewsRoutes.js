@@ -9,7 +9,6 @@ router.get('/balades', logController.loggedIn, viewsController.walks)
 router.get('/profil', logController.loggedIn, viewsController.profil)
 
 //user
-
 router.get('/user-update', logController.loggedIn, viewsController.updateUser)
 
 //dog

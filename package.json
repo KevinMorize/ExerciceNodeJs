@@ -4,12 +4,11 @@
   "description": "train on Mylo-Co",
   "main": "views/users/index.ejs",
   "scripts": {
-    "devStart": "node server.js"
+    "start": "nodemon server.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@googlemaps/js-api-loader": "^1.11.3",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "cookie-parser": "^1.4.5",

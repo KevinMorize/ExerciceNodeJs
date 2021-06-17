@@ -1,5 +1,99 @@
-/* new list */
+/* global home */
+.homeTitles{
+    width: 100%;
+    padding-left: 5%;
+    margin: 4% 0 4% 0;
+    text-decoration: underline;
+}
 
+.homeTitles h3{
+    margin: 0 !important;
+}
+
+/* searchbar */
+#searchbar {
+    width: 100%;
+}
+
+#searchbar input {
+    background-color: white !important;
+    border-radius: 0 !important;
+    color: #6A2D8F !important;
+    box-shadow: 0px 10px 10px rgba(0, 0, 0, .3) !important;
+}
+
+#searchbar input::placeholder {
+    color:  #E2CAEE !important;
+    font-family: 'Port Lligat Sans', sans-serif !important;
+    font-size: 1.2em;
+}
+
+/* newDogsSection */
+#newDogsSection{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    overflow: scroll;
+    padding-left: 5%;
+}
+
+#newDogsSection a{
+    display: flex;
+    flex-direction: column;
+    min-width: 120px;
+    max-width: 130px;
+    align-items: center;
+}
+
+#newDogsSection .ui.card{
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    margin: 0 !important;
+    padding-right: 5%;
+    width: fit-content;
+}
+
+#newDogsSection .ui.card img{
+    border-radius: 10px;
+    min-width: 120px;
+    max-width: 130px;
+    object-fit: cover;
+    aspect-ratio: 1 / 1;
+    box-shadow: 0px 10px 10px rgb(0 0 0 / 25%);
+}
+
+#newDogsSection .ui.card .content{
+    width: 100%;
+    margin-top: 5%;
+    display: flex;
+    flex-direction: column;
+    word-break: break-word;
+}
+
+#newDogsSection .ui.card h4{
+    width: 100%;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: large;
+    text-align: start;
+    color: #6A2D8F !important;
+}
+
+#newDogsSection .ui.card span{
+    width: 100%;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: small;
+    text-align: start;
+    color: #E2CAEE !important;
+}
+
+#newDogsSection .ui.card span:nth-child(3){
+    color: #6A2D8F !important;
+}
+
+/* new list */
 #homeNewList{
     width: 100%;
     display: flex;
