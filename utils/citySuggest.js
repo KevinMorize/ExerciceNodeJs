@@ -18,19 +18,24 @@ const searchMarks = async searchText => {
       matchList.innerHTML = "";
       matches = [];
     }
+
     outputHtml(matches);
 };
 
 const outputHtml = (matches) => {
+
     if (matches.length > 0) {
-        var html = matches.map(match =>
-            match.codesPostaux.forEach(code =>
-            `
-            <div class="cityMatch" onclick="selectedCity('${match.nom}', '${match.code}')">
-              ${match.nom} - ${match.code}
-            </div> 
-            `
-            )
+
+        var html = matches.map(match => {
+            match.codesPostaux.forEach(function(codePostal){
+                `
+                <div class="cityMatch" onclick="selectedCity('${match.nom}', '${codePostal}')">
+                ${match.nom} - ${codePostal}
+                </div> 
+                `
+                console.log('-----------', codePostal)
+            }) 
+        }      
         ).join(''); 
 
         matchList.innerHTML = html;

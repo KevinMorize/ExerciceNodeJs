@@ -242,7 +242,7 @@
 /* walkView */
 .acceptInvitButton{
     width: 100%;
-    margin: 10% 0 5% 0;
+    margin: 5% 0 5% 0;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
