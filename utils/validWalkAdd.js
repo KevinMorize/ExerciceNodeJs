@@ -1,4 +1,4 @@
-//suggest
+// suggest
 const search = document.getElementById('search');
 const matchList = document.getElementById('matchList');
 const selectedArea = document.getElementById('selectedArea');
@@ -8,7 +8,7 @@ const selectedMatch = document.getElementsByClassName('hiddenInputMatch');
 const selectedDogInput = document.getElementsByClassName('dogInputMatch');
 const selectedDogArea = document.getElementById('addDogs');
 
-//time
+// time
 const walkDate = document.getElementById('walkDate');
 const day = document.getElementById('day');
 const start = document.getElementById('start');
@@ -16,20 +16,14 @@ const end = document.getElementById('end');
 
 search.addEventListener('keyup', () => searchMarks(search.value));
 search.addEventListener('focus', () => searchMarks(search.value));
-search.addEventListener('focusout', () => preventSearchMarks(search.value));
-
-matchList.style.display = "none"
 
 const searchMarks = async searchText => {
-    const res = await (JSON.parse('<%- JSON.stringify(../../data/breed.json) %>'));
-    
+    const res = await (JSON.parse('<%- JSON.stringify(marks) %>'));
     let matches = res.filter(marks => {
         const regex = new RegExp(`^${searchText}`, 'gi')
         return marks.name.match(regex)
     })
 
-    matchList.style.display = "block"
-    matchList.innerHTML = ""
     outputHtml(matches);
 };
 
@@ -49,13 +43,6 @@ const outputHtml = (matches) => {
 
         matchList.innerHTML = html;
     };           
-}
-
-function preventSearchMarks(searchText){
-     if (searchText.length === 0){
-        matchList.style.display = "none"
-        matchList.innerHTML = ""
-     }
 }
 
 function selectedFriend(image, name, id) {
@@ -92,15 +79,18 @@ function selectedFriend(image, name, id) {
     newMatchinput.value = id
     newMatchDiv.appendChild(newMatchinput)
 
-    matchList.style.display = "none"
+    matches = [];
+    matchList.innerHTML = ""
 }
 
 $(document).on('submit', "form", async function(e) {
     
     if(selectedMatch.length < 1){
+        let error = "";
         e.preventDefault()
         e.stopPropagation()
-        function addErrorMsg(event){
+
+        function addErrorMsg(event){ 
             if (error === true){
                 event.preventDefault()
             } else {
@@ -109,7 +99,7 @@ $(document).on('submit', "form", async function(e) {
                 selectedArea.appendChild(message)
                 var messageText = document.createTextNode("Les balades c'est mieux à deux")
                 message.appendChild(messageText)
-                var error = true
+                return error = true
             }
         }
     } 

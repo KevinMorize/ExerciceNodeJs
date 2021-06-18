@@ -50,7 +50,8 @@
 
 <p>Ville ou CP:</p>
 <div class="field">
-  <input type="text" name="city" placeholder="<%= user.city %>" value="<%= user.city %>">
+  <input type="text" name="city" placeholder="<%= user.city %>" value="<%= user.city %>" id="citySearch">
+  <div id="cityList"></div>
 </div>
 
 <p>Bio:</p>
@@ -60,5 +61,52 @@
 </form>
 
 <a href="/user-delete" id="deleteButton" onClick="return confirm('Êtes-vous sûr ?')">Supprimer mon compte</a>
+
+<script>
+
+const search = document.getElementById('citySearch');
+const matchList = document.getElementById('cityList');
+
+search.addEventListener('keyup', () => searchMarks(search.value));
+
+const searchMarks = async searchText => {
+    const res = await fetch('https://api.thedogapi.com/v1/breeds?');
+    const breed = await res.json();
+    
+    let matches = breed.filter(match => {
+        const regex = new RegExp(`^${searchText}`, 'gi')
+        return match.name.match(regex)
+    })
+
+    console.log(matches)
+
+    if (searchText === ""){
+      matchList.innerHTML = "";
+      matches = [];
+    }
+    outputHtml(matches);
+};
+
+const outputHtml = (matches) => {
+    if (matches.length > 0) {
+        var html = matches.map(match =>
+            `
+            <div class="breedMatch" onclick="selectedBreed('${match.name}')">
+              ${match.name}
+            </div> 
+           
+            `
+        ).join(''); 
+
+        matchList.innerHTML = html;
+    };           
+}
+
+function selectedBreed (name) {
+      search.value = name
+      matchList.innerHTML = "";
+      matches = [];
+}
+</script>
 
 <%- include ('../includes/footer.ejs') %>

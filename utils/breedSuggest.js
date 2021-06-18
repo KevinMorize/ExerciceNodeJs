@@ -12,8 +12,6 @@ const searchMarks = async searchText => {
         return match.name.match(regex)
     })
 
-    console.log(matches)
-
     if (searchText === ""){
       matchList.innerHTML = "";
       matches = [];

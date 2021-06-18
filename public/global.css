@@ -162,3 +162,14 @@ h3{
     font-size: large;
 
 }
+
+/* not supported and media */
+
+@supports not (aspect-ratio: 1 / 1) {
+
+    .ui.card img {
+        width: 100px;
+        height: 100px;
+    }
+
+}
