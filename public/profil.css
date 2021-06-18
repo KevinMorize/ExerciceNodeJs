@@ -247,6 +247,24 @@
     font-family: 'Rajdhani', sans-serif;
 }
 
+#cityList {
+    position: absolute;
+    width: 100%;
+    max-height: 330px;
+    overflow: scroll;
+    background-color: #E2CAEE;
+    border-radius: 10px;
+    border-right: 1px solid #6A2D8F;
+    border-left: 1px solid #6A2D8F;
+}
+
+#cityList .cityMatch {
+    color: #6A2D8F;
+    padding: 3%;
+    font-size: 1.5em;
+    font-family: 'Rajdhani', sans-serif;
+}
+
 /* marks */
 
 #marksProfilDiv{
