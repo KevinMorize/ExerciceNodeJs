@@ -26,7 +26,6 @@ const outputHtml = (matches) => {
             <div class="breedMatch" onclick="selectedBreed('${match.name}')">
               ${match.name}
             </div> 
-           
             `
         ).join(''); 
 

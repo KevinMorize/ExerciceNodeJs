@@ -24,26 +24,42 @@ const searchMarks = async searchText => {
 
 const outputHtml = (matches) => {
 
-    if (matches.length > 0) {
+    // if (matches.length > 0) {
+    //     var html = matches.map(match => 
+    //             `
+    //             <div class="cityMatch" onclick="selectedCity('${match.nom}', '${match.code}')">
+    //             ${match.nom} - ${match.code}
+    //             </div> 
+    //             `
+    //     ).join(''); 
 
-        var html = matches.map(match => {
-            match.codesPostaux.forEach(function(codePostal){
+    //     console.log('--------', html)
+    //     matchList.innerHTML = html;
+    // };  
+
+    var html = matches.map(match => {
+        var output =
+            match.codesPostaux.forEach((codePostal) => { 
+                var div = 
                 `
                 <div class="cityMatch" onclick="selectedCity('${match.nom}', '${codePostal}')">
                 ${match.nom} - ${codePostal}
                 </div> 
                 `
-                console.log('-----------', codePostal)
-            }) 
-        }      
-        ).join(''); 
 
+                outputDiv = output + div
+            })
+            console.log(outputDiv)
+        }).join('');
+
+        console.log(html)
         matchList.innerHTML = html;
-    };           
-}
+};   
+     
 
-function selectedCity (nom, codePostaux) {
-      search.value = nom + " - " + codePostaux
-      matchList.innerHTML = "";
-      matches = [];
-}
+
+// function selectedCity (nom, codePostaux) {
+//       search.value = nom + " - " + codePostaux
+//       matchList.innerHTML = "";
+//       matches = [];
+// }
