@@ -12,8 +12,6 @@ const searchMarks = async searchText => {
         return match.nom.match(regex) || match.code.match(regex)
     })
 
-    console.log(matches)
-
     if (searchText === ""){
       matchList.innerHTML = "";
       matches = [];
@@ -23,43 +21,22 @@ const searchMarks = async searchText => {
 };
 
 const outputHtml = (matches) => {
-
-    // if (matches.length > 0) {
-    //     var html = matches.map(match => 
-    //             `
-    //             <div class="cityMatch" onclick="selectedCity('${match.nom}', '${match.code}')">
-    //             ${match.nom} - ${match.code}
-    //             </div> 
-    //             `
-    //     ).join(''); 
-
-    //     console.log('--------', html)
-    //     matchList.innerHTML = html;
-    // };  
-
-    var html = matches.map(match => {
-        var output =
-            match.codesPostaux.forEach((codePostal) => { 
-                var div = 
-                `
-                <div class="cityMatch" onclick="selectedCity('${match.nom}', '${codePostal}')">
-                ${match.nom} - ${codePostal}
-                </div> 
-                `
-
-                outputDiv = output + div
-            })
-            console.log(outputDiv)
-        }).join('');
-
-        console.log(html)
-        matchList.innerHTML = html;
+    matchList.innerHTML = "";
+    matches.map(match => {
+        match.codesPostaux.forEach((codePostal) => {
+            outPutDiv(match, codePostal)
+        })
+    })
 };   
-     
 
-
-// function selectedCity (nom, codePostaux) {
-//       search.value = nom + " - " + codePostaux
-//       matchList.innerHTML = "";
-//       matches = [];
-// }
+function outPutDiv (match, codePostal){
+        var newMatchDiv = document.createElement('div')
+        newMatchDiv.className = "cityMatch"
+        newMatchDiv.onclick = function(){
+            search.value = match.nom + " " + codePostal
+            matchList.innerHTML = "";
+            matches = [];
+        }
+        newMatchDiv.innerHTML = match.nom + " - " + codePostal
+        cityList.appendChild(newMatchDiv)
+}

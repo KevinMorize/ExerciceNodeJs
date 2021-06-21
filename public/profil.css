@@ -263,6 +263,12 @@
     padding: 3%;
     font-size: 1.5em;
     font-family: 'Rajdhani', sans-serif;
+    cursor: pointer;
+}
+
+#cityList .cityMatch:hover {
+    background-color: #6A2D8F;
+    color: white;
 }
 
 /* marks */
