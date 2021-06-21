@@ -40,23 +40,21 @@ class usersModel {
             }
         }
         
-        if (!EMAIL_REGEX.test(req.body.email)) {
-                return res.status(400).render('../views/users/userEdit', {
-                    user: req.user, 
-                    title: "Modifier mon profil", 
-                    button: "edit",
-                    message: 'email invalide'
-                })
-        } 
+        // if (!EMAIL_REGEX.test(req.body.email)) {
+        //         return res.status(400).render('../views/users/userEdit', {
+        //             user: req.user, 
+        //             title: "Modifier mon profil", 
+        //             button: "edit",
+        //         })
+        // } 
 
-        if (req.body.email !== req.body.emailConfirm) {
-            return res.status(400).render('../views/users/userEdit', {
-                user: req.user, 
-                title: "Modifier mon profil", 
-                button: "edit",
-                message: "les emails ne correspondent pas"
-            })
-    } 
+        // if (req.body.email !== req.body.emailConfirm) {
+        //     return res.status(400).render('../views/users/userEdit', {
+        //         user: req.user, 
+        //         title: "Modifier mon profil", 
+        //         button: "edit",
+        //     })
+        // } 
             
         db.query('UPDATE users SET ? WHERE idUser = ?', [data, req.user.idUser], (error, response) => {
             if(error){
@@ -65,7 +63,7 @@ class usersModel {
                 res.redirect('/profil')
             })
         
-    }
+        }
 
     static deleteUser (req, res) {
         db.query('DELETE FROM users WHERE idUser = ?', req.user.idUser, (err, result) => {

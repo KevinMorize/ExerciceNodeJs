@@ -21,7 +21,8 @@
     </div>
 
     <div class="field">
-      <input type="text" name="city" placeholder="City or Zip-Code">
+      <input type="text" name="city" placeholder="City or Zip-Code" id="citySearch">
+      <div id="cityList"></div>
     </div>
 
     <div class="field">
@@ -30,6 +31,14 @@
  
     <div class="field">
       <input type="password" name="password" placeholder="Mot-de-passe (requis)" required>
+    </div>
+
+    <div id="checkListDiv">
+      <p class="checkListItem">1 majuscule</p>
+      <p class="checkListItem">1 minuscule</p>
+      <p class="checkListItem">1 chiffre</p>
+      <p class="checkListItem">1 caractère spécial</p>
+      <p class="checkListItem">8 caractrères</p>
     </div>
     
     <div class="field">
@@ -108,5 +117,7 @@
 </form>
 
 <script type="text/javascript" src="breedSuggest.js"></script>
+<script type="text/javascript" src="citySuggest.js"></script>
+<script type="text/javascript" src="registerValid.js"></script>
 
 <%- include ('../includes/footerIndex.ejs') %>

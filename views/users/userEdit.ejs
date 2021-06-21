@@ -2,10 +2,6 @@
 
 <form class="ui form" href="/user-update" method='post' enctype="multipart/form-data">
 
-  <% if (locals.message) { %>
-    <div class="ui red message"><%- locals.message %></div>
-  <% } %>
-
 <!-- images -->
 <p id="uploadFileLabel">Photo de couverture:</p>
 <% if (user.cover) { %>
@@ -63,5 +59,6 @@
 <a href="/user-delete" id="deleteButton" onClick="return confirm('Êtes-vous sûr ?')">Supprimer mon compte</a>
 
 <script type="text/javascript" src="citySuggest.js"></script>
+<script type="text/javascript" src="emailValid.js"></script>
 
 <%- include ('../includes/footer.ejs') %>

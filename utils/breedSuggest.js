@@ -1,7 +1,7 @@
-const search = document.getElementById('breedSearch');
-const matchList = document.getElementById('breedList');
+const breedSearch = document.getElementById('breedSearch');
+const matchBreedList = document.getElementById('breedList');
 
-search.addEventListener('keyup', () => searchMarks(search.value));
+breedSearch.addEventListener('keyup', () => searchMarks(search.value));
 
 const searchMarks = async searchText => {
     const res = await fetch('https://api.thedogapi.com/v1/breeds?');
@@ -13,8 +13,8 @@ const searchMarks = async searchText => {
     })
 
     if (searchText === ""){
-      matchList.innerHTML = "";
-      matches = [];
+    matchBreedList.innerHTML = "";
+    matches = [];
     }
     outputHtml(matches);
 };
@@ -29,12 +29,12 @@ const outputHtml = (matches) => {
             `
         ).join(''); 
 
-        matchList.innerHTML = html;
+        matchBreedList.innerHTML = html;
     };           
 }
 
 function selectedBreed (name) {
-      search.value = name
-      matchList.innerHTML = "";
-      matches = [];
+    breedSearch.value = name
+    matchBreedList.innerHTML = "";
+    matches = [];
 }

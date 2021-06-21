@@ -70,19 +70,20 @@ class authModel {
                 return res.status(400).render('../views/users/register', {
                     emailMessage: 'Cet e-mail est déjà utilisé'
                 })
-            } else if (!EMAIL_REGEX.test(req.body.email)) {
-                return res.status(400).render('../views/users/register', {
-                    emailMessage: 'email invalide'
-                });
-            } else if(req.body.password !== req.body.passwordConfirm) {
-                return res.status(400).render('../views/users/register', {
-                    passwordMessage: 'Les mot-de-passe ne correspondent pas'
-                });
-            } else if (!PASSWORD_REGEX.test(req.body.password)) {
-                return res.status(400).render('../views/users/register', {
-                    passwordMessage: 'Mot-de-passe non valide (au moins 8 caractères, 1 majuscule, 1 chiffre et 1 caractère spécial'
-                });
             }
+            // } else if (!EMAIL_REGEX.test(req.body.email)) {
+            //     return res.status(400).render('../views/users/register', {
+            //         emailMessage: 'email invalide'
+            //     });
+            // } else if(req.body.password !== req.body.passwordConfirm) {
+            //     return res.status(400).render('../views/users/register', {
+            //         passwordMessage: 'Les mot-de-passe ne correspondent pas'
+            //     });
+            // } else if (!PASSWORD_REGEX.test(req.body.password)) {
+            //     return res.status(400).render('../views/users/register', {
+            //         passwordMessage: 'Mot-de-passe non valide (au moins 8 caractères, 1 majuscule, 1 chiffre et 1 caractère spécial'
+            //     });
+            // }
 
             let hashedPassword = await bcrypt.hash(req.body.password, 8)
 

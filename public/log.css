@@ -111,6 +111,7 @@ label{
     color: white !important;
 }
 
+/* breedSuggest */
 #breedList {
     position: absolute;
     width: 100%;
@@ -127,6 +128,31 @@ label{
     padding: 3%;
     font-size: 1.5em;
     font-family: 'Rajdhani', sans-serif;
+}
+
+/* citySuggest */
+#cityList {
+    position: absolute;
+    width: 100%;
+    max-height: 330px;
+    overflow: scroll;
+    background-color: #E2CAEE;
+    border-radius: 10px;
+    border-right: 1px solid #6A2D8F;
+    border-left: 1px solid #6A2D8F;
+}
+
+#cityList .cityMatch {
+    color: #6A2D8F;
+    padding: 3%;
+    font-size: 1.5em;
+    font-family: 'Rajdhani', sans-serif;
+    cursor: pointer;
+}
+
+#cityList .cityMatch:hover {
+    background-color: #6A2D8F;
+    color: white;
 }
 
 /* Checkbox */
@@ -151,3 +177,29 @@ label{
     min-height: 45px;
 }
 
+/* checkListItems */
+
+#checkListDiv{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-top: -5%;
+}
+
+.checkListItem{
+    border: 1px solid red;
+    border-radius: 100px;
+    padding: 1% 2%;
+    color: red;
+    margin-block-end: 5% !important;
+}
+
+.checkListItemValid{
+    border: 1px solid green;
+    border-radius: 100px;
+    padding: 1% 2%;
+    color: green;
+    margin-block-end: 5% !important;
+}

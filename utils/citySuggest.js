@@ -1,9 +1,9 @@
-const search = document.getElementById('citySearch');
-const matchList = document.getElementById('cityList');
+const searchCity = document.getElementById('citySearch');
+const matchCityList = document.getElementById('cityList');
 
-search.addEventListener('keyup', () => searchMarks(search.value));
+searchCity.addEventListener('keyup', () => filterCity(searchCity.value));
 
-const searchMarks = async searchText => {
+const filterCity = async searchText => {
     const res = await fetch('https://geo.api.gouv.fr/communes');
     const city = await res.json();
     
@@ -13,28 +13,28 @@ const searchMarks = async searchText => {
     })
 
     if (searchText === ""){
-      matchList.innerHTML = "";
+      matchCityList.innerHTML = "";
       matches = [];
     }
 
-    outputHtml(matches);
+    outputCityHtml(matches);
 };
 
-const outputHtml = (matches) => {
-    matchList.innerHTML = "";
+const outputCityHtml = (matches) => {
+    matchCityList.innerHTML = "";
     matches.map(match => {
         match.codesPostaux.forEach((codePostal) => {
-            outPutDiv(match, codePostal)
+            outPutCityDiv(match, codePostal)
         })
     })
 };   
 
-function outPutDiv (match, codePostal){
+function outPutCityDiv (match, codePostal){
         var newMatchDiv = document.createElement('div')
         newMatchDiv.className = "cityMatch"
         newMatchDiv.onclick = function(){
-            search.value = match.nom + " " + codePostal
-            matchList.innerHTML = "";
+            searchCity.value = match.nom + " - " + codePostal
+            matchCityList.innerHTML = "";
             matches = [];
         }
         newMatchDiv.innerHTML = match.nom + " - " + codePostal
