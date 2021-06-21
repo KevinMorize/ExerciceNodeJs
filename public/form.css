@@ -102,9 +102,9 @@ textarea::placeholder{
     min-height: 45px;
 }
 
-/* upload input */
-
+/* edit-profil */ 
 #uploadFile {
+    width: 100%;
     display: flex;
     align-items: center;
 }
@@ -134,4 +134,33 @@ border: none;
 
 #uploadFileLabel{
     margin-bottom: 2% !important;
+}
+
+#confirmButton{
+    width: 100%;
+    margin-top: 10% !important;
+    margin-bottom: 10% !important;
+    background-color: #FEE600;
+    color: #6D4434;
+    border: 2px solid #6D4434 !important;
+    border-radius: 5px !important;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    font-size: larger;
+}
+
+/* media */
+
+@media (min-width: 768px) {
+    #confirmButton{
+        margin-top: 5% !important;
+        margin-bottom: 5% !important;
+        background-color: #FEE600;
+        color: #6D4434;
+        border: 2px solid #6D4434 !important;
+        border-radius: 5px !important;
+        padding-top: 2%;
+        padding-bottom: 2%;
+        font-size: larger;
+    }
 }

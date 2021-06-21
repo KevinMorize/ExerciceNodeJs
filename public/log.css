@@ -47,7 +47,6 @@ a{
 }
 
 .login-button{
-    position: relative;
     width: 100%;
     min-height: 45px;
     margin-bottom: 5%;
@@ -60,6 +59,20 @@ a{
     font-size: 1.3rem;
     color: #6D4434;
     text-align: center;
+}
+
+.loginButton{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10%;
+}
+
+.loginButton img{
+    width: 80px;
+    border: 1px solid black;
+    border-radius: 100px;
 }
 
 /* Form */
@@ -137,26 +150,4 @@ label{
     border-radius: 5px !important;
     min-height: 45px;
 }
-
-/* Image */
-#img-login1{
-    width: 25%;
-    background-color: #E2CAEE;
-    position: absolute;
-    border: #6D4434 2px solid;
-    border-radius: 50%;
-    top: -40%;
-    left: -5%;
-}
-
-#img-login2{
-    width: 25%;
-    background-color: #E2CAEE;
-    position: absolute;
-    border: #6D4434 2px solid;
-    border-radius: 50%;
-    top: -40%;
-    left: 80%;
-}
-
 

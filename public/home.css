@@ -3,11 +3,12 @@
     width: 100%;
     padding-left: 5%;
     margin: 4% 0 4% 0;
-    text-decoration: underline;
 }
 
 .homeTitles h3{
     margin: 0 !important;
+    text-decoration: underline;
+    text-decoration-color: #6A2D8F;
 }
 
 /* searchbar */

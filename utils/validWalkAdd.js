@@ -16,6 +16,9 @@ const end = document.getElementById('end');
 
 search.addEventListener('keyup', () => searchMarks(search.value));
 search.addEventListener('focus', () => searchMarks(search.value));
+day.addEventListener('change', () => selectDay(day.value))
+start.addEventListener('change', () => selectTime())
+end.addEventListener('change', () => selectTime())
 
 const searchMarks = async searchText => {
     const res = await (JSON.parse('<%- JSON.stringify(marks) %>'));
@@ -46,6 +49,11 @@ const outputHtml = (matches) => {
 }
 
 function selectedFriend(image, name, id) {
+    const selectError = document.getElementById('noSelectMatch')
+
+    if (selectError){
+        selectedArea.removeChild(selectError)
+    }
 
     var newMatchDiv = document.createElement('div')
     newMatchDiv.className = "selectedDiv"
@@ -83,34 +91,82 @@ function selectedFriend(image, name, id) {
     matchList.innerHTML = ""
 }
 
-$(document).on('submit', "form", async function(e) {
-
-    const selectError = document.getElementById('noSelectMatch')
-    const timeError = document.getElementById('timeErrorMessage');
+function selectDay(value){
     const dateError = document.getElementById('dayErrorMessage');
+    var checkDate = Date.parse(value) - Date.now()
 
+    if (dateError){
+        walkDate.removeChild(dateError)
+    }
+
+    if(checkDate < 0){
+        var message = document.createElement('div')
+        message.className = ('ui red message')
+        message.id = ('dayErrorMessage')
+        walkDate.appendChild(message)
+        var messageText = document.createTextNode("Les voyages dans le temps sont malheureusement impossibles")
+        message.appendChild(messageText)      
+    }
+}
+
+function selectTime(){
+    const timeError = document.getElementById('timeErrorMessage');
     var startHour = start.value.slice(0, 2)
     var endHour = end.value.slice(0, 2)
     var startMin = start.value.slice(3)
     var endMin = end.value.slice(3)
-    var checkDate = Date.parse(day.value) - Date.now()
 
     if (startHour === "00"){
         var startHour = "24"
-    } else if (endHour === "00"){
-        var endHour = "24"
-    }
+    } 
 
-    if (selectError){
-        selectedArea.removeChild(selectError)
+    if (endHour === "00"){
+        var endHour = "24"
     }
 
     if (timeError){
         walkDate.removeChild(timeError)
     }
 
-    if (dateError){
-        walkDate.removeChild(dateError)
+    if((startHour + startMin >= endHour + endMin)){
+        var message = document.createElement('div')
+        message.className = ('ui red message')
+        message.id = ('timeErrorMessage')
+        walkDate.appendChild(message)
+        var messageText = document.createTextNode("L'heure de retour doit être supérieure à l'heure de départ")
+        message.appendChild(messageText)
+    }
+}
+
+
+$(document).on('submit', "form", async function(e) {
+
+    const selectError = document.getElementById('noSelectMatch')
+
+    var checkDate = Date.parse(day.value) - Date.now()
+    var startHour = start.value.slice(0, 2)
+    var endHour = end.value.slice(0, 2)
+    var startMin = start.value.slice(3)
+    var endMin = end.value.slice(3)
+
+    if (startHour === "00"){
+        var startHour = "24"
+    } 
+
+    if (endHour === "00"){
+        var endHour = "24"
+    }
+    
+    if (selectError){
+        selectedArea.removeChild(selectError)
+    }
+
+    if(checkDate < 0){  
+        e.preventDefault() 
+    }
+
+    if((startHour + startMin >= endHour + endMin)){
+        e.preventDefault()
     }
 
     if(selectedMatch.length < 1){
@@ -120,26 +176,6 @@ $(document).on('submit', "form", async function(e) {
         message.id = ('noSelectMatch')
         selectedArea.appendChild(message)
         var messageText = document.createTextNode("Les balades c'est mieux à deux")
-        message.appendChild(messageText)
-    }
-    
-    if(startHour && startMin && endHour && endMin && (startHour + startMin >= endHour + endMin)){
-        e.preventDefault()
-        var message = document.createElement('div')
-        message.className = ('ui red message')
-        message.id = ('timeErrorMessage')
-        walkDate.appendChild(message)
-        var messageText = document.createTextNode("L'heure de retour doit être supérieure à l'heure de départ")
-        message.appendChild(messageText)
-    }
-    
-    if(checkDate < 0){
-        e.preventDefault()
-        var message = document.createElement('div')
-        message.className = ('ui red message')
-        message.id = ('dayErrorMessage')
-        walkDate.appendChild(message)
-        var messageText = document.createTextNode("Les voyages dans le temps sont malheureusement impossibles")
         message.appendChild(messageText)
     }
 });
