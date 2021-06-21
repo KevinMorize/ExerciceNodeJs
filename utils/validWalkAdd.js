@@ -84,38 +84,43 @@ function selectedFriend(image, name, id) {
 }
 
 $(document).on('submit', "form", async function(e) {
-    
-    if(selectedMatch.length < 1){
-        let error = "";
-        e.preventDefault()
-        e.stopPropagation()
 
-        function addErrorMsg(event){ 
-            if (error === true){
-                event.preventDefault()
-            } else {
-                var message = document.createElement('div')
-                message.className = ('ui red message')
-                selectedArea.appendChild(message)
-                var messageText = document.createTextNode("Les balades c'est mieux à deux")
-                message.appendChild(messageText)
-                return error = true
-            }
-        }
-    } 
-      
-    
-    // timeCheck
+    const selectError = document.getElementById('noSelectMatch')
+    const timeError = document.getElementById('timeErrorMessage');
+    const dateError = document.getElementById('dayErrorMessage');
+
     var startHour = start.value.slice(0, 2)
     var endHour = end.value.slice(0, 2)
     var startMin = start.value.slice(3)
     var endMin = end.value.slice(3)
     var checkDate = Date.parse(day.value) - Date.now()
-    
+
     if (startHour === "00"){
         var startHour = "24"
     } else if (endHour === "00"){
         var endHour = "24"
+    }
+
+    if (selectError){
+        selectedArea.removeChild(selectError)
+    }
+
+    if (timeError){
+        walkDate.removeChild(timeError)
+    }
+
+    if (dateError){
+        walkDate.removeChild(dateError)
+    }
+
+    if(selectedMatch.length < 1){
+        e.preventDefault()
+        var message = document.createElement('div')
+        message.className = ('ui red message')
+        message.id = ('noSelectMatch')
+        selectedArea.appendChild(message)
+        var messageText = document.createTextNode("Les balades c'est mieux à deux")
+        message.appendChild(messageText)
     }
     
     if(startHour && startMin && endHour && endMin && (startHour + startMin >= endHour + endMin)){

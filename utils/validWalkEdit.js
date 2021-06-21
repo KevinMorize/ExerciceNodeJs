@@ -21,7 +21,20 @@ $('form').submit(async function(e){
         }
     
         if(startHour && startMin && endHour && endMin && (startHour + startMin >= endHour + endMin)){
+
             e.preventDefault()
+
+            const timeError = document.getElementById('timeErrorMessage');
+            const dateError = document.getElementById('dayErrorMessage');
+
+            if (timeError){
+                walkDate.removeChild(timeError)
+            }
+
+            if (dateError){
+                walkDate.removeChild(dateError)
+            }
+            
             var message = document.createElement('div')
             message.className = ('ui red message')
             message.id = ('timeErrorMessage')
