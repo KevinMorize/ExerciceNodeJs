@@ -71,6 +71,12 @@ function passwordError(value){
   }
 
 function passwordConfirmError(value){
+  const passwordConfirmErrorMessage = document.getElementById('passwordConfirmErrorMessage')
+
+    if(passwordConfirmErrorMessage){
+      passwordConfirm[0].parentNode.removeChild(passwordConfirmErrorMessage)
+    }
+
     if (value !== password[0].value){
         var message = document.createElement('div')
             message.className = ('ui red message')

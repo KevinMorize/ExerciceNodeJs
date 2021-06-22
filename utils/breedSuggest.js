@@ -1,7 +1,7 @@
 const breedSearch = document.getElementById('breedSearch');
 const matchBreedList = document.getElementById('breedList');
 
-breedSearch.addEventListener('keyup', () => searchMarks(search.value));
+breedSearch.addEventListener('keyup', () => searchMarks(breedSearch.value));
 
 const searchMarks = async searchText => {
     const res = await fetch('https://api.thedogapi.com/v1/breeds?');

@@ -25,10 +25,6 @@ h2{
     text-decoration: underline;
 }
 
-p{
-   margin: 0 !important; 
-}
-
 #labeldate{
     align-self: baseline;
     font-size: 1.2em;
@@ -38,19 +34,27 @@ p{
 a{
     color:#6A2D8F;
     width: 100%;
-    margin: 0;
-    margin-bottom: 20%;
+    margin-top: -5%;
+    margin-bottom: 10%;
     text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
+.loginDivButton{
+    width: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10%;
+}
+
 .login-button{
     width: 100%;
     min-height: 45px;
-    margin-bottom: 5%;
-    margin-top: 5%;
+    margin: 0;
     background-color: #FEE600;
     border: 2px solid #6D4434;
     border-radius: 5px;
@@ -61,19 +65,27 @@ a{
     text-align: center;
 }
 
-.loginButton{
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 10%;
+.loginDivButton img{
+    width: 80px;
+    border: 2px solid #6D4434;
+    border-radius: 100px;
+    background-color: #E2CAEE;
 }
 
-.loginButton img{
-    width: 80px;
-    border: 1px solid black;
-    border-radius: 100px;
+div:nth-of-type(3) img{
+    margin: 0;
+    position: absolute;
+    right: -5%;
+    z-index: 10000;
 }
+
+div:nth-of-type(4) img{
+    margin: 0;
+    position: absolute;
+    left: -5%;
+    z-index: 10000;
+}
+
 
 /* Form */
 form{
@@ -189,17 +201,19 @@ label{
 }
 
 .checkListItem{
-    border: 1px solid red;
+    background-color: #D12500;
+    border: 1px solid white;
     border-radius: 100px;
     padding: 1% 2%;
-    color: red;
+    color: white;
     margin-block-end: 5% !important;
 }
 
 .checkListItemValid{
-    border: 1px solid green;
+    background-color: #009A0E;
+    border: 1px solid white;
     border-radius: 100px;
     padding: 1% 2%;
-    color: green;
+    color: white;
     margin-block-end: 5% !important;
 }
