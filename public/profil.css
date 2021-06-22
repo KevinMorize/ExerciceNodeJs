@@ -26,7 +26,7 @@
 #profilInfosContainer{
     width: 100%;
     display: grid;
-    grid-template-columns: 20% auto 20%;
+    grid-template-columns: 15% auto 15%;
     margin-top: 3%;
 }
 

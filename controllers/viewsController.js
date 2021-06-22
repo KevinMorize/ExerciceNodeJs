@@ -36,11 +36,34 @@ exports.home = (req, res) => {
     }
 }
 
-exports.localise = (req, res) => {
+exports.localise = async (req, res) => {
     if (req.user){
-        res.render('../views/users/localise', {
-            title: "autour de moi",
-            user: req.user
+
+        const city = req.user.city;
+        const cp = city.slice(city.indexOf('-') + 2);
+
+        db.query('SELECT * FROM users', (error, result) => {
+            if(error) {
+                console.log(error)
+            }
+
+            result.map(function (e){
+                var city = e.city
+                e.city = city.slice(city.indexOf('-') + 2)
+            })
+            db.query('SELECT * FROM dogs', (error, result2) => {
+                if(error) {
+                    console.log(error)
+                }
+                
+                res.render('../views/users/localise', {
+                    title: "autour de moi",
+                    user: req.user,
+                    userCp: "cp",
+                    usersAround : result,
+                    dogsAround : result2,
+                })
+            })
         })
     } else {
         res.redirect('/')
@@ -167,6 +190,8 @@ exports.profil = async (req, res) => {
                     if (err){
                         console.log(err)
                     }
+
+                    result[0].city = result[0].city.slice(0, result[0].city.indexOf('-') - 1)
 
                     result3.map(function (e){
                         let unixTimeStamp = moment().format('X') - moment(e.birthday).format('X');
