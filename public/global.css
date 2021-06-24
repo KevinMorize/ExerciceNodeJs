@@ -31,6 +31,11 @@ body ::-webkit-scrollbar {
     transform: scale(1.5);
 }
 
+#header i.icon.reply:before{
+    color: #6A2D8F;
+}
+
+/* main */
 main{
     position: relative;
     top: 8%;

@@ -9,6 +9,10 @@
     margin: 5% 0 5% 0;
 }
 
+#walkSection p{
+    text-align: center;
+}
+
 .walkSectionCards{
     width: 100%;
     padding-right: 5%;

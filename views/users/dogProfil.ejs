@@ -36,11 +36,7 @@
 </div>
 
 <% if (dog.description) { %>
-    <hr>
-
-    <div id="dogBio">
-        <p><%- dog.description %></p>
-    </div>
+        <p id="dogBio">"<%- dog.description %>"</p>
 <% } %>  
 
 <hr>
@@ -50,12 +46,12 @@
 <% if (owner.userAttachment) { %>
     <div id="userImg">
         <img class="ui bottom aligned avatar image" src="/tmp/<%- owner.userAttachment %>" alt="img-profil">
-        <span><%- owner.username %></span>
+        <span><%- owner.username %> (<%- owner.city %>)</span>
     </div>
     <% } else { %>  
     <div id="userImg">
         <img class="ui bottom aligned avatar image" src="/img/profil-pic.png" alt="img-profil">
-        <span><%- owner.username %></span>
+        <span><%- owner.username %> (<%- owner.city %>)</span>
     </div>
     <% } %>  
 

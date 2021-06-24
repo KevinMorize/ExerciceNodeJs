@@ -11,24 +11,6 @@
     text-decoration-color: #6A2D8F;
 }
 
-/* searchbar */
-#searchbar {
-    width: 100%;
-}
-
-#searchbar input {
-    background-color: white !important;
-    border-radius: 0 !important;
-    color: #6A2D8F !important;
-    box-shadow: 0px 10px 10px rgba(0, 0, 0, .3) !important;
-}
-
-#searchbar input::placeholder {
-    color:  #E2CAEE !important;
-    font-family: 'Port Lligat Sans', sans-serif !important;
-    font-size: 1.2em;
-}
-
 /* newDogsSection */
 #newDogsSection{
     width: 100%;

@@ -72,7 +72,7 @@ exports.localise = async (req, res) => {
                 })        
 
                 res.render('../views/users/localise', {
-                    title: "autour de moi",
+                    title: "rechercher",
                     user: req.user,
                     userCp: cp,
                     usersAround : result,
@@ -244,7 +244,7 @@ exports.profil = async (req, res) => {
         db.query('SELECT * FROM users WHERE idUser = ?', [req.user.idUser], (error, result) =>{
             res.render('../views/users/userEdit', { 
                 user: result[0], 
-                title: "Modifier mon profil", 
+                title2: "Modifier mon profil", 
                 button: "edit" 
             })
         })
@@ -257,7 +257,7 @@ exports.profil = async (req, res) => {
 exports.getDog = (req, res) => {
 
     db.query('SELECT * FROM dogs WHERE idDog = ?', req.query.id, (err, result1) => {     
-        db.query('SELECT idUser, username, userAttachment FROM users WHERE idUser = ?', result1[0].idUser, (err, result2) => {
+        db.query('SELECT idUser, username, userAttachment, city FROM users WHERE idUser = ?', result1[0].idUser, (err, result2) => {
             db.query('SELECT * FROM marks WHERE idUser = ? AND idDog = ? ', [req.user.idUser, req.query.id], (err, result3) => {
 
                 if (err){
@@ -299,7 +299,7 @@ exports.getDog = (req, res) => {
                 }
 
                 res.render('../views/users/dogProfil', {
-                    title: "Profil de " + result1[0].name, 
+                    title2: "Profil de " + result1[0].name, 
                     dog: result1[0], 
                     owner:result2[0],
                     user: req.user,
@@ -313,7 +313,7 @@ exports.getDog = (req, res) => {
 exports.createDog = (req, res) => {
     res.render('../views/users/dogEdit', { 
         dog: "none", 
-        title: "ajouter un chien", 
+        title2: "ajouter un chien", 
         button: "add",
         user: req.user
     })
@@ -323,7 +323,7 @@ exports.updateDog = (req, res) => {
     db.query('SELECT * FROM dogs WHERE idDog = ?', req.query.id, (error, result) =>{
         res.render('../views/users/dogEdit', { 
             dog: result[0], 
-            title: "modifier " + result[0].name, 
+            title2: "modifier " + result[0].name, 
             button: "update",
             user: req.user
         })
@@ -333,12 +333,12 @@ exports.updateDog = (req, res) => {
 //balades
 exports.createWalk = (req, res) => {
     if (req.user){
-        db.query('SELECT * FROM dogs INNER JOIN marks ON dogs.idDog = marks.idDog AND marks.idUser = ?', [req.user.idUser], (err, result) => {
+        db.query('SELECT idDog, name, breed, dogAttachment FROM dogs WHERE idDog IN (SELECT idDog FROM marks WHERE idUser = ?)', [req.user.idUser], (err, result) => {
             db.query('SELECT * FROM dogs WHERE dogs.idUser = ?', [req.user.idUser], (err, result2) => {
                 db.query('SELECT * FROM dogs WHERE idDog = ?', [req.query.id], (err, result3) => {
 
                         res.render('../views/users/walkAdd', { 
-                            title: "Balades création", 
+                            title2: "Créer une balades", 
                             user: req.user,
                             marks: result,
                             dogs: result2,
@@ -362,7 +362,7 @@ exports.updateWalk = (req, res) => {
 
 
             res.render('../views/users/walkEdit', { 
-                title: "Balades création", 
+                title2: "Modifier mes balades", 
                 user: req.user,
                 walkEdit: result[0],
             })
@@ -391,7 +391,7 @@ exports.walkView = async (req, res) => {
                     })
 
                         res.render('../views/users/walkView', { 
-                            title: "Balades avec " + result[0].username,
+                            title2: "Balade de " + result[0].username,
                             user: req.user,
                             walk: result[0],
                             check: result2[0],

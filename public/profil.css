@@ -56,6 +56,7 @@
 
 #userBio{
     font-size: large;
+    font-style: italic;
 }
 
 .dogCard{
@@ -137,7 +138,7 @@
 }
 
 #dogInfosContainer p{
-    margin-bottom: 0em;
+    margin: 0;
 }
 
 #dogName{
@@ -178,6 +179,7 @@
     font-family: 'Rajdhani', sans-serif;
     color: #6A2D8F !important;
     word-break: break-word;
+    font-style: italic;
 }
 
 #userImg{
