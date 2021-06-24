@@ -1,0 +1,111 @@
+/* newDogsSection */
+#dogsAroundSection{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    overflow: scroll;
+    padding-left: 5%;
+}
+
+#dogsAroundSection a{
+    display: flex;
+    flex-direction: column;
+    min-width: 120px;
+    max-width: 130px;
+    align-items: center;
+}
+
+#dogsAroundSection .ui.card{
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    margin: 0 !important;
+    padding-right: 5%;
+    width: fit-content;
+}
+
+#dogsAroundSection .ui.card img{
+    border-radius: 10px;
+    min-width: 120px;
+    max-width: 130px;
+    object-fit: cover;
+    aspect-ratio: 1 / 1;
+    box-shadow: 0px 10px 10px rgb(0 0 0 / 25%);
+}
+
+#dogsAroundSection .ui.card .content{
+    width: 100%;
+    margin-top: 5%;
+    display: flex;
+    flex-direction: column;
+    word-break: break-word;
+}
+
+#dogsAroundSection .ui.card h4{
+    width: 100%;
+    margin: 0;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: large;
+    text-align: start;
+    color: #6A2D8F !important;
+}
+
+/* searchDogsSection */
+#searchDogsSection{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 0 5% 0 5%;
+}
+
+#searchDogsSection a{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+#searchDogsSection .ui.card{
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    margin: 0 0 2% 0!important;
+    width: fit-content;
+}
+
+#searchDogsSection .ui.card img{
+    border-radius: 10px;
+    min-width: 75px;
+    max-width: 75px;
+    object-fit: cover;
+    aspect-ratio: 1 / 1;
+    box-shadow: 0px 10px 10px rgb(0 0 0 / 25%);
+}
+
+#searchDogsSection .ui.card .content{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    word-break: break-word;
+}
+
+#searchDogsSection .ui.card h4{
+    width: 100%;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: small;
+    text-align: start;
+    color: #6A2D8F !important;
+}
+
+#searchDogsSection .ui.card span{
+    width: 100%;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: x-small;
+    text-align: start;
+    color: #E2CAEE !important;
+}

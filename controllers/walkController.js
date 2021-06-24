@@ -1,4 +1,3 @@
-const db = require('../config/db')
 const walkModel = require('../models/walkModel')
 
 exports.createWalk = (req, res) => {  

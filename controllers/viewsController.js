@@ -4,7 +4,7 @@ const moment = require('moment');
 // main
 exports.home = (req, res) => {
     if (req.user){
-        db.query('SELECT * FROM dogs LIMIT 5', (err, result) => {
+        db.query('SELECT * FROM dogs ORDER BY createdAt LIMIT 10', (err, result) => {
             db.query('SELECT * FROM marks WHERE idUser = ?', [req.user.idUser],(err, result2) => {
 
                 result.map(function (e){
@@ -55,11 +55,26 @@ exports.localise = async (req, res) => {
                 if(error) {
                     console.log(error)
                 }
-                
+                result2.map(function (e){
+                    let unixTimeStamp = moment().format('X') - moment(e.birthday).format('X');
+                    let year = Math.floor(unixTimeStamp / 31536000);
+                    let month = (Math.floor((unixTimeStamp / 31536000) * 10)) - (Math.floor(unixTimeStamp / 31536000) * 10);
+        
+                    if (year === 0 && month > 0){
+                        return e.birthday = month + " mois"
+                    } else if (year === 0 && month === 0){
+                        return e.birthday = "< 1 mois"
+                    } else if (year === 1){
+                        return e.birthday = year + " an et " + month + " mois"
+                    } else {
+                        return e.birthday = year + " ans et " + month + " mois"
+                    }
+                })        
+
                 res.render('../views/users/localise', {
                     title: "autour de moi",
                     user: req.user,
-                    userCp: "cp",
+                    userCp: cp,
                     usersAround : result,
                     dogsAround : result2,
                 })

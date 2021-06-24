@@ -8,11 +8,11 @@
     <h3>Autour de moi :</h3>
 </div>
 
-<div class="dog card" id="newDogsSection">
+<div class="dog card" id="dogsAroundSection">
     <% usersAround.map(function(e) { %>
         <% if (e.city === userCp) { %>
             <% dogsAround.map(function(elem) { %>
-                <% if (elem.idUser === e.idUser) { %>
+                <% if (elem.idUser === e.idUser && elem.idUser !== user.idUser) { %>
                     <div class="ui card">
                         <a href="/dog-profil?id=<%= elem.idDog %>">
                                 <% if (elem.dogAttachment) { %>
@@ -23,21 +23,7 @@
                                 
                                 <div class="content">
                                     <h4><%= elem.name %></h4>
-                                    <span class="breed"><%= elem.breed %></span>
-                                    <span class="date"><%= elem.birthday %></span>
                                 </div>
-
-                                <!-- <% marked.map(function(mark) { %>  
-                                    <% if (dog.idDog) { %>
-                                        <form action="/mark?id=<%= mark.idDog %>" method="post" id="like">
-                                            <button type="submit"><i class="heart like icon"></i></button>
-                                        </form>   
-                                    <% } else { %>  
-                                        <form action="/mark?id=<%= mark.idDog %>" method="post" id="like">
-                                            <button type="submit"><i class="heart outline like icon"></i></button>
-                                        </form>   
-                                    <% } %> 
-                                <% }) %> -->
                         </a>
                     </div>
                 <% } %>
@@ -45,6 +31,33 @@
         <% } %>
     <% }); %>
 </div>
+
+<div class="homeTitles">
+    <h3>Recherche :</h3>
+</div>
+
+<div class="dog card" id="searchDogsSection">
+    <% dogsAround.map(function(elem) { %>
+        <% if (elem.idUser !== user.idUser) { %>
+            <div class="ui card">
+                <a href="/dog-profil?id=<%= elem.idDog %>">
+                        <% if (elem.dogAttachment) { %>
+                            <img class="ui image" src="tmp/<%= elem.dogAttachment %>">    
+                        <% } else { %>  
+                            <img class="ui image" src="img/profil-pic.png" style="object-fit: contain;">    
+                        <% } %> 
+                        
+                        <div class="content">
+                            <h4><%= elem.name %></h4>
+                            <span class="breed"><%= elem.breed %></span>
+                        </div>
+                </a>
+            </div>
+        <% } %>
+    <% }); %>
+</div>
+
+
 <%- include ('../includes/footer.ejs') %>
 
 <script type="text/javascript"></script>

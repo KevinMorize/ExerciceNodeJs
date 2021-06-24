@@ -1,5 +1,4 @@
 const dogModel = require('../models/dogModel.js')
-const db = require('../config/db')
 
 exports.createDog = (req, res) => {
     if (req.user){
