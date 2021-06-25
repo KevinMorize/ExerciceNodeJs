@@ -1,4 +1,21 @@
 /* main page */
+#addWalkImg{
+    width: 70%;
+    margin-top: 3%;
+}
+
+#addWalkButton{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+#addWalkButton img{
+    max-width: 95%;
+    margin: 0 3% 0 2%;
+}
+
 #walkSection{
     width: 100%;
     padding: 2% 3% 0 3%;
@@ -56,19 +73,6 @@
     object-fit: cover;
     border-radius: 100px !important;
     transform: scale(1.2);
-}
-
-#addWalkButton{
-    margin-top: 5%;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-}
-
-#addWalkButton img{
-    max-width: 95%;
-    margin: 0 3% 0 2%;
 }
 
 /* main add */

@@ -1,11 +1,14 @@
 <%- include('../includes/header.ejs')%>
+
+<img src="/img/addWalkImg.png" id="addWalkImg"/>
+
 <a href="/walk-create" id="addWalkButton">
     <img src="/img/addWalk.png"/>
 </a>
 
 <div id="walkSection">
     <h2>Invitations</h2>
-    <div class="walkSectionCards">
+    <div class="walkSectionCards" id="walkSectionInvited">
         <% if (invited.length > 0) { %> 
             <% invited.forEach(function(invit) { %>
                 <% if (invit.day !== false) { %> 
@@ -45,7 +48,7 @@
     </div>
 
     <h2>Acceptées</h2>
-    <div class="walkSectionCards">
+    <div class="walkSectionCards" id="walkSectionAccepted">
         <% if (accepted.length > 0) { %> 
             <% accepted.forEach(function(accept) { %>
                 <% if (accept.day !== false && accept.idUser !== user.idUser) { %> 
@@ -85,7 +88,7 @@
     </div>
 
     <h2>Créees</h2>
-    <div class="walkSectionCards">
+    <div class="walkSectionCards" id="walkSectionCreated">
         <% if (created.length > 0) { %> 
             <% created.forEach(function(create) { %>
                 <% if (create.day !== false) { %> 
@@ -124,5 +127,7 @@
         <% } %>
     </div>
 </div>
+
+<script type="text/javascript" src="emptyWalkMessages.js"></script>
 
 <%- include ('../includes/footer.ejs') %>

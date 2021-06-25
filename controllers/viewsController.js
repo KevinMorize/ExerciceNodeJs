@@ -4,7 +4,7 @@ const moment = require('moment');
 // main
 exports.home = (req, res) => {
     if (req.user){
-        db.query('SELECT * FROM dogs ORDER BY createdAt LIMIT 10', (err, result) => {
+        db.query('SELECT * FROM dogs ORDER BY createdAt DESC LIMIT 10', (err, result) => {
             db.query('SELECT * FROM marks WHERE idUser = ?', [req.user.idUser],(err, result2) => {
 
                 result.map(function (e){
