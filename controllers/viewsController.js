@@ -206,7 +206,7 @@ exports.profil = async (req, res) => {
                         console.log(err)
                     }
 
-                    result[0].city = result[0].city.slice(0, result[0].city.indexOf('-') - 1)
+                    result[0].city = result[0].city.slice(0, result[0].city.indexOf(' -'))
 
                     result3.map(function (e){
                         let unixTimeStamp = moment().format('X') - moment(e.birthday).format('X');
@@ -297,6 +297,8 @@ exports.getDog = (req, res) => {
                 } else {
                     result1[0].birthday = year + " ans et " + month + " mois"
                 }
+
+                result2[0].city = result2[0].city.slice(0, result2[0].city.indexOf(' -'))
 
                 res.render('../views/users/dogProfil', {
                     title2: "Profil de " + result1[0].name, 

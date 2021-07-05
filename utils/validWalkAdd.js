@@ -55,6 +55,11 @@ function selectedFriend(image, name, id) {
         selectedArea.removeChild(selectError)
     }
 
+    selectedMatch.map(function(e){
+        console.log(e)
+    })
+console.log(selectedMatch)
+
     var newMatchDiv = document.createElement('div')
     newMatchDiv.className = "selectedDiv"
 
@@ -140,34 +145,9 @@ function selectTime(){
 
 
 $(document).on('submit', "form", async function(e) {
-
     const selectError = document.getElementById('noSelectMatch')
-
-    var checkDate = Date.parse(day.value) - Date.now()
-    var startHour = start.value.slice(0, 2)
-    var endHour = end.value.slice(0, 2)
-    var startMin = start.value.slice(3)
-    var endMin = end.value.slice(3)
-
-    if (startHour === "00"){
-        var startHour = "24"
-    } 
-
-    if (endHour === "00"){
-        var endHour = "24"
-    }
-    
-    if (selectError){
-        selectedArea.removeChild(selectError)
-    }
-
-    if(checkDate < 0){  
-        e.preventDefault() 
-    }
-
-    if((startHour + startMin >= endHour + endMin)){
-        e.preventDefault()
-    }
+    const dateError = document.getElementById('dayErrorMessage');
+    const timeError = document.getElementById('timeErrorMessage');
 
     if(selectedMatch.length < 1){
         e.preventDefault()
@@ -177,5 +157,9 @@ $(document).on('submit', "form", async function(e) {
         selectedArea.appendChild(message)
         var messageText = document.createTextNode("Les balades c'est mieux à deux")
         message.appendChild(messageText)
+    }
+    
+    if (selectError || dateError || timeError){
+        e.preventDefault()
     }
 });

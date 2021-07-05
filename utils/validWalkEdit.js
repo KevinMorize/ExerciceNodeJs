@@ -57,26 +57,11 @@ function selectTime(){
 }
     
 $('form').submit(async function(e){
-    var checkDate = Date.parse(day.value) - Date.now()
-    var startHour = start.value.slice(0, 2)
-    var endHour = end.value.slice(0, 2)
-    var startMin = start.value.slice(3)
-    var endMin = end.value.slice(3)
+    const timeError = document.getElementById('timeErrorMessage');
+    const dateError = document.getElementById('dayErrorMessage');
 
-    if (startHour === "00"){
-        var startHour = "24"
-    } 
-
-    if (endHour === "00"){
-        var endHour = "24"
-    }
-
-    if(checkDate < 0){  
+    if(timeError || dateError){  
         e.preventDefault() 
-    }
-
-    if((startHour + startMin >= endHour + endMin)){
-        e.preventDefault()
     }
 });
     

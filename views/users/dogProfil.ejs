@@ -45,12 +45,12 @@
 
 <% if (owner.userAttachment) { %>
     <div id="userImg">
-        <img class="ui bottom aligned avatar image" src="/tmp/<%- owner.userAttachment %>" alt="img-profil">
+        <img class="ui avatar image" src="/tmp/<%- owner.userAttachment %>" alt="img-profil">
         <span><%- owner.username %> (<%- owner.city %>)</span>
     </div>
     <% } else { %>  
     <div id="userImg">
-        <img class="ui bottom aligned avatar image" src="/img/profil-pic.png" alt="img-profil">
+        <img class="ui avatar image" src="/img/profil-pic.png" alt="img-profil">
         <span><%- owner.username %> (<%- owner.city %>)</span>
     </div>
     <% } %>  

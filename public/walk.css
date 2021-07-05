@@ -107,8 +107,11 @@
 }
 
 #walkAdressInput{
+    width: 100%;
     display: flex;
     margin-top: 5%;
+    flex-direction: row;
+    justify-content: flex-start;
 }
 
 #walkAdressInput input:nth-of-type(2){
