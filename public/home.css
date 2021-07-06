@@ -2,14 +2,21 @@
 .homeTitles{
     width: 100%;
     padding-left: 5%;
-    margin: 4% 0 4% 0;
+    margin-bottom: 4%;
 }
 
 .homeTitles h3{
     margin: 0 !important;
-    text-decoration: underline;
-    text-decoration-color: #6A2D8F;
 }
+
+#homeImg{
+    margin: 5% 0;
+}
+
+#homeImg2{
+    margin-top: 10%;
+}
+
 
 /* newDogsSection */
 #newDogsSection{
@@ -84,6 +91,21 @@
     align-items: center;
     max-height: 500px;
     padding-bottom: 5%;
+}
+
+/* ico nav */
+
+#icoNav{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 10%;
+}
+
+#icoNav img{
+    width: 15%;
 }
 
 
