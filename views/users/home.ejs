@@ -1,10 +1,7 @@
 <%- include('../includes/header.ejs')%>
 
-<img class="ui fluid image" src="img/image-accueil.png" id="homeImg">
-
-<div class="homeTitles">
-<h3>Nouveaux copains:</h3>
-</div>
+<img class="ui fluid image" src="img/welcome.png" id="homeWelcomeImg">
+<!-- <img class="ui fluid image" src="img/nouveaux.png" id="homeNewImg"> -->
 
 <div class="dog card" id="newDogsSection">
     <% newDogs.map(function(dog) { %>
@@ -40,7 +37,13 @@
     <% }); %>
 </div>
 
-<img class="ui fluid image" src="img/image-accueil2.png" id="homeImg2">
+<hr>
+
+<img class="ui fluid image" src="img/security.png" id="homeSecurityImg">
+
+<hr>
+
+<img class="ui fluid image" src="img/image-accueil.png" id="homeAdviceImg">
 
 <div id="icoNav">
     <img src="img/ico-accueil.png">

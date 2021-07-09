@@ -54,12 +54,7 @@ function selectedFriend(image, name, id) {
     if (selectError){
         selectedArea.removeChild(selectError)
     }
-
-    selectedMatch.map(function(e){
-        console.log(e)
-    })
-console.log(selectedMatch)
-
+    
     var newMatchDiv = document.createElement('div')
     newMatchDiv.className = "selectedDiv"
 

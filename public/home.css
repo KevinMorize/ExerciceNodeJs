@@ -6,14 +6,28 @@
 }
 
 .homeTitles h3{
-    margin: 0 !important;
+    margin: 0;
+    margin-top: 5%;
 }
 
-#homeImg{
-    margin: 5% 0;
+#homeWelcomeImg{
+    width: 90%;
+    margin-top: 5%;
+    margin-bottom: 10%;
 }
 
-#homeImg2{
+#homeNewImg{
+    width: 70%;
+    margin: 10% 5%;
+    align-self: flex-start;
+}
+
+#homeSecurityImg{
+    margin-top: 10%;
+    width: 90%;
+}
+
+#homeAdviceImg{
     margin-top: 10%;
 }
 
