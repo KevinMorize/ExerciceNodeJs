@@ -49,7 +49,7 @@ const outputHtml = (matches) => {
 }
 
 function selectedFriend(image, name, id) {
-    const selectError = document.getElementById('noSelectMatch')
+    const selectError = document.getElementById('noSelectMatch');
 
     if (selectError){
         selectedArea.removeChild(selectError)
@@ -143,6 +143,8 @@ $(document).on('submit', "form", async function(e) {
     const selectError = document.getElementById('noSelectMatch')
     const dateError = document.getElementById('dayErrorMessage');
     const timeError = document.getElementById('timeErrorMessage');
+
+
 
     if(selectedMatch.length < 1){
         e.preventDefault()

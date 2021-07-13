@@ -5,6 +5,29 @@ body ::-webkit-scrollbar {
     display: none;
 }
 
+body a
+{        
+    -webkit-user-select: none;
+    -moz-user-select: -moz-none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}   
+
+body a:active{
+    background-color: none;
+}
+
+body a::selection 
+{
+    background-color:transparent;
+} 
+
+body a::-moz-selection
+{
+    background-color:transparent;
+}
+
 /* header-footer */
 #header{
     position: fixed;
@@ -50,6 +73,7 @@ main{
     background-color: #E2CAEE !important;
     margin: 0 !important;
     height: 7.5%;    
+    min-height: 60px !important;
     z-index: 10000 !important;
 }
 
@@ -115,7 +139,6 @@ h3{
 }
 
 /* vertical card */
-
 #verticalCard{
     width: 100%;
     display: flex;

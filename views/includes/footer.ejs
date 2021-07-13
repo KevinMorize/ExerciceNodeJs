@@ -1,25 +1,25 @@
 </main>
 
-<div class="ui bottom fixed four item menu">
-  <a class="item" href="/accueil">
-    <img class="ui avatar image" src="/img/accueil.png" alt="img-menu">
-  </a>
-  <a class="item" href="/autour-de-moi">
-    <img class="ui avatar image" src="/img/localisation.png" alt="img-menu">
-  </a>
-  <a class="item" href="/balades">
-    <img class="ui avatar image" src="/img/balades.png" alt="img-menu">
-  </a>
-  <% if (user.userAttachment) { %>
-    <a class="item" href="/profil">
-      <img class="ui avatar image" src="tmp/<%= user.userAttachment %>" alt="img-menu">
-    </a>
-  <% } else { %>
-    <a class="item" href="/profil">
-      <img src="/img/profil.png" alt="img-menu">
-    </a>
-  <% } %>
-</div>
+    <div class="ui bottom fixed four item menu">
+      <a class="item" href="/accueil">
+        <img class="ui avatar image" src="/img/accueil.png" alt="img-menu">
+      </a>
+      <a class="item" href="/autour-de-moi">
+        <img class="ui avatar image" src="/img/localisation.png" alt="img-menu">
+      </a>
+      <a class="item" href="/balades">
+        <img class="ui avatar image" src="/img/balades.png" alt="img-menu">
+      </a>
+      <% if (user.userAttachment) { %>
+        <a class="item" href="/profil">
+          <img class="ui avatar image" src="tmp/<%= user.userAttachment %>" alt="img-menu">
+        </a>
+      <% } else { %>
+        <a class="item" href="/profil">
+          <img src="/img/profil.png" alt="img-menu">
+        </a>
+      <% } %>
+    </div>
 
-</body>
+  </body>
 </html>

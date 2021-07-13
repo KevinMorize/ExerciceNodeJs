@@ -27,6 +27,13 @@
     width: 90%;
 }
 
+#CGUModal{
+    margin-top: 5%;
+    width: 50%;
+    background-color: #6A2D8F;
+    color: white;
+}
+
 #homeAdviceImg{
     margin-top: 10%;
 }

@@ -16,11 +16,12 @@
 
 <div id="profilInfosContainer">
   <p id="userName"><%- user.username %> (<%- user.city %>)</p>
-  <p id="userBio">"<%- user.bio %>"</p>
+  <p id="userBio">"<%- user.bio %>"</p>    
 
-  <a class="ui icon button" href="/user-update">
-    <i class="cog icon"></i>
-  </a>
+  <div id="dropdown">
+    <img src="img/dropdown.png" id="dropdownimg">
+  </div>
+
 </div>
 
 <hr>
@@ -77,5 +78,7 @@
   <% }); %>
 <% } %>
 </div>
+
+<script type="text/javascript" src="dropdownmenu.js"></script>
 
 <%- include ('../includes/footer.ejs') %>

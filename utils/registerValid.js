@@ -73,7 +73,7 @@ function passwordError(value){
 function passwordConfirmError(value){
   const passwordConfirmErrorMessage = document.getElementById('passwordConfirmErrorMessage')
 
-    if(passwordConfirmErrorMessage){
+    if(passwordConfirmErrorMessage || value === password[0].value){
       passwordConfirm[0].parentNode.removeChild(passwordConfirmErrorMessage)
     }
 
