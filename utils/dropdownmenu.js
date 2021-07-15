@@ -15,7 +15,6 @@ function dropdownExist(){
 }
 
 function dropdownlist() {
-  const dropdownglobalmenu = document.getElementById('dropdownglobalmenu')
 
   var dropdownmenu = document.createElement('div');
   dropdownmenu.id = "dropdownglobalmenu";

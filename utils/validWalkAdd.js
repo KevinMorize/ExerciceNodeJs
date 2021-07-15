@@ -49,6 +49,7 @@ const outputHtml = (matches) => {
 }
 
 function selectedFriend(image, name, id) {
+
     const selectError = document.getElementById('noSelectMatch');
 
     if (selectError){
@@ -86,6 +87,13 @@ function selectedFriend(image, name, id) {
     newMatchinput.className = "hiddenInputMatch"
     newMatchinput.value = id
     newMatchDiv.appendChild(newMatchinput)
+
+    if (selectedMatch.length > 1) {
+        console.log(selectedMatch)
+        // selectedMatch.map(function(e){
+        //     console.log(e.value)
+        // })
+    }
 
     matches = [];
     matchList.innerHTML = ""

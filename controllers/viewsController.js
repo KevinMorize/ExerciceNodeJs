@@ -294,6 +294,10 @@ exports.getDog = (req, res) => {
                     result1[0].birthday = "< 1 mois"
                 } else if (year === 1){
                     result1[0].birthday = year + " an et " + month + " mois"
+                } else if(year > 0 && month === 0){
+                    result1[0].birthday = year + " ans"
+                } else if(year === 1 && month === 0){
+                    result1[0].birthday = year + " an"
                 } else {
                     result1[0].birthday = year + " ans et " + month + " mois"
                 }
